@@ -1,0 +1,398 @@
+/* ===================================================================
+   一般社団法人みらい設計 — corporate site
+   コンセプト: 社名「みらい設計」= 未来の設計図。青写真(blueprint)の
+   質感 — 方眼、罫線、図面の register mark — を紙面全体のモチーフに。
+   ===================================================================*/
+
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&display=swap");
+
+:root {
+  --ink: #16324f;
+  --paper: #f3f5f2;
+  --panel: #fbfcfa;
+  --line: #b7cbd8;
+  --line-faint: rgba(22, 50, 79, 0.08);
+  --accent: #c1572e;
+  --accent-soft: #f3ded1;
+  --sub: #56718a;
+  --focus: #2f7fb0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e9eef2;
+    --paper: #0f2036;
+    --panel: #142943;
+    --line: #2d4a63;
+    --line-faint: rgba(233, 238, 242, 0.08);
+    --accent: #e37e4d;
+    --accent-soft: #3a2a22;
+    --sub: #9db2c4;
+    --focus: #6fb6e0;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #e9eef2;
+  --paper: #0f2036;
+  --panel: #142943;
+  --line: #2d4a63;
+  --line-faint: rgba(233, 238, 242, 0.08);
+  --accent: #e37e4d;
+  --accent-soft: #3a2a22;
+  --sub: #9db2c4;
+  --focus: #6fb6e0;
+}
+
+* { box-sizing: border-box; }
+
+html { text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.9;
+  font-size: 15px;
+  background-image: radial-gradient(circle, var(--line-faint) 1.1px, transparent 1.1px);
+  background-size: 22px 22px;
+  background-attachment: fixed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a, button, .panel { transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+}
+
+h1, h2, h3 {
+  font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 600;
+  text-wrap: balance;
+  margin: 0;
+}
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.label::before {
+  content: "";
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ---------- title block (nav) ---------- */
+.titleblock {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.titleblock-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  position: relative;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-mark svg { width: 24px; height: 24px; display: block; }
+.brand-name {
+  font-family: "Shippori Mincho", serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+.brand-en {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+nav.primary {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+nav.primary a {
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--sub);
+  padding: 8px 12px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+nav.primary a:hover { color: var(--ink); background: var(--line-faint); }
+nav.primary a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+/* ---------- layout ---------- */
+main { max-width: 980px; margin: 0 auto; padding: 0 24px 80px; }
+
+.hero {
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 56px;
+  position: relative;
+}
+.hero h1 {
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.5;
+  margin-top: 18px;
+  max-width: 14em;
+}
+.hero .lead {
+  margin-top: 20px;
+  color: var(--sub);
+  font-size: 15px;
+  max-width: 40em;
+}
+.hero-cta { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--accent); }
+.btn-ghost { border-color: var(--line); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.page-head {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 48px;
+}
+.page-head h1 { font-size: clamp(26px, 4vw, 36px); margin-top: 16px; }
+.page-head .lead { margin-top: 14px; color: var(--sub); max-width: 42em; }
+
+/* ---------- panel: a page from the sketchbook, not a machined part ---------- */
+.panel {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px 14px 3px 14px;
+  padding: 32px;
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 22px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.8;
+}
+.panel::after,
+.panel .tick-br, .panel .tick-bl { display: none; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 720px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+.stack { display: flex; flex-direction: column; gap: 20px; }
+
+section.block { margin-bottom: 56px; }
+section.block h2 { font-size: 22px; margin-top: 10px; }
+section.block .kicker { margin-bottom: 0; }
+
+.service-card h3 {
+  font-size: 17px;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.service-card .no {
+  font-family: "Shippori Mincho", serif;
+  color: var(--accent);
+  font-size: 13px;
+}
+.service-card p { margin: 0; color: var(--sub); font-size: 13.5px; }
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+.service-card .tag { margin-top: 14px; }
+
+table.spec {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+table.spec th, table.spec td { text-align: left; padding: 14px 16px; border-top: 1px solid var(--line); vertical-align: top; }
+table.spec tr:first-child th, table.spec tr:first-child td { border-top: none; }
+table.spec th { width: 8.5em; color: var(--sub); font-weight: 600; white-space: nowrap; }
+
+.value-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.value-list li {
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 4.5em 1fr;
+  gap: 20px;
+}
+.value-list li:first-child { border-top: none; padding-top: 0; }
+.value-list .num {
+  font-family: "Shippori Mincho", serif;
+  color: var(--accent);
+  font-size: 22px;
+}
+.value-list h3 { font-size: 16px; margin-bottom: 8px; font-family: "Hiragino Kaku Gothic ProN", sans-serif; }
+.value-list p { margin: 0; color: var(--sub); font-size: 13.5px; }
+
+.quote-block {
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 24px;
+  margin: 40px 0;
+}
+.quote-block p {
+  font-family: "Shippori Mincho", serif;
+  font-size: 19px;
+  line-height: 1.9;
+  color: var(--ink);
+  margin: 0;
+}
+
+.contact-methods { display: flex; flex-direction: column; gap: 0; }
+.contact-methods .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.contact-methods .row:first-child { border-top: none; padding-top: 0; }
+.contact-methods .row .k { font-size: 12px; letter-spacing: 0.08em; color: var(--sub); }
+.contact-methods .row .v { font-size: 14.5px; }
+.contact-methods .row a { color: var(--accent); text-decoration: none; }
+.contact-methods .row a:hover { text-decoration: underline; }
+
+footer.site {
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--sub);
+}
+footer.site a { text-decoration: none; color: var(--sub); }
+footer.site a:hover { color: var(--accent); }
+.footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ---------- contact form ---------- */
+.form-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+.form-field:last-child { margin-bottom: 0; }
+.form-field label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-field .required {
+  font-size: 10px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.form-field .optional { font-size: 10px; color: var(--sub); font-weight: 500; }
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field select,
+.form-field textarea {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 12px 14px;
+  width: 100%;
+}
+.form-field textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.form-note { font-size: 12px; color: var(--sub); margin-top: 18px; }
+
+.legal-note {
+  background: var(--accent-soft);
+  border-radius: 3px;
+  padding: 14px 18px;
+  font-size: 12px;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.todo { background: var(--accent-soft); padding: 1px 5px; border-radius: 3px; }
