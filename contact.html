@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ | 一般社団法人みらい設計</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="titleblock">
+  <div class="titleblock-inner">
+    <a class="brand" href="./index.html">
+      <span class="brand-mark" style="color:var(--accent)">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="17" r="3" fill="currentColor"/>
+          <path d="M9.5 14.5C13 10.5 17 6.5 21 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span><span class="brand-name">みらい設計</span><br><span class="brand-en">FUTURE CREATION</span></span>
+    </a>
+    <nav class="primary" aria-label="主要">
+      <a href="./index.html">ホーム</a>
+      <a href="./services.html">サービス</a>
+      <a href="./philosophy.html">方針・理念</a>
+      <a href="./company.html">会社概要</a>
+      <a href="./contact.html" aria-current="page">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-head">
+    <div class="label">CONTACT</div>
+    <h1>お問い合わせ</h1>
+    <p class="lead">サービスに関するご相談、取材のお問い合わせなどは、以下のフォームよりご連絡ください。</p>
+  </div>
+
+  <section class="block">
+    <div class="panel">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <div class="contact-methods" style="margin-bottom: 28px;">
+        <div class="row">
+          <span class="k">MAIL</span>
+          <span class="v"><a href="mailto:pingwubu5@gmail.com" style="color:var(--accent);">pingwubu5@gmail.com</a></span>
+        </div>
+        <div class="row">
+          <span class="k">ADDRESS</span>
+          <span class="v">〒150-0044 東京都渋谷区円山町5-5</span>
+        </div>
+      </div>
+
+      <form id="contact-form">
+        <div class="form-field">
+          <label for="f-name">お名前 <span class="required">必須</span></label>
+          <input type="text" id="f-name" name="name" required autocomplete="name">
+        </div>
+        <div class="form-field">
+          <label for="f-org">事業者名 <span class="required">必須</span></label>
+          <input type="text" id="f-org" name="org" required autocomplete="organization">
+        </div>
+        <div class="form-field">
+          <label for="f-topic">ご相談内容 <span class="required">必須</span></label>
+          <select id="f-topic" name="topic" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="コンサルティング事業について">コンサルティング事業について</option>
+            <option value="終活関連事業について">終活関連事業について</option>
+            <option value="ファイナンシャルプランニング事業について">ファイナンシャルプランニング事業について</option>
+            <option value="BPO事業について">BPO事業について</option>
+            <option value="アプリ開発事業について">アプリ開発事業について</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="f-note">備考 <span class="optional">任意</span></label>
+          <textarea id="f-note" name="note" placeholder="ご相談内容の詳細があればご記入ください"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">送信する</button>
+        <p class="form-note" id="form-status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="panel">
+      <span class="tick-bl"></span><span class="tick-br"></span>
+      <div class="label">APP SUPPORT</div>
+      <h2 style="margin-top:14px; font-size:19px;">「おやこと」アプリに関するお問い合わせ</h2>
+      <p style="color:var(--sub); margin-top:10px; font-size:13.5px;">アプリ内の「サポート」または「トーク」画面からもお問い合わせいただけます。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div>© 2026 一般社団法人みらい設計</div>
+    <div class="footer-links">
+      <a href="./company.html">会社概要</a>
+      <a href="./terms.html">利用規約</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var org = document.getElementById("f-org").value.trim();
+    var topic = document.getElementById("f-topic").value;
+    var note = document.getElementById("f-note").value.trim();
+    var CONTACT_EMAIL = "pingwubu5@gmail.com";
+
+    var subject = "【お問い合わせ】" + topic;
+    var body =
+      "お名前: " + name + "\n" +
+      "事業者名: " + org + "\n" +
+      "ご相談内容: " + topic + "\n" +
+      "備考: " + (note || "(なし)");
+
+    var mailto = "mailto:" + CONTACT_EMAIL +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    window.location.href = mailto;
+    document.getElementById("form-status").textContent =
+      "メールアプリが起動します。開かない場合は、上記メールアドレスへ直接ご連絡ください。";
+  });
+</script>
+</body>
+</html>
