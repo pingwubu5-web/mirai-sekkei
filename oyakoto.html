@@ -4,384 +4,462 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>おやこと | ご遺族向け死後手続き支援アプリ</title>
-<meta name="description" content="大切な方を亡くされたあと、何から手をつければいいか分からない——そんなご遺族のための死後手続き支援アプリ「おやこと」。質問に答えるだけでやることリストを自動作成し、ご家族で共有できます。一般社団法人みらい設計が運営。">
-<link rel="stylesheet" href="./styles.css">
+<meta name="description" content="大切な方を亡くされたあと、何から手をつければいいか分からない——そんなご遺族のための死後手続き支援アプリ「おやこと」。質問に答えるだけでやることリストを自動作成し、ご家族で共有できます。">
 <style>
-  /* ==========================================================
-     「おやこと」プロダクトページ専用スタイル。
-     会社サイトの骨格(ヘッダー・フッター・書体構造)は継承しつつ、
-     アプリ本体の配色(温かいオレンジ×生成り×丸ゴシック)に寄せて、
-     製品固有の親しみやすさを出す。
-     ========================================================== */
   @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
 
-  .oyakoto-page {
-    --oy-ink: #3d2f24;
-    --oy-paper: #fdf6ee;
-    --oy-panel: #fffcf8;
-    --oy-line: #f0ddc4;
-    --oy-primary: #e0793a;
-    --oy-primary-soft: #fce8d5;
-    --oy-accent: #b5883a;
-    --oy-sub: #8a7868;
+  :root {
+    --ink: #3d2f24;
+    --paper: #fff8ee;
+    --panel: #fffcf8;
+    --line: #f3e2c9;
+    --primary: #e0793a;
+    --primary-soft: #fce8d5;
+    --primary-softer: #fdf3e8;
+    --accent: #b5883a;
+    --sub: #957f6c;
   }
   @media (prefers-color-scheme: dark) {
-    .oyakoto-page:not([data-theme="light"]) {
-      --oy-ink: #f3e9dd;
-      --oy-paper: #241a12;
-      --oy-panel: #2e2118;
-      --oy-line: #4a3a29;
-      --oy-primary: #f0985c;
-      --oy-primary-soft: #3d2c1c;
-      --oy-accent: #d9b876;
-      --oy-sub: #c2ac96;
+    :root:not([data-theme="light"]) {
+      --ink: #f5ecdf;
+      --paper: #241a12;
+      --panel: #2e2118;
+      --line: #4a3a29;
+      --primary: #f0985c;
+      --primary-soft: #3d2c1c;
+      --primary-softer: #362719;
+      --accent: #d9b876;
+      --sub: #c2ac96;
     }
   }
-  .oyakoto-page[data-theme="dark"] {
-    --oy-ink: #f3e9dd;
-    --oy-paper: #241a12;
-    --oy-panel: #2e2118;
-    --oy-line: #4a3a29;
-    --oy-primary: #f0985c;
-    --oy-primary-soft: #3d2c1c;
-    --oy-accent: #d9b876;
-    --oy-sub: #c2ac96;
+  :root[data-theme="dark"] {
+    --ink: #f5ecdf;
+    --paper: #241a12;
+    --panel: #2e2118;
+    --line: #4a3a29;
+    --primary: #f0985c;
+    --primary-soft: #3d2c1c;
+    --primary-softer: #362719;
+    --accent: #d9b876;
+    --sub: #c2ac96;
   }
 
-  .oyakoto-page {
-    background: var(--oy-paper);
-    color: var(--oy-ink);
-    background-image:
-      radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--oy-primary) 10%, transparent), transparent 40%),
-      radial-gradient(circle at 90% 0%, color-mix(in srgb, var(--oy-accent) 12%, transparent), transparent 45%);
-  }
-  .oyakoto-page h1, .oyakoto-page h2, .oyakoto-page h3 {
-    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
-    font-weight: 700;
-  }
-  .oyakoto-page p, .oyakoto-page li, .oyakoto-page a, .oyakoto-page span, .oyakoto-page label {
+  * { box-sizing: border-box; }
+  html { text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
     font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  a { color: inherit; }
+  img, svg { max-width: 100%; display: block; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) {
+    a, button { transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease; }
   }
 
-  .oy-hero {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 64px 24px 40px;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
-    align-items: center;
+  /* ---------- blobs (decorative, non-interactive) ---------- */
+  .blob { position: absolute; z-index: 0; filter: blur(2px); opacity: 0.55; pointer-events: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .blob-float { animation: blobfloat 9s ease-in-out infinite; }
+    .blob-float-slow { animation: blobfloat 13s ease-in-out infinite; }
   }
-  @media (max-width: 880px) {
-    .oy-hero { grid-template-columns: 1fr; padding-top: 40px; }
-  }
-  .oy-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--oy-accent);
-    background: var(--oy-primary-soft);
-    padding: 6px 14px;
-    border-radius: 999px;
-  }
-  .oy-hero h1 {
-    margin: 18px 0 0;
-    font-size: clamp(28px, 4.4vw, 42px);
-    line-height: 1.6;
-    text-wrap: balance;
-  }
-  .oy-hero .lead {
-    margin-top: 18px;
-    color: var(--oy-sub);
-    font-size: 15px;
-    line-height: 1.95;
-    max-width: 34em;
-  }
-  .oy-cta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
-  .oy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 26px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: "Zen Kaku Gothic New", sans-serif;
-    border: 1.5px solid transparent;
-  }
-  .oy-btn-primary { background: var(--oy-primary); color: #fffaf4; box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--oy-primary) 70%, transparent); }
-  .oy-btn-primary:hover { background: var(--oy-accent); }
-  .oy-btn-ghost { border-color: var(--oy-line); color: var(--oy-ink); }
-  .oy-btn-ghost:hover { border-color: var(--oy-primary); color: var(--oy-primary); }
-  .oy-note { margin-top: 12px; font-size: 11.5px; color: var(--oy-sub); }
-
-  .oy-mark-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .oy-mark {
-    width: min(280px, 70vw);
-    height: min(280px, 70vw);
-    filter: drop-shadow(0 20px 40px color-mix(in srgb, var(--oy-primary) 25%, transparent));
+  @keyframes blobfloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(4deg); }
   }
 
-  .oy-section { max-width: 980px; margin: 0 auto; padding: 40px 24px; }
-  .oy-section + .oy-section { border-top: 1px solid var(--oy-line); }
-  .oy-section h2 { font-size: clamp(21px, 3vw, 27px); text-wrap: balance; }
-  .oy-section .oy-kicker { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; color: var(--oy-accent); }
+  /* ---------- header ---------- */
+  header.top {
+    position: sticky; top: 0; z-index: 30;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .top-inner {
+    max-width: 1080px; margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand svg { width: 38px; height: 38px; }
+  .brand-word { font-size: 20px; font-weight: 700; color: var(--ink); }
+  nav.top-nav { display: flex; align-items: center; gap: 22px; }
+  nav.top-nav a.navlink { font-size: 13.5px; font-weight: 500; color: var(--sub); text-decoration: none; }
+  nav.top-nav a.navlink:hover { color: var(--primary); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 22px; border-radius: 999px; text-decoration: none;
+    font-size: 13.5px; font-weight: 700; font-family: "Zen Kaku Gothic New", sans-serif;
+    border: none; cursor: pointer; white-space: nowrap;
+  }
+  .btn-primary { background: var(--primary); color: #fffaf4; box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--primary) 65%, transparent); }
+  .btn-primary:hover { transform: translateY(-2px) scale(1.02); background: var(--accent); }
+  .btn-ghost { background: var(--primary-soft); color: var(--accent); }
+  .btn-ghost:hover { transform: translateY(-2px); }
+  .btn-lg { padding: 15px 30px; font-size: 15px; }
 
-  .oy-flow { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  @media (max-width: 760px) { .oy-flow { grid-template-columns: 1fr; } }
-  .oy-flow-step {
-    background: var(--oy-panel);
-    border: 1px solid var(--oy-line);
-    border-radius: 20px;
-    padding: 24px;
+  main { position: relative; z-index: 1; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; max-width: 1080px; margin: 0 auto; padding: 40px 24px 30px; overflow: visible; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 36px; align-items: center; position: relative; z-index: 1; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 700; color: var(--accent);
+    background: var(--primary-soft); padding: 7px 16px; border-radius: 999px;
+  }
+  .hero h1 { margin-top: 20px; font-size: clamp(30px, 4.6vw, 46px); line-height: 1.55; font-weight: 900; }
+  .hero .lead { margin-top: 20px; color: var(--sub); font-size: 15.5px; line-height: 2; max-width: 32em; }
+  .hero .ctas { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .hero .note { margin-top: 14px; font-size: 12px; color: var(--sub); }
+
+  .mascot-wrap { position: relative; display: flex; align-items: center; justify-content: center; min-height: 320px; }
+  .mascot { width: min(300px, 76vw); position: relative; z-index: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .mascot { animation: bob 5s ease-in-out infinite; }
+  }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .sparkle { position: absolute; font-size: 22px; }
+
+  /* ---------- sections ---------- */
+  .section { max-width: 1080px; margin: 0 auto; padding: 70px 24px; position: relative; }
+  .section-head { text-align: center; max-width: 34em; margin: 0 auto 44px; }
+  .section-head .eyebrow { margin-bottom: 14px; }
+  .section-head h2 { font-size: clamp(22px, 3.4vw, 30px); }
+  .section-head p { margin-top: 12px; color: var(--sub); font-size: 14px; }
+
+  /* ---------- steps ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--panel); border: 2px solid var(--line); border-radius: 28px;
+    padding: 26px; text-align: center;
+  }
+  .step .step-emoji {
+    width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 999px;
+    background: var(--primary-soft); display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .step h3 { font-size: 16px; margin-bottom: 8px; }
+  .step p { font-size: 13px; color: var(--sub); line-height: 1.85; }
+
+  /* ---------- spotlight (feature + phone mockup) ---------- */
+  .spotlight { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center; margin-bottom: 90px; }
+  .spotlight:last-child { margin-bottom: 0; }
+  .spotlight.reverse { grid-template-columns: 1.15fr 0.85fr; }
+  .spotlight.reverse .spotlight-phone { order: 2; }
+  @media (max-width: 820px) {
+    .spotlight, .spotlight.reverse { grid-template-columns: 1fr; }
+    .spotlight.reverse .spotlight-phone { order: 0; }
+  }
+  .spotlight-text .eyebrow { margin-bottom: 16px; }
+  .spotlight-text h3 { font-size: clamp(19px, 2.6vw, 24px); line-height: 1.6; }
+  .spotlight-text p { margin-top: 14px; color: var(--sub); font-size: 14px; line-height: 1.95; }
+  .spotlight-phone { display: flex; justify-content: center; }
+
+  /* ---------- phone mockup ---------- */
+  .phone {
+    width: 250px; aspect-ratio: 9 / 18.5; background: #2a1c10; border-radius: 38px;
+    padding: 9px; box-shadow: 0 30px 50px -22px rgba(61,47,36,0.35), 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
     position: relative;
   }
-  .oy-flow-step .oy-num {
-    width: 30px; height: 30px;
-    border-radius: 999px;
-    background: var(--oy-primary-soft);
-    color: var(--oy-accent);
-    font-weight: 700;
-    font-family: "Zen Maru Gothic", sans-serif;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
-    margin-bottom: 14px;
+  .phone::before {
+    content: ""; position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+    width: 70px; height: 18px; background: #2a1c10; border-radius: 0 0 14px 14px; z-index: 2;
   }
-  .oy-flow-step h3 { font-size: 15.5px; margin: 0 0 8px; }
-  .oy-flow-step p { font-size: 13px; color: var(--oy-sub); margin: 0; line-height: 1.85; }
-  .oy-flow-arrow {
-    display: none;
+  .phone-screen { background: var(--paper); width: 100%; height: 100%; border-radius: 29px; overflow: hidden; padding: 20px 14px 14px; display: flex; flex-direction: column; }
+  .mock-bar { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 12px; }
+  .mock-progress-track { height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; margin-bottom: 14px; }
+  .mock-progress-fill { height: 100%; background: var(--primary); border-radius: 999px; }
+  .mock-task {
+    display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 12px;
+    background: var(--panel); border: 1.5px solid var(--line); margin-bottom: 7px; font-size: 10.5px; color: var(--ink);
   }
-  @media (min-width: 761px) {
-    .oy-flow { align-items: stretch; }
-  }
+  .mock-task.done { opacity: 0.55; }
+  .mock-task.done .mock-check { background: var(--primary); border-color: var(--primary); }
+  .mock-task.done span:not(.mock-check) { text-decoration: line-through; }
+  .mock-check { width: 15px; height: 15px; border-radius: 5px; border: 1.5px solid var(--line); flex: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 9px; }
+  .mock-due { margin-left: auto; font-size: 9px; color: var(--accent); font-weight: 700; white-space: nowrap; }
 
-  .oy-features { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 760px) { .oy-features { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 500px) { .oy-features { grid-template-columns: 1fr; } }
-  .oy-feature {
-    background: var(--oy-panel);
-    border: 1px solid var(--oy-line);
-    border-radius: 18px;
-    padding: 20px;
-  }
-  .oy-feature .oy-icon { font-size: 22px; }
-  .oy-feature h3 { font-size: 14.5px; margin: 12px 0 6px; }
-  .oy-feature p { font-size: 12.5px; color: var(--oy-sub); margin: 0; line-height: 1.8; }
+  .mock-chat { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: flex-end; }
+  .mock-bubble { max-width: 82%; padding: 8px 11px; border-radius: 14px; font-size: 10px; line-height: 1.6; }
+  .mock-bubble.them { align-self: flex-start; background: var(--panel); border: 1.5px solid var(--line); border-bottom-left-radius: 4px; }
+  .mock-bubble.me { align-self: flex-end; background: var(--primary); color: #fffaf4; border-bottom-right-radius: 4px; }
+  .mock-bubble.file { align-self: flex-start; background: var(--primary-softer); border: 1.5px dashed var(--accent); font-size: 9.5px; color: var(--accent); font-weight: 700; }
 
-  .oy-price-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  @media (max-width: 760px) { .oy-price-grid { grid-template-columns: 1fr; } }
-  .oy-price-card {
-    background: var(--oy-panel);
-    border: 1px solid var(--oy-line);
-    border-radius: 20px;
-    padding: 26px;
-    display: flex;
-    flex-direction: column;
+  .mock-memorial { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px; text-align: center; }
+  .mock-memorial .mock-candle { font-size: 30px; }
+  .mock-memorial-title { font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+  .mock-memorial-date { font-size: 11px; color: var(--primary); font-weight: 700; }
+  .mock-memorial-sub { font-size: 10px; color: var(--sub); }
+  .mock-avatars { display: flex; justify-content: center; gap: -4px; margin-top: 4px; }
+  .mock-avatar {
+    width: 22px; height: 22px; border-radius: 999px; background: var(--primary-soft); border: 2px solid var(--paper);
+    display: flex; align-items: center; justify-content: center; font-size: 10px; margin-left: -6px;
   }
-  .oy-price-card.is-highlight {
-    border-color: var(--oy-primary);
-    box-shadow: 0 16px 30px -20px color-mix(in srgb, var(--oy-primary) 60%, transparent);
-  }
-  .oy-price-tag { font-size: 12px; font-weight: 700; color: var(--oy-accent); letter-spacing: 0.04em; }
-  .oy-price-amount { margin-top: 10px; font-family: "Zen Maru Gothic", sans-serif; font-size: 30px; font-weight: 700; color: var(--oy-primary); }
-  .oy-price-amount small { font-size: 13px; font-weight: 500; color: var(--oy-sub); }
-  .oy-price-desc { margin-top: 10px; font-size: 12.5px; color: var(--oy-sub); line-height: 1.8; flex: 1; }
-  .oy-price-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .oy-price-list li { font-size: 12.5px; color: var(--oy-ink); padding-left: 20px; position: relative; }
-  .oy-price-list li::before { content: "◦"; position: absolute; left: 2px; color: var(--oy-primary); }
+  .mock-avatar:first-child { margin-left: 0; }
 
-  .oy-trust {
-    margin-top: 24px;
-    background: var(--oy-primary-soft);
-    border-radius: 20px;
-    padding: 28px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .oy-trust p { margin: 0; font-size: 13px; color: var(--oy-ink); max-width: 40em; line-height: 1.8; }
-  .oy-trust a { color: var(--oy-accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
-  .oy-trust a:hover { text-decoration: underline; }
+  /* ---------- feature chips ---------- */
+  .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 60px; }
+  @media (max-width: 700px) { .chips { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { .chips { grid-template-columns: 1fr; } }
+  .chip { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 18px; }
+  .chip .chip-emoji { font-size: 20px; }
+  .chip h4 { font-size: 13.5px; margin: 10px 0 5px; font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; }
+  .chip p { font-size: 11.5px; color: var(--sub); line-height: 1.8; }
 
-  .oy-closing {
-    text-align: center;
-    padding: 56px 24px 72px;
+  /* ---------- pricing ---------- */
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 780px) { .price-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; } }
+  .price-card { background: var(--panel); border: 2.5px solid var(--line); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; text-align: center; }
+  .price-card.hi { border-color: var(--primary); box-shadow: 0 20px 34px -22px color-mix(in srgb, var(--primary) 55%, transparent); transform: scale(1.03); }
+  @media (max-width: 780px) { .price-card.hi { transform: none; } }
+  .price-emoji { font-size: 26px; }
+  .price-name { font-size: 13px; font-weight: 700; color: var(--accent); margin-top: 8px; }
+  .price-amount { font-family: "Zen Maru Gothic", sans-serif; font-size: 30px; font-weight: 900; color: var(--primary); margin-top: 8px; }
+  .price-amount small { font-size: 12px; font-weight: 500; color: var(--sub); }
+  .price-desc { margin-top: 10px; font-size: 12.5px; color: var(--sub); line-height: 1.85; flex: 1; }
+  .price-list { list-style: none; margin: 14px 0 0; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 7px; }
+  .price-list li { font-size: 11.5px; color: var(--ink); padding-left: 18px; position: relative; }
+  .price-list li::before { content: "🌷"; position: absolute; left: 0; top: -1px; font-size: 9px; }
+
+  /* ---------- closing ---------- */
+  .closing { text-align: center; padding: 30px 24px 90px; }
+  .closing .mascot-mini { width: 90px; margin: 0 auto 20px; }
+  .closing h2 { font-size: clamp(22px, 3.4vw, 30px); }
+  .closing p { margin-top: 14px; color: var(--sub); font-size: 14px; }
+  .closing .ctas { margin-top: 26px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+  /* ---------- footer ---------- */
+  footer.site {
+    border-top: 2px solid var(--line);
+    padding: 32px 24px;
   }
-  .oy-closing h2 { font-size: clamp(22px, 3.4vw, 30px); }
-  .oy-closing p { margin-top: 14px; color: var(--oy-sub); font-size: 14px; }
-  .oy-closing .oy-cta { justify-content: center; }
+  .footer-inner {
+    max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 14px;
+    align-items: center; justify-content: space-between; font-size: 11.5px; color: var(--sub);
+  }
+  .footer-inner a { text-decoration: none; color: var(--sub); }
+  .footer-inner a:hover { color: var(--primary); }
+  .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
 </style>
 </head>
-<body class="oyakoto-page">
-<header class="titleblock">
-  <div class="titleblock-inner">
-    <a class="brand" href="./index.html">
-      <span class="brand-mark" style="color:var(--accent)">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="7" cy="17" r="3" fill="currentColor"/>
-          <path d="M9.5 14.5C13 10.5 17 6.5 21 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span>
-        <span class="brand-name">みらい設計</span><br>
-        <span class="brand-en">FUTURE CREATION</span>
-      </span>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
+        <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
+        <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
+      </svg>
+      <span class="brand-word">おやこと</span>
     </a>
-    <nav class="primary" aria-label="主要">
-      <a href="./index.html">ホーム</a>
-      <a href="./services.html">サービス</a>
-      <a href="./philosophy.html">方針・理念</a>
-      <a href="./company.html">会社概要</a>
-      <a href="./contact.html">お問い合わせ</a>
+    <nav class="top-nav">
+      <a class="navlink" href="#how">つかいかた</a>
+      <a class="navlink" href="#features">できること</a>
+      <a class="navlink" href="#pricing">料金</a>
+      <a class="btn btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">試してみる</a>
     </nav>
   </div>
 </header>
 
-<main>
-  <section class="oy-hero">
-    <div>
-      <span class="oy-eyebrow">死後手続き支援アプリ</span>
-      <h1>「何から始めれば」に、<br>そっと寄り添う。</h1>
-      <p class="lead">
-        大切な方を亡くされた直後は、悲しみの中で、役所への届出、相続、名義変更、遺品整理など、
-        たくさんの手続きに向き合わなければなりません。「おやこと」は、いくつかの質問に答えるだけで
-        「やることリスト」を自動でつくり、ご家族どうしで進み具合を共有できるアプリです。
-      </p>
-      <div class="oy-cta">
-        <a class="oy-btn oy-btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">Web版を試してみる</a>
-        <a class="oy-btn oy-btn-ghost" href="#features">できることを見る</a>
+<main id="top">
+  <section class="hero">
+    <div class="blob blob-float" style="top:-30px; left:-60px; width:220px; height:220px; background:var(--primary-soft); border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;"></div>
+    <div class="blob blob-float-slow" style="bottom:-40px; right:-40px; width:260px; height:260px; background:var(--primary-softer); border-radius:58% 42% 35% 65% / 55% 55% 45% 45%;"></div>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">🍀 死後手続き支援アプリ</span>
+        <h1>「何からすれば」に、<br>そっと寄り添う。</h1>
+        <p class="lead">
+          大切な方を亡くされた直後は、悲しみの中で、たくさんの手続きに向き合わなければなりません。
+          「おやこと」は、いくつかの質問に答えるだけで「やることリスト」をつくり、
+          ご家族どうしでやさしく分担できるアプリです。
+        </p>
+        <div class="ctas">
+          <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener">🌸 Web版を試してみる</a>
+          <a class="btn btn-ghost btn-lg" href="#features">できることを見る</a>
+        </div>
+        <p class="note">iOS版は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
       </div>
-      <p class="oy-note">iOS版は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
-    </div>
-    <div class="oy-mark-wrap">
-      <svg class="oy-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="58" fill="var(--oy-primary-soft)"/>
-        <circle cx="50" cy="46" r="34" fill="var(--oy-primary)"/>
-        <circle cx="79" cy="79" r="23" fill="var(--oy-accent)" stroke="var(--oy-primary-soft)" stroke-width="5"/>
-      </svg>
-    </div>
-  </section>
-
-  <section class="oy-section">
-    <div class="oy-kicker">HOW IT WORKS</div>
-    <h2 style="margin-top:10px;">3ステップで、やることが見える。</h2>
-    <div class="oy-flow">
-      <div class="oy-flow-step">
-        <div class="oy-num">1</div>
-        <h3>いくつかの質問に答える</h3>
-        <p>ご家族構成やお住まいの状況など、簡単な質問に答えるだけ。難しい手続きの知識は必要ありません。</p>
-      </div>
-      <div class="oy-flow-step">
-        <div class="oy-num">2</div>
-        <h3>やることリストが完成</h3>
-        <p>役所への届出から名義変更、相続放棄の判断まで、期限つきのチェックリストが自動で整理されます。</p>
-      </div>
-      <div class="oy-flow-step">
-        <div class="oy-num">3</div>
-        <h3>ご家族で分担して進める</h3>
-        <p>誰がどこまで終えたかをリアルタイムで共有。困ったときは、アプリ内からスタッフに相談できます。</p>
+      <div class="mascot-wrap">
+        <span class="sparkle" style="top:6%; left:12%;">✨</span>
+        <span class="sparkle" style="bottom:10%; right:10%;">🌼</span>
+        <svg class="mascot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
+          <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
+          <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
+        </svg>
       </div>
     </div>
   </section>
 
-  <section class="oy-section" id="features">
-    <div class="oy-kicker">FEATURES</div>
-    <h2 style="margin-top:10px;">できること</h2>
-    <div class="oy-features">
-      <div class="oy-feature">
-        <div class="oy-icon">📋</div>
-        <h3>自動やることリスト</h3>
-        <p>役所届出・年金・相続放棄の判断・名義変更・車やペットの引き取りまで、期限順に整理。</p>
+  <section class="section" id="how">
+    <div class="section-head">
+      <span class="eyebrow">つかいかた</span>
+      <h2>3ステップで、やることが見える。</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-emoji">📝</div>
+        <h3>質問に答える</h3>
+        <p>ご家族構成やお住まいの状況など、簡単な質問に答えるだけ。むずかしい知識はいりません。</p>
       </div>
-      <div class="oy-feature">
-        <div class="oy-icon">🤝</div>
-        <h3>ご家族と共有</h3>
-        <p>承認制のリクエストで、関係者だけが案件に参加。進み具合をみんなで確認できます。</p>
+      <div class="step">
+        <div class="step-emoji">📋</div>
+        <h3>リストが完成</h3>
+        <p>やることが、期限つきのチェックリストになって自動で整理されます。</p>
       </div>
-      <div class="oy-feature">
-        <div class="oy-icon">🔒</div>
-        <h3>書類・写真を安全に保管</h3>
-        <p>戸籍謄本や形見の写真を、ご家族と運営スタッフのみが見られる形でやり取りできます。</p>
-      </div>
-      <div class="oy-feature">
-        <div class="oy-icon">🌳</div>
-        <h3>法定相続人の整理</h3>
-        <p>家系図のイメージで、相続人の範囲をわかりやすく確認できます。</p>
-      </div>
-      <div class="oy-feature">
-        <div class="oy-icon">🕯️</div>
-        <h3>法要のご案内</h3>
-        <p>四十九日・五十日祭など、宗教別の年忌法要のスケジュールを管理できます。</p>
-      </div>
-      <div class="oy-feature">
-        <div class="oy-icon">💬</div>
-        <h3>スタッフに相談</h3>
-        <p>進め方に迷ったときは、アプリ内のトークから運営スタッフに直接相談できます。</p>
+      <div class="step">
+        <div class="step-emoji">🤝</div>
+        <h3>家族で分担</h3>
+        <p>誰がどこまで終えたかをリアルタイムで共有。迷ったらスタッフにも相談できます。</p>
       </div>
     </div>
   </section>
 
-  <section class="oy-section">
-    <div class="oy-kicker">PRICING</div>
-    <h2 style="margin-top:10px;">料金</h2>
-    <p style="color:var(--oy-sub); font-size:13.5px; margin-top:10px;">やることリストなど基本機能は無料です。専門スタッフの手を借りたいときだけ、必要な分をお申し込みください。</p>
-    <div class="oy-price-grid">
-      <div class="oy-price-card">
-        <span class="oy-price-tag">FREE</span>
-        <div class="oy-price-amount">¥0</div>
-        <p class="oy-price-desc">やることリストの自動作成、ご家族との共有、書類・写真の保管、法定相続人の整理など、基本機能はすべて無料です。</p>
+  <section class="section" id="features">
+    <div class="section-head">
+      <span class="eyebrow">できること</span>
+      <h2>画面をのぞいてみましょう</h2>
+      <p>実際のアプリのイメージです。3つの得意なことを、そのまま見てもらうのが早いかも。</p>
+    </div>
+
+    <div class="spotlight">
+      <div class="spotlight-text">
+        <span class="eyebrow">01</span>
+        <h3>やることリストが、自動でできる</h3>
+        <p>役所への届出、年金の手続き、相続放棄の判断、名義変更まで。質問に答えるだけで、期限が近い順に整理されます。終わったタスクはチェックを入れるだけ。進み具合もひと目でわかります。</p>
       </div>
-      <div class="oy-price-card is-highlight">
-        <span class="oy-price-tag">電話サポート</span>
-        <div class="oy-price-amount">¥11,000<small>(税込)</small></div>
-        <p class="oy-price-desc">専門スタッフへの相談窓口をご利用いただけます。</p>
-        <ul class="oy-price-list">
+      <div class="spotlight-phone">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="mock-bar">やることリスト・62%完了</div>
+            <div class="mock-progress-track"><div class="mock-progress-fill" style="width:62%"></div></div>
+            <div class="mock-task done"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
+            <div class="mock-task done"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
+            <div class="mock-task"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
+            <div class="mock-task"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
+            <div class="mock-task"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spotlight reverse">
+      <div class="spotlight-text">
+        <span class="eyebrow">02</span>
+        <h3>ご家族と、やさしく共有</h3>
+        <p>参加は承認制なので、関係者だけで安心してやり取りできます。書類や写真もそのまま共有でき、迷ったときはスタッフにも直接相談できます。</p>
+      </div>
+      <div class="spotlight-phone">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="mock-bar">家族トーク</div>
+            <div class="mock-chat">
+              <div class="mock-bubble them">年金の手続き、明日行ってくるね</div>
+              <div class="mock-bubble me">ありがとう、助かる🙏</div>
+              <div class="mock-bubble file">📄 戸籍謄本.pdf を共有しました</div>
+              <div class="mock-bubble them">了解です、確認します!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spotlight">
+      <div class="spotlight-text">
+        <span class="eyebrow">03</span>
+        <h3>法要の予定も、まとめて管理</h3>
+        <p>四十九日・五十日祭など、宗教別の年忌法要のスケジュールと参列者を管理できます。相続人の範囲も、家系図のイメージでわかりやすく確認できます。</p>
+      </div>
+      <div class="spotlight-phone">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="mock-bar">法要のご案内</div>
+            <div class="mock-memorial">
+              <div class="mock-candle">🕯️</div>
+              <div class="mock-memorial-title">四十九日法要</div>
+              <div class="mock-memorial-date">2026年9月28日(月)</div>
+              <div class="mock-avatars">
+                <div class="mock-avatar">👤</div><div class="mock-avatar">👤</div><div class="mock-avatar">👤</div><div class="mock-avatar">👤</div>
+              </div>
+              <div class="mock-memorial-sub">参列予定 6名</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <div class="chip"><div class="chip-emoji">🔒</div><h4>書類・写真を安全に保管</h4><p>ご家族と運営スタッフのみが見られる形でやり取りできます。</p></div>
+      <div class="chip"><div class="chip-emoji">🌳</div><h4>法定相続人の整理</h4><p>家系図のイメージで、相続人の範囲をわかりやすく確認。</p></div>
+      <div class="chip"><div class="chip-emoji">💬</div><h4>スタッフに相談</h4><p>進め方に迷ったときは、トークから直接相談できます。</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="section-head">
+      <span class="eyebrow">料金</span>
+      <h2>基本は無料。困ったときだけ、必要な分を。</h2>
+      <p>やることリストなど基本機能はすべて無料です。専門スタッフの手を借りたいときだけお申し込みください。</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-emoji">🌱</div>
+        <div class="price-name">FREE</div>
+        <div class="price-amount">¥0</div>
+        <p class="price-desc">やることリストの自動作成、ご家族との共有、書類・写真の保管、法定相続人の整理など、基本機能はすべて無料です。</p>
+      </div>
+      <div class="price-card hi">
+        <div class="price-emoji">☎️</div>
+        <div class="price-name">電話サポート</div>
+        <div class="price-amount">¥11,000<small>(税込)</small></div>
+        <p class="price-desc">専門スタッフへの相談窓口をご利用いただけます。</p>
+        <ul class="price-list">
           <li>アプリ内チャットでの相談</li>
           <li>手続きガイド・窓口のご案内</li>
           <li>24時間以内・未相談なら全額返金</li>
         </ul>
       </div>
-      <div class="oy-price-card">
-        <span class="oy-price-tag">実働サポート</span>
-        <div class="oy-price-amount">¥33,000<small>(税込・定額)</small></div>
-        <p class="oy-price-desc">電気・ガス・水道など、電話やオンラインで完結する解約連絡を、委任契約のうえ代行します。</p>
-        <ul class="oy-price-list">
+      <div class="price-card">
+        <div class="price-emoji">🔌</div>
+        <div class="price-name">実働サポート</div>
+        <div class="price-amount">¥33,000<small>(税込・定額)</small></div>
+        <p class="price-desc">電気・ガス・水道など、電話やオンラインで完結する解約連絡を、委任契約のうえ代行します。</p>
+        <ul class="price-list">
           <li>依頼件数によらず定額</li>
           <li>お申し込み時にオンラインで契約内容をご確認</li>
         </ul>
       </div>
     </div>
-    <div class="oy-trust">
-      <p>「おやこと」は一般社団法人みらい設計が企画・開発・運営しています。特定商取引法に基づく表記や利用規約は、アプリ内からご確認いただけます。</p>
-      <a href="./company.html">運営会社について →</a>
-    </div>
   </section>
 
-  <section class="oy-closing">
+  <section class="closing">
+    <svg class="mascot-mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
+      <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
+      <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
+    </svg>
     <h2>ひとりで抱え込まなくて、大丈夫です。</h2>
     <p>まずはWeb版で、やることリストがどんな形になるか試してみてください。</p>
-    <div class="oy-cta">
-      <a class="oy-btn oy-btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">Web版を試してみる</a>
+    <div class="ctas">
+      <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener">🌸 Web版を試してみる</a>
     </div>
   </section>
 </main>
 
 <footer class="site">
   <div class="footer-inner">
-    <div>© 2026 一般社団法人みらい設計</div>
+    <div>運営: <a href="./company.html">一般社団法人みらい設計</a></div>
     <div class="footer-links">
-      <a href="./company.html">会社概要</a>
+      <a href="./index.html">運営会社サイト</a>
       <a href="./terms.html">利用規約</a>
       <a href="./privacy.html">プライバシーポリシー</a>
     </div>
