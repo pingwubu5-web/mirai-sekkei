@@ -18,6 +18,9 @@
     --primary-softer: #fdf3e8;
     --accent: #b5883a;
     --sub: #7c6a58;
+    --ok: #4a7a58;
+    --danger: #c23b2e;
+    --danger-soft: #fbe4de;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -30,6 +33,9 @@
       --primary-softer: #362719;
       --accent: #d9b876;
       --sub: #c2ac96;
+      --ok: #6fa682;
+      --danger: #e07a6c;
+      --danger-soft: #402420;
     }
   }
   :root[data-theme="dark"] {
@@ -42,6 +48,9 @@
     --primary-softer: #362719;
     --accent: #d9b876;
     --sub: #c2ac96;
+    --ok: #6fa682;
+    --danger: #e07a6c;
+    --danger-soft: #402420;
   }
 
   * { box-sizing: border-box; }
@@ -169,7 +178,7 @@
   .spotlight-text p { margin-top: 16px; color: var(--ink); font-size: 17px; line-height: 1.95; }
   .spotlight-phone { display: flex; justify-content: center; }
 
-  /* ---------- phone mockup ---------- */
+  /* ---------- phone chrome ---------- */
   .phone {
     width: 300px; aspect-ratio: 9 / 18; background: #2a1c10; border-radius: 42px;
     padding: 11px; box-shadow: 0 30px 50px -22px rgba(61,47,36,0.35), 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
@@ -179,53 +188,118 @@
     content: ""; position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
     width: 84px; height: 20px; background: #2a1c10; border-radius: 0 0 16px 16px; z-index: 2;
   }
-  .phone-screen { background: var(--paper); width: 100%; height: 100%; border-radius: 33px; overflow: hidden; padding: 26px 18px 18px; display: flex; flex-direction: column; }
-  .mock-bar { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.03em; margin-bottom: 15px; }
-  .mock-progress-track { height: 11px; border-radius: 999px; background: var(--line); overflow: hidden; margin-bottom: 16px; }
-  .mock-progress-fill { height: 100%; background: var(--primary); border-radius: 999px; }
+  .phone-screen { background: var(--paper); width: 100%; height: 100%; border-radius: 33px; overflow: hidden; padding: 24px 16px 16px; display: flex; flex-direction: column; }
+  .mock-bar { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.03em; margin-bottom: 13px; }
+
+  /* generic card (Card.tsx: flat border, radius 16, no shadow) */
+  .mock-card { background: var(--panel); border: 1.5px solid var(--line); border-radius: 16px; padding: 13px; margin-bottom: 9px; }
+
+  /* ---------- home screen mock ---------- */
+  .mock-progress-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; color: var(--sub); font-weight: 700; }
+  .mock-progress-pct { font-family: "Zen Maru Gothic", sans-serif; font-size: 22px; font-weight: 900; color: var(--primary); }
+  .mock-progress-caption { margin-top: 8px; font-size: 11px; color: var(--sub); }
+  .mock-promo { background: var(--primary); border-radius: 16px; padding: 13px; margin-bottom: 9px; }
+  .mock-promo-title { color: #fffaf4; font-weight: 700; font-size: 12.5px; line-height: 1.6; }
+  .mock-promo-buttons { display: flex; gap: 6px; margin-top: 10px; }
+  .mock-promo-btn { flex: 1; background: #fffaf4; color: var(--primary); text-align: center; border-radius: 999px; padding: 7px 2px; font-size: 10px; font-weight: 700; }
+  .mock-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mock-menu-item { background: var(--panel); border: 1.5px solid var(--line); border-radius: 14px; padding: 10px; font-size: 10.5px; font-weight: 700; color: var(--ink); line-height: 1.5; }
+  .mock-menu-emoji { font-size: 17px; display: block; margin-bottom: 4px; }
+
+  /* ---------- task list mock ---------- */
+  .mock-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+  .mock-tab { flex: 1; text-align: center; padding: 6px 2px; border-radius: 999px; font-size: 9.5px; font-weight: 700; background: var(--panel); border: 1.5px solid var(--line); color: var(--sub); }
+  .mock-tab.active { background: var(--primary); border-color: var(--primary); color: #fffaf4; }
   .mock-task {
-    display: flex; align-items: center; gap: 10px; padding: 12px 13px; border-radius: 14px;
-    background: var(--panel); border: 1.5px solid var(--line); margin-bottom: 8px; font-size: 14.5px; color: var(--ink);
+    display: flex; align-items: flex-start; gap: 9px; padding: 11px 12px; border-radius: 14px;
+    background: var(--panel); border: 1.5px solid var(--line); margin-bottom: 7px;
   }
-  .mock-task.done { opacity: 0.55; }
-  .mock-task.done .mock-check { background: var(--primary); border-color: var(--primary); }
-  .mock-task.done span:not(.mock-check) { text-decoration: line-through; }
-  .mock-check { width: 19px; height: 19px; border-radius: 6px; border: 1.5px solid var(--line); flex: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; }
-  .mock-due { margin-left: auto; font-size: 12.5px; color: var(--accent); font-weight: 700; white-space: nowrap; }
-
-  .mock-chat { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: flex-end; }
-  .mock-bubble { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 14px; line-height: 1.6; }
-  .mock-bubble.them { align-self: flex-start; background: var(--panel); border: 1.5px solid var(--line); border-bottom-left-radius: 4px; }
-  .mock-bubble.me { align-self: flex-end; background: var(--primary); color: #fffaf4; border-bottom-right-radius: 4px; }
-  .mock-bubble.file { align-self: flex-start; background: var(--primary-softer); border: 1.5px dashed var(--accent); font-size: 13px; color: var(--accent); font-weight: 700; }
-
-  .mock-memorial { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; text-align: center; }
-  .mock-memorial .mock-candle { font-size: 38px; }
-  .mock-memorial-title { font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; font-size: 19px; color: var(--ink); }
-  .mock-memorial-date { font-size: 15.5px; color: var(--primary); font-weight: 700; }
-  .mock-memorial-sub { font-size: 14px; color: var(--sub); }
-  .mock-avatars { display: flex; justify-content: center; margin-top: 6px; }
-  .mock-avatar {
-    width: 28px; height: 28px; border-radius: 999px; background: var(--primary-soft); border: 2px solid var(--paper);
-    display: flex; align-items: center; justify-content: center; font-size: 13px; margin-left: -7px;
+  .mock-check {
+    width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--line); flex: none;
+    display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; margin-top: 1px;
   }
-  .mock-avatar:first-child { margin-left: 0; }
+  .mock-check.done { background: var(--ok); border-color: var(--ok); }
+  .mock-task-body { flex: 1; min-width: 0; }
+  .mock-task-tag { display: inline-block; background: var(--primary-soft); color: var(--accent); font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+  .mock-task-title { margin-top: 5px; font-size: 13px; font-weight: 700; color: var(--ink); }
+  .mock-task.done .mock-task-title { text-decoration: line-through; opacity: 0.55; }
+  .mock-task-due { display: inline-block; margin-top: 6px; margin-right: 5px; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--line); color: var(--ink); }
+  .mock-task-due.urgent { background: var(--danger-soft); color: var(--danger); }
+  .mock-task-actions { display: flex; gap: 6px; margin-top: 8px; }
+  .mock-task-btn {
+    font-size: 9.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: var(--panel); border: 1.5px solid var(--line); color: var(--sub);
+  }
+  .mock-task-btn.assigned { background: var(--primary-soft); border-color: var(--primary-soft); color: var(--accent); }
+  .mock-task-btn.delegate { background: var(--primary); border-color: var(--primary); color: #fffaf4; }
+
+  /* ---------- chat mock ---------- */
+  .mock-chat-header { font-size: 10px; color: var(--sub); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1.5px solid var(--line); }
+  .mock-chat { display: flex; flex-direction: column; gap: 11px; flex: 1; justify-content: flex-end; }
+  .mock-msg { max-width: 84%; }
+  .mock-msg.me { align-self: flex-end; text-align: right; }
+  .mock-msg.them { align-self: flex-start; }
+  .mock-sender { font-size: 9px; color: var(--sub); font-weight: 700; margin-bottom: 3px; }
+  .mock-bubble { display: inline-block; padding: 9px 12px; font-size: 13px; line-height: 1.6; text-align: left; }
+  .mock-msg.them .mock-bubble { background: var(--panel); border: 1.5px solid var(--line); border-radius: 4px 15px 15px 15px; }
+  .mock-msg.me .mock-bubble { background: var(--primary); color: #fffaf4; border-radius: 15px 4px 15px 15px; }
+  .mock-bubble.file { background: var(--primary-softer) !important; border: 1.5px dashed var(--accent) !important; color: var(--accent) !important; font-size: 12px; font-weight: 700; }
+  .mock-read { font-size: 8.5px; color: var(--sub); margin-top: 3px; }
+
+  /* ---------- family tree mock ---------- */
+  .mock-tree { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+  .mock-tree-row { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .mock-tree-connector { width: 2px; height: 12px; background: var(--line); }
+  .mock-chip {
+    border: 1.5px solid var(--line); background: var(--panel); border-radius: 999px;
+    padding: 5px 11px; font-size: 10px; font-weight: 700; color: var(--ink); white-space: nowrap;
+  }
+  .mock-chip.highlight { border-color: var(--primary); background: var(--primary-soft); }
+  .mock-chip.self { border: 1.5px dashed var(--accent); background: var(--primary-softer); }
+  .mock-tree-note { margin-top: 14px; font-size: 10.5px; color: var(--primary); font-weight: 700; text-align: center; line-height: 1.7; }
+
+  /* ---------- memorial mock ---------- */
+  .mock-mem-list { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .mock-mem-item { border-top: 1.5px solid var(--line); padding: 12px 0; }
+  .mock-mem-item:first-child { border-top: none; padding-top: 0; }
+  .mock-mem-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .mock-mem-label { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+  .mock-mem-date { font-size: 12px; font-weight: 700; color: var(--primary); }
+  .mock-mem-item.dim { opacity: 0.5; }
+  .mock-mem-item.dim .mock-mem-date { color: var(--sub); }
+  .mock-mem-note { margin-top: 4px; font-size: 10.5px; color: var(--sub); }
+
+  /* ---------- portrait (遺影) mock ---------- */
+  .mock-portrait-photo {
+    aspect-ratio: 3 / 4; border-radius: 14px; margin-bottom: 12px;
+    background: linear-gradient(160deg, var(--primary-soft), var(--primary));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mock-portrait-icon { font-size: 40px; opacity: 0.65; }
+  .mock-portrait-tools { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
+  .mock-tool-btn {
+    width: 28px; height: 28px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--panel);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--ink);
+  }
+  .mock-filter-pills { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .mock-filter-pill {
+    font-size: 9.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    border: 1.5px solid var(--line); background: var(--panel); color: var(--sub);
+  }
+  .mock-filter-pill.active { border-color: var(--primary); background: var(--primary-soft); color: var(--accent); }
+
+  /* ---------- name origin (about) section ---------- */
+  .about-copy { max-width: 34em; margin: 0 auto; color: var(--ink); font-size: 15.5px; line-height: 2.1; }
+  .about-copy p + p { margin-top: 20px; }
 
   /* ---------- scroll-reveal: phone mockups "come alive" once visible ---------- */
-  .mock-progress-fill { width: 0%; transition: width 1.3s cubic-bezier(.22,1,.36,1); }
+  .mock-progress-fill { width: 0%; height: 100%; background: var(--primary); border-radius: 999px; transition: width 1.3s cubic-bezier(.22,1,.36,1); }
+  .mock-progress-track { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; margin: 8px 0; }
   .phone.in-view .mock-progress-fill { width: var(--fill, 0%); }
 
-  .mock-task, .mock-bubble {
-    opacity: 0; transform: translateY(10px);
-    transition: opacity .5s ease, transform .5s ease;
-  }
-  .mock-avatar { opacity: 0; transform: translateY(6px) scale(0.6); transition: opacity .4s ease, transform .4s ease; }
-  .phone.in-view .mock-task,
-  .phone.in-view .mock-bubble,
-  .phone.in-view .mock-avatar {
-    opacity: 1; transform: translateY(0) scale(1);
-  }
-  .mock-task.done .mock-check { transition: background-color .3s ease .1s, border-color .3s ease .1s; }
+  .reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.pop { transform: translateY(6px) scale(0.7); transition: opacity .4s ease, transform .4s ease; }
+  .phone.in-view .reveal { opacity: 1; transform: translateY(0) scale(1); }
 
   @media (prefers-reduced-motion: no-preference) {
     .mock-candle { display: inline-block; animation: flicker 2.4s ease-in-out infinite; }
@@ -235,27 +309,45 @@
     50% { transform: scale(1.1) rotate(-3deg); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .mock-task, .mock-bubble, .mock-avatar { opacity: 1 !important; transform: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
     .mock-progress-fill { width: var(--fill, 0%) !important; }
   }
 
   /* ---------- feature chips ---------- */
-  .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px; }
-  @media (max-width: 760px) { .chips { grid-template-columns: 1fr; } }
+  .chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 64px; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .chips.chips-3 { grid-template-columns: repeat(3, 1fr); max-width: 860px; }
+  @media (max-width: 760px) { .chips.chips-3 { grid-template-columns: repeat(2, 1fr); max-width: 640px; } }
+  @media (max-width: 560px) { .chips, .chips.chips-3 { grid-template-columns: 1fr; } }
   .chip { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 24px; }
   .chip .chip-emoji { font-size: 28px; }
   .chip h4 { font-size: 17px; margin: 12px 0 6px; font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; }
   .chip p { font-size: 14.5px; color: var(--sub); line-height: 1.8; }
 
   /* ---------- pricing ---------- */
-  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  @media (max-width: 840px) { .price-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
-  .price-card { background: var(--panel); border: 2.5px solid var(--line); border-radius: 28px; padding: 34px 28px; display: flex; flex-direction: column; text-align: center; }
-  .price-card.hi { border-color: var(--primary); box-shadow: 0 20px 34px -22px color-mix(in srgb, var(--primary) 55%, transparent); transform: scale(1.03); }
-  @media (max-width: 840px) { .price-card.hi { transform: none; } }
-  .price-emoji { font-size: 34px; }
-  .price-name { font-size: 16px; font-weight: 700; color: var(--accent); margin-top: 10px; }
-  .price-amount { font-family: "Zen Maru Gothic", sans-serif; font-size: 40px; font-weight: 900; color: var(--primary); margin-top: 10px; }
+  .price-free-banner {
+    display: flex; align-items: center; gap: 28px;
+    background: var(--primary); border-radius: 32px; padding: 44px 40px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 620px) { .price-free-banner { flex-direction: column; text-align: center; gap: 14px; } }
+  .price-free-emoji { font-size: 58px; flex: none; }
+  .price-free-name { font-size: 14.5px; font-weight: 700; letter-spacing: .05em; color: #fffaf4; opacity: .88; }
+  .price-free-amount { font-family: "Zen Maru Gothic", sans-serif; font-size: 58px; font-weight: 900; color: #fffaf4; margin-top: 2px; line-height: 1.1; }
+  .price-free-desc { margin-top: 12px; color: #fffaf4; opacity: .95; font-size: 15.5px; line-height: 1.9; max-width: 36em; }
+
+  .price-options-head { text-align: center; margin-bottom: 30px; }
+  .price-options-label {
+    display: inline-block; font-size: 13px; font-weight: 700; color: var(--sub);
+    letter-spacing: .04em; padding-bottom: 5px; border-bottom: 2px dotted var(--line);
+  }
+  .price-options-sub { margin-top: 12px; font-size: 14.5px; color: var(--sub); }
+
+  .price-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 720px; margin: 0 auto; }
+  @media (max-width: 620px) { .price-grid { grid-template-columns: 1fr; max-width: 420px; } }
+  .price-card { background: var(--panel); border: 2px solid var(--line); border-radius: 26px; padding: 28px 24px; display: flex; flex-direction: column; text-align: center; }
+  .price-emoji { font-size: 30px; }
+  .price-name { font-size: 15px; font-weight: 700; color: var(--accent); margin-top: 8px; }
+  .price-amount { font-family: "Zen Maru Gothic", sans-serif; font-size: 32px; font-weight: 900; color: var(--primary); margin-top: 8px; }
   .price-amount small { font-size: 15px; font-weight: 500; color: var(--sub); }
   .price-desc { margin-top: 12px; font-size: 15.5px; color: var(--ink); line-height: 1.85; flex: 1; }
   .price-list { list-style: none; margin: 16px 0 0; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 9px; }
@@ -281,6 +373,7 @@
   .footer-inner a { text-decoration: none; color: var(--sub); }
   .footer-inner a:hover { color: var(--primary); }
   .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-note { display: block; margin-top: 4px; font-size: 12px; opacity: 0.85; }
 </style>
 </head>
 <body>
@@ -311,7 +404,7 @@
     <div class="hero-grid">
       <div class="hero-text">
         <span class="eyebrow">🍀 死後手続き支援アプリ</span>
-        <h1>「何からすれば」に、<br>そっと寄り添う。</h1>
+        <h1>「何からすれば」に、そっと寄り添う。</h1>
         <p class="lead">
           大切な方を亡くされた直後は、悲しみの中で、たくさんの手続きに向き合わなければなりません。
           「おやこと」は、いくつかの質問に答えるだけで「やることリスト」をつくり、
@@ -329,13 +422,35 @@
         <div class="hero-phone">
           <div class="phone phone-lg">
             <div class="phone-screen">
-              <div class="mock-bar">やることリスト・62%完了</div>
-              <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
-              <div class="mock-task done" style="transition-delay:.15s"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
-              <div class="mock-task done" style="transition-delay:.28s"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
-              <div class="mock-task" style="transition-delay:.41s"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
-              <div class="mock-task" style="transition-delay:.54s"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
-              <div class="mock-task" style="transition-delay:.67s"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
+              <div class="mock-bar">いま、やるべきこと</div>
+              <div class="mock-card">
+                <div class="mock-progress-row"><span>全体の進捗</span><span class="mock-progress-pct">62%</span></div>
+                <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
+                <div class="mock-progress-caption">8 / 13 件が完了</div>
+              </div>
+              <div class="mock-task reveal" style="transition-delay:.2s">
+                <span class="mock-check done">✓</span>
+                <div class="mock-task-body">
+                  <span class="mock-task-tag">手続き</span>
+                  <div class="mock-task-title">死亡届の提出</div>
+                </div>
+              </div>
+              <div class="mock-task reveal" style="transition-delay:.36s">
+                <span class="mock-check"></span>
+                <div class="mock-task-body">
+                  <span class="mock-task-tag">手続き</span>
+                  <div class="mock-task-title">年金の停止手続き</div>
+                  <span class="mock-task-due urgent">あと5日</span>
+                </div>
+              </div>
+              <div class="mock-task reveal" style="transition-delay:.52s">
+                <span class="mock-check"></span>
+                <div class="mock-task-body">
+                  <span class="mock-task-tag">支払い</span>
+                  <div class="mock-task-title">電気・ガスの解約</div>
+                  <span class="mock-task-due">あと9日</span>
+                </div>
+              </div>
             </div>
           </div>
           <svg class="hero-badge" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -376,25 +491,35 @@
     <div class="section-head">
       <span class="eyebrow">できること</span>
       <h2>画面をのぞいてみましょう</h2>
-      <p>実際のアプリのイメージです。3つの得意なことを、そのまま見てもらうのが早いかも。</p>
+      <p>実際のアプリのイメージです。得意なことを、そのまま見てもらうのが早いかも。</p>
     </div>
 
     <div class="spotlight">
       <div class="spotlight-text">
-        <span class="eyebrow">01</span>
-        <h3>やることリストが、自動でできる</h3>
-        <p>役所への届出、年金の手続き、相続放棄の判断、名義変更まで。質問に答えるだけで、期限が近い順に整理されます。終わったタスクはチェックを入れるだけ。進み具合もひと目でわかります。</p>
+        <span class="eyebrow">01 / ホーム</span>
+        <h3>今やるべきことが、開いてすぐわかる</h3>
+        <p>全体の進捗がひと目でわかり、期限が近いタスクは優先して表示されます。役所への届出、年金の手続き、相続放棄の判断、名義変更まで、迷わず順番に進められます。</p>
       </div>
       <div class="spotlight-phone">
         <div class="phone">
           <div class="phone-screen">
-            <div class="mock-bar">やることリスト・62%完了</div>
-            <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
-            <div class="mock-task done" style="transition-delay:.15s"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
-            <div class="mock-task done" style="transition-delay:.28s"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
-            <div class="mock-task" style="transition-delay:.41s"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
-            <div class="mock-task" style="transition-delay:.54s"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
-            <div class="mock-task" style="transition-delay:.67s"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
+            <div class="mock-bar">いま、やるべきこと</div>
+            <div class="mock-card">
+              <div class="mock-progress-row"><span>全体の進捗</span><span class="mock-progress-pct">62%</span></div>
+              <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
+              <div class="mock-progress-caption">8 / 13 件が完了</div>
+            </div>
+            <div class="mock-promo reveal" style="transition-delay:.2s">
+              <div class="mock-promo-title">📋 やることリスト・スケジュールを見る</div>
+              <div class="mock-promo-buttons">
+                <div class="mock-promo-btn">やることリスト</div>
+                <div class="mock-promo-btn">全体を見る</div>
+              </div>
+            </div>
+            <div class="mock-menu-grid reveal" style="transition-delay:.36s">
+              <div class="mock-menu-item"><span class="mock-menu-emoji">🌳</span>家系図</div>
+              <div class="mock-menu-item"><span class="mock-menu-emoji">🙏</span>年忌法要</div>
+            </div>
           </div>
         </div>
       </div>
@@ -402,19 +527,48 @@
 
     <div class="spotlight reverse">
       <div class="spotlight-text">
-        <span class="eyebrow">02</span>
-        <h3>ご家族と、やさしく共有</h3>
-        <p>参加は承認制なので、関係者だけで安心してやり取りできます。書類や写真もそのまま共有でき、迷ったときはスタッフにも直接相談できます。</p>
+        <span class="eyebrow">02 / やることリスト</span>
+        <h3>「①→②→③」の順に進めれば迷わない</h3>
+        <p>まずやること・つぎにやること・あとでよいことの3タブに整理。タップでチェック、期限バッジで残り日数がひと目でわかります。「担当を決める」でご家族に割り振ったり、「対応依頼」でスタッフに任せることもできます。</p>
       </div>
       <div class="spotlight-phone">
         <div class="phone">
           <div class="phone-screen">
-            <div class="mock-bar">家族トーク</div>
-            <div class="mock-chat">
-              <div class="mock-bubble them" style="transition-delay:.1s">年金の手続き、明日行ってくるね</div>
-              <div class="mock-bubble me" style="transition-delay:.35s">ありがとう、助かる🙏</div>
-              <div class="mock-bubble file" style="transition-delay:.6s">📄 戸籍謄本.pdf を共有しました</div>
-              <div class="mock-bubble them" style="transition-delay:.85s">了解です、確認します!</div>
+            <div class="mock-bar">やることリスト</div>
+            <div class="mock-tabs">
+              <div class="mock-tab active">①まず</div>
+              <div class="mock-tab">②つぎに</div>
+              <div class="mock-tab">③あとで</div>
+            </div>
+            <div class="mock-task reveal" style="transition-delay:.15s">
+              <span class="mock-check done">✓</span>
+              <div class="mock-task-body">
+                <span class="mock-task-tag">手続き</span>
+                <div class="mock-task-title">死亡届の提出</div>
+              </div>
+            </div>
+            <div class="mock-task reveal" style="transition-delay:.3s">
+              <span class="mock-check"></span>
+              <div class="mock-task-body">
+                <span class="mock-task-tag">手続き</span>
+                <div class="mock-task-title">健康保険の資格喪失届</div>
+                <span class="mock-task-due urgent">あと3日</span>
+                <div class="mock-task-actions">
+                  <span class="mock-task-btn assigned">👤 花子が担当</span>
+                </div>
+              </div>
+            </div>
+            <div class="mock-task reveal" style="transition-delay:.45s">
+              <span class="mock-check"></span>
+              <div class="mock-task-body">
+                <span class="mock-task-tag">支払い</span>
+                <div class="mock-task-title">電気・ガスの解約</div>
+                <span class="mock-task-due">あと9日</span>
+                <div class="mock-task-actions">
+                  <span class="mock-task-btn">担当を決める</span>
+                  <span class="mock-task-btn delegate">対応依頼中</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -423,31 +577,95 @@
 
     <div class="spotlight">
       <div class="spotlight-text">
-        <span class="eyebrow">03</span>
-        <h3>法要の予定も、まとめて管理</h3>
-        <p>四十九日・五十日祭など、宗教別の年忌法要のスケジュールと参列者を管理できます。相続人の範囲も、家系図のイメージでわかりやすく確認できます。</p>
+        <span class="eyebrow">03 / 家族トーク</span>
+        <h3>ご家族と、やさしく共有</h3>
+        <p>参加は承認制なので、関係者だけで安心してやり取りできます。書類や写真もそのまま共有でき、迷ったときはスタッフにも直接相談できます。</p>
       </div>
       <div class="spotlight-phone">
         <div class="phone">
           <div class="phone-screen">
-            <div class="mock-bar">法要のご案内</div>
-            <div class="mock-memorial">
-              <div class="mock-candle">🕯️</div>
-              <div class="mock-memorial-title">四十九日法要</div>
-              <div class="mock-memorial-date">2026年9月28日(月)</div>
-              <div class="mock-avatars">
-                <div class="mock-avatar" style="transition-delay:.2s">👤</div><div class="mock-avatar" style="transition-delay:.32s">👤</div><div class="mock-avatar" style="transition-delay:.44s">👤</div><div class="mock-avatar" style="transition-delay:.56s">👤</div>
+            <div class="mock-chat-header">花子さん・太郎さん・おやこと 佐藤(スタッフ)</div>
+            <div class="mock-chat">
+              <div class="mock-msg them reveal" style="transition-delay:.1s">
+                <div class="mock-sender">花子</div>
+                <div class="mock-bubble">年金の手続き、明日行ってくるね</div>
               </div>
-              <div class="mock-memorial-sub">参列予定 6名</div>
+              <div class="mock-msg me reveal" style="transition-delay:.35s">
+                <div class="mock-bubble">ありがとう、助かる🙏</div>
+                <div class="mock-read">既読</div>
+              </div>
+              <div class="mock-msg them reveal" style="transition-delay:.6s">
+                <div class="mock-sender">花子</div>
+                <div class="mock-bubble file">📄 戸籍謄本.pdf を共有しました</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="chips">
+    <div class="spotlight reverse">
+      <div class="spotlight-text">
+        <span class="eyebrow">04 / 家系図</span>
+        <h3>法定相続人の範囲が、図でわかる</h3>
+        <p>配偶者・子・父母・兄弟姉妹など、民法のルールに沿って法定相続人になる方をハイライト表示。ご自身の家族構成を入力すれば、同じ形で確認できます。</p>
+      </div>
+      <div class="spotlight-phone">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="mock-bar">家系図で見る法定相続人</div>
+            <div class="mock-tree">
+              <div class="mock-tree-row">
+                <div class="mock-chip reveal" style="transition-delay:.1s">父(故人)</div>
+                <div class="mock-chip reveal" style="transition-delay:.18s">母</div>
+              </div>
+              <div class="mock-tree-connector reveal" style="transition-delay:.26s"></div>
+              <div class="mock-tree-row">
+                <div class="mock-chip self reveal" style="transition-delay:.34s">ご本人</div>
+                <div class="mock-chip highlight reveal" style="transition-delay:.42s">配偶者</div>
+              </div>
+              <div class="mock-tree-connector reveal" style="transition-delay:.5s"></div>
+              <div class="mock-tree-row">
+                <div class="mock-chip highlight reveal" style="transition-delay:.58s">長男</div>
+                <div class="mock-chip highlight reveal" style="transition-delay:.66s">長女</div>
+              </div>
+              <div class="mock-tree-note reveal" style="transition-delay:.78s">現在の入力では:<br>配偶者と子2人が相続人です</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spotlight">
+      <div class="spotlight-text">
+        <span class="eyebrow">05 / 遺影</span>
+        <h3>遺影も、アプリの中で仕上げられる</h3>
+        <p>お手持ちの写真から、縦長(3:4)の遺影用に位置・ズーム・回転を調整できます。明るさ・白黒・セピアなど雰囲気の調整もその場で試せます。仕上がりのイメージづくりに、そのままご活用いただけます。</p>
+      </div>
+      <div class="spotlight-phone">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="mock-bar">遺影を作る</div>
+            <div class="mock-portrait-photo">
+              <span class="mock-portrait-icon">🖼️</span>
+            </div>
+            <div class="mock-portrait-tools reveal" style="transition-delay:.2s">
+              <span class="mock-tool-btn">↑</span><span class="mock-tool-btn">↓</span><span class="mock-tool-btn">←</span><span class="mock-tool-btn">→</span><span class="mock-tool-btn">＋</span><span class="mock-tool-btn">⟳</span>
+            </div>
+            <div class="mock-filter-pills reveal" style="transition-delay:.35s">
+              <span class="mock-filter-pill active">元の写真</span>
+              <span class="mock-filter-pill">明るく</span>
+              <span class="mock-filter-pill">白黒</span>
+              <span class="mock-filter-pill">セピア</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips chips-3">
       <div class="chip"><div class="chip-emoji">🔒</div><h4>書類・写真を安全に保管</h4><p>ご家族と運営スタッフのみが見られる形でやり取りできます。</p></div>
-      <div class="chip"><div class="chip-emoji">🌳</div><h4>法定相続人の整理</h4><p>家系図のイメージで、相続人の範囲をわかりやすく確認。</p></div>
+      <div class="chip"><div class="chip-emoji">🙏</div><h4>年忌法要のご案内</h4><p>四十九日・一周忌など宗教別の法要スケジュールを自動計算。参列者・香典の記録も。</p></div>
       <div class="chip"><div class="chip-emoji">💬</div><h4>スタッフに相談</h4><p>進め方に迷ったときは、トークから直接相談できます。</p></div>
     </div>
   </section>
@@ -455,17 +673,25 @@
   <section class="section" id="pricing">
     <div class="section-head">
       <span class="eyebrow">料金</span>
-      <h2>基本は無料。困ったときだけ、必要な分を。</h2>
-      <p>やることリストなど基本機能はすべて無料です。専門スタッフの手を借りたいときだけお申し込みください。</p>
+      <h2>アプリは、ずっと無料です。</h2>
+      <p>やることリストの自動作成、ご家族との共有、家系図、法要管理まで、基本機能はすべて無料でお使いいただけます。</p>
+    </div>
+
+    <div class="price-free-banner">
+      <div class="price-free-emoji">🌱</div>
+      <div>
+        <div class="price-free-name">FREE・ずっと無料</div>
+        <div class="price-free-amount">¥0</div>
+        <p class="price-free-desc">やることリストの自動作成、ご家族との共有、書類・写真の保管、家系図、法要管理など、基本機能はすべて無料です。ダウンロードもご利用も、費用はかかりません。</p>
+      </div>
+    </div>
+
+    <div class="price-options-head">
+      <span class="price-options-label">困ったときだけの、追加オプション</span>
+      <p class="price-options-sub">専門スタッフの手を借りたいときだけ、必要な分だけお申し込みください。お申し込みには、アプリまたはWeb版への登録(無料)が先に必要です。</p>
     </div>
     <div class="price-grid">
       <div class="price-card">
-        <div class="price-emoji">🌱</div>
-        <div class="price-name">FREE</div>
-        <div class="price-amount">¥0</div>
-        <p class="price-desc">やることリストの自動作成、ご家族との共有、書類・写真の保管、法定相続人の整理など、基本機能はすべて無料です。</p>
-      </div>
-      <div class="price-card hi">
         <div class="price-emoji">☎️</div>
         <div class="price-name">電話サポート</div>
         <div class="price-amount">¥11,000<small>(税込)</small></div>
@@ -489,6 +715,17 @@
     </div>
   </section>
 
+  <section class="section" style="padding-bottom: 40px;">
+    <div class="section-head" style="margin-bottom: 30px;">
+      <span class="eyebrow">「おやこと」という名前について</span>
+      <h2 style="margin-top: 14px; font-size: clamp(20px, 2.6vw, 26px);">「他人事」ではなく、「親の事」として。</h2>
+    </div>
+    <div class="about-copy">
+      <p>「他人事(ひとごと)」ということばがあります。自分には関係のない、遠い出来事という意味です。けれど、大切な方を見送ったあとの手続きは、本来「他人事」であるはずがありません。——「おやこと」という名前には、「親の事」をそのまま自分の事として引き受けたい、という思いを込めています。</p>
+      <p>隣近所とのつながりが薄れ、離れて暮らすご家族も増えたいま、いざというとき「何から手をつければいいのか」を、一人で抱え込んでしまう方が少なくありません。「おやこと」が、離れていてもご家族とつながり、ひとりで抱え込まずに済むための、小さなきっかけになれたらと思っています。</p>
+    </div>
+  </section>
+
   <section class="closing">
     <svg class="mascot-mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
@@ -505,7 +742,10 @@
 
 <footer class="site">
   <div class="footer-inner">
-    <div>運営: <a href="./company.html">一般社団法人みらい設計</a></div>
+    <div>
+      運営: <a href="./company.html">一般社団法人みらい設計</a>
+      <span class="footer-note">監修: 1級ファイナンシャル・プランニング技能士</span>
+    </div>
     <div class="footer-links">
       <a href="./index.html">運営会社サイト</a>
       <a href="./terms.html">利用規約</a>
