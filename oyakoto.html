@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おやこと | ご遺族向け死後手続き支援アプリ</title>
+<meta name="description" content="大切な方を亡くされたあと、何から手をつければいいか分からない——そんなご遺族のための死後手続き支援アプリ「おやこと」。質問に答えるだけでやることリストを自動作成し、ご家族で共有できます。一般社団法人みらい設計が運営。">
+<link rel="stylesheet" href="./styles.css">
+<style>
+  /* ==========================================================
+     「おやこと」プロダクトページ専用スタイル。
+     会社サイトの骨格(ヘッダー・フッター・書体構造)は継承しつつ、
+     アプリ本体の配色(温かいオレンジ×生成り×丸ゴシック)に寄せて、
+     製品固有の親しみやすさを出す。
+     ========================================================== */
+  @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+
+  .oyakoto-page {
+    --oy-ink: #3d2f24;
+    --oy-paper: #fdf6ee;
+    --oy-panel: #fffcf8;
+    --oy-line: #f0ddc4;
+    --oy-primary: #e0793a;
+    --oy-primary-soft: #fce8d5;
+    --oy-accent: #b5883a;
+    --oy-sub: #8a7868;
+  }
+  @media (prefers-color-scheme: dark) {
+    .oyakoto-page:not([data-theme="light"]) {
+      --oy-ink: #f3e9dd;
+      --oy-paper: #241a12;
+      --oy-panel: #2e2118;
+      --oy-line: #4a3a29;
+      --oy-primary: #f0985c;
+      --oy-primary-soft: #3d2c1c;
+      --oy-accent: #d9b876;
+      --oy-sub: #c2ac96;
+    }
+  }
+  .oyakoto-page[data-theme="dark"] {
+    --oy-ink: #f3e9dd;
+    --oy-paper: #241a12;
+    --oy-panel: #2e2118;
+    --oy-line: #4a3a29;
+    --oy-primary: #f0985c;
+    --oy-primary-soft: #3d2c1c;
+    --oy-accent: #d9b876;
+    --oy-sub: #c2ac96;
+  }
+
+  .oyakoto-page {
+    background: var(--oy-paper);
+    color: var(--oy-ink);
+    background-image:
+      radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--oy-primary) 10%, transparent), transparent 40%),
+      radial-gradient(circle at 90% 0%, color-mix(in srgb, var(--oy-accent) 12%, transparent), transparent 45%);
+  }
+  .oyakoto-page h1, .oyakoto-page h2, .oyakoto-page h3 {
+    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+    font-weight: 700;
+  }
+  .oyakoto-page p, .oyakoto-page li, .oyakoto-page a, .oyakoto-page span, .oyakoto-page label {
+    font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  }
+
+  .oy-hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 64px 24px 40px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .oy-hero { grid-template-columns: 1fr; padding-top: 40px; }
+  }
+  .oy-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--oy-accent);
+    background: var(--oy-primary-soft);
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .oy-hero h1 {
+    margin: 18px 0 0;
+    font-size: clamp(28px, 4.4vw, 42px);
+    line-height: 1.6;
+    text-wrap: balance;
+  }
+  .oy-hero .lead {
+    margin-top: 18px;
+    color: var(--oy-sub);
+    font-size: 15px;
+    line-height: 1.95;
+    max-width: 34em;
+  }
+  .oy-cta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .oy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    border: 1.5px solid transparent;
+  }
+  .oy-btn-primary { background: var(--oy-primary); color: #fffaf4; box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--oy-primary) 70%, transparent); }
+  .oy-btn-primary:hover { background: var(--oy-accent); }
+  .oy-btn-ghost { border-color: var(--oy-line); color: var(--oy-ink); }
+  .oy-btn-ghost:hover { border-color: var(--oy-primary); color: var(--oy-primary); }
+  .oy-note { margin-top: 12px; font-size: 11.5px; color: var(--oy-sub); }
+
+  .oy-mark-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .oy-mark {
+    width: min(280px, 70vw);
+    height: min(280px, 70vw);
+    filter: drop-shadow(0 20px 40px color-mix(in srgb, var(--oy-primary) 25%, transparent));
+  }
+
+  .oy-section { max-width: 980px; margin: 0 auto; padding: 40px 24px; }
+  .oy-section + .oy-section { border-top: 1px solid var(--oy-line); }
+  .oy-section h2 { font-size: clamp(21px, 3vw, 27px); text-wrap: balance; }
+  .oy-section .oy-kicker { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; color: var(--oy-accent); }
+
+  .oy-flow { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 760px) { .oy-flow { grid-template-columns: 1fr; } }
+  .oy-flow-step {
+    background: var(--oy-panel);
+    border: 1px solid var(--oy-line);
+    border-radius: 20px;
+    padding: 24px;
+    position: relative;
+  }
+  .oy-flow-step .oy-num {
+    width: 30px; height: 30px;
+    border-radius: 999px;
+    background: var(--oy-primary-soft);
+    color: var(--oy-accent);
+    font-weight: 700;
+    font-family: "Zen Maru Gothic", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .oy-flow-step h3 { font-size: 15.5px; margin: 0 0 8px; }
+  .oy-flow-step p { font-size: 13px; color: var(--oy-sub); margin: 0; line-height: 1.85; }
+  .oy-flow-arrow {
+    display: none;
+  }
+  @media (min-width: 761px) {
+    .oy-flow { align-items: stretch; }
+  }
+
+  .oy-features { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .oy-features { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .oy-features { grid-template-columns: 1fr; } }
+  .oy-feature {
+    background: var(--oy-panel);
+    border: 1px solid var(--oy-line);
+    border-radius: 18px;
+    padding: 20px;
+  }
+  .oy-feature .oy-icon { font-size: 22px; }
+  .oy-feature h3 { font-size: 14.5px; margin: 12px 0 6px; }
+  .oy-feature p { font-size: 12.5px; color: var(--oy-sub); margin: 0; line-height: 1.8; }
+
+  .oy-price-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 760px) { .oy-price-grid { grid-template-columns: 1fr; } }
+  .oy-price-card {
+    background: var(--oy-panel);
+    border: 1px solid var(--oy-line);
+    border-radius: 20px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+  }
+  .oy-price-card.is-highlight {
+    border-color: var(--oy-primary);
+    box-shadow: 0 16px 30px -20px color-mix(in srgb, var(--oy-primary) 60%, transparent);
+  }
+  .oy-price-tag { font-size: 12px; font-weight: 700; color: var(--oy-accent); letter-spacing: 0.04em; }
+  .oy-price-amount { margin-top: 10px; font-family: "Zen Maru Gothic", sans-serif; font-size: 30px; font-weight: 700; color: var(--oy-primary); }
+  .oy-price-amount small { font-size: 13px; font-weight: 500; color: var(--oy-sub); }
+  .oy-price-desc { margin-top: 10px; font-size: 12.5px; color: var(--oy-sub); line-height: 1.8; flex: 1; }
+  .oy-price-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .oy-price-list li { font-size: 12.5px; color: var(--oy-ink); padding-left: 20px; position: relative; }
+  .oy-price-list li::before { content: "◦"; position: absolute; left: 2px; color: var(--oy-primary); }
+
+  .oy-trust {
+    margin-top: 24px;
+    background: var(--oy-primary-soft);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .oy-trust p { margin: 0; font-size: 13px; color: var(--oy-ink); max-width: 40em; line-height: 1.8; }
+  .oy-trust a { color: var(--oy-accent); font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .oy-trust a:hover { text-decoration: underline; }
+
+  .oy-closing {
+    text-align: center;
+    padding: 56px 24px 72px;
+  }
+  .oy-closing h2 { font-size: clamp(22px, 3.4vw, 30px); }
+  .oy-closing p { margin-top: 14px; color: var(--oy-sub); font-size: 14px; }
+  .oy-closing .oy-cta { justify-content: center; }
+</style>
+</head>
+<body class="oyakoto-page">
+<header class="titleblock">
+  <div class="titleblock-inner">
+    <a class="brand" href="./index.html">
+      <span class="brand-mark" style="color:var(--accent)">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="17" r="3" fill="currentColor"/>
+          <path d="M9.5 14.5C13 10.5 17 6.5 21 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>
+        <span class="brand-name">みらい設計</span><br>
+        <span class="brand-en">FUTURE CREATION</span>
+      </span>
+    </a>
+    <nav class="primary" aria-label="主要">
+      <a href="./index.html">ホーム</a>
+      <a href="./services.html">サービス</a>
+      <a href="./philosophy.html">方針・理念</a>
+      <a href="./company.html">会社概要</a>
+      <a href="./contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="oy-hero">
+    <div>
+      <span class="oy-eyebrow">死後手続き支援アプリ</span>
+      <h1>「何から始めれば」に、<br>そっと寄り添う。</h1>
+      <p class="lead">
+        大切な方を亡くされた直後は、悲しみの中で、役所への届出、相続、名義変更、遺品整理など、
+        たくさんの手続きに向き合わなければなりません。「おやこと」は、いくつかの質問に答えるだけで
+        「やることリスト」を自動でつくり、ご家族どうしで進み具合を共有できるアプリです。
+      </p>
+      <div class="oy-cta">
+        <a class="oy-btn oy-btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">Web版を試してみる</a>
+        <a class="oy-btn oy-btn-ghost" href="#features">できることを見る</a>
+      </div>
+      <p class="oy-note">iOS版は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
+    </div>
+    <div class="oy-mark-wrap">
+      <svg class="oy-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="58" fill="var(--oy-primary-soft)"/>
+        <circle cx="50" cy="46" r="34" fill="var(--oy-primary)"/>
+        <circle cx="79" cy="79" r="23" fill="var(--oy-accent)" stroke="var(--oy-primary-soft)" stroke-width="5"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="oy-section">
+    <div class="oy-kicker">HOW IT WORKS</div>
+    <h2 style="margin-top:10px;">3ステップで、やることが見える。</h2>
+    <div class="oy-flow">
+      <div class="oy-flow-step">
+        <div class="oy-num">1</div>
+        <h3>いくつかの質問に答える</h3>
+        <p>ご家族構成やお住まいの状況など、簡単な質問に答えるだけ。難しい手続きの知識は必要ありません。</p>
+      </div>
+      <div class="oy-flow-step">
+        <div class="oy-num">2</div>
+        <h3>やることリストが完成</h3>
+        <p>役所への届出から名義変更、相続放棄の判断まで、期限つきのチェックリストが自動で整理されます。</p>
+      </div>
+      <div class="oy-flow-step">
+        <div class="oy-num">3</div>
+        <h3>ご家族で分担して進める</h3>
+        <p>誰がどこまで終えたかをリアルタイムで共有。困ったときは、アプリ内からスタッフに相談できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="oy-section" id="features">
+    <div class="oy-kicker">FEATURES</div>
+    <h2 style="margin-top:10px;">できること</h2>
+    <div class="oy-features">
+      <div class="oy-feature">
+        <div class="oy-icon">📋</div>
+        <h3>自動やることリスト</h3>
+        <p>役所届出・年金・相続放棄の判断・名義変更・車やペットの引き取りまで、期限順に整理。</p>
+      </div>
+      <div class="oy-feature">
+        <div class="oy-icon">🤝</div>
+        <h3>ご家族と共有</h3>
+        <p>承認制のリクエストで、関係者だけが案件に参加。進み具合をみんなで確認できます。</p>
+      </div>
+      <div class="oy-feature">
+        <div class="oy-icon">🔒</div>
+        <h3>書類・写真を安全に保管</h3>
+        <p>戸籍謄本や形見の写真を、ご家族と運営スタッフのみが見られる形でやり取りできます。</p>
+      </div>
+      <div class="oy-feature">
+        <div class="oy-icon">🌳</div>
+        <h3>法定相続人の整理</h3>
+        <p>家系図のイメージで、相続人の範囲をわかりやすく確認できます。</p>
+      </div>
+      <div class="oy-feature">
+        <div class="oy-icon">🕯️</div>
+        <h3>法要のご案内</h3>
+        <p>四十九日・五十日祭など、宗教別の年忌法要のスケジュールを管理できます。</p>
+      </div>
+      <div class="oy-feature">
+        <div class="oy-icon">💬</div>
+        <h3>スタッフに相談</h3>
+        <p>進め方に迷ったときは、アプリ内のトークから運営スタッフに直接相談できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="oy-section">
+    <div class="oy-kicker">PRICING</div>
+    <h2 style="margin-top:10px;">料金</h2>
+    <p style="color:var(--oy-sub); font-size:13.5px; margin-top:10px;">やることリストなど基本機能は無料です。専門スタッフの手を借りたいときだけ、必要な分をお申し込みください。</p>
+    <div class="oy-price-grid">
+      <div class="oy-price-card">
+        <span class="oy-price-tag">FREE</span>
+        <div class="oy-price-amount">¥0</div>
+        <p class="oy-price-desc">やることリストの自動作成、ご家族との共有、書類・写真の保管、法定相続人の整理など、基本機能はすべて無料です。</p>
+      </div>
+      <div class="oy-price-card is-highlight">
+        <span class="oy-price-tag">電話サポート</span>
+        <div class="oy-price-amount">¥11,000<small>(税込)</small></div>
+        <p class="oy-price-desc">専門スタッフへの相談窓口をご利用いただけます。</p>
+        <ul class="oy-price-list">
+          <li>アプリ内チャットでの相談</li>
+          <li>手続きガイド・窓口のご案内</li>
+          <li>24時間以内・未相談なら全額返金</li>
+        </ul>
+      </div>
+      <div class="oy-price-card">
+        <span class="oy-price-tag">実働サポート</span>
+        <div class="oy-price-amount">¥33,000<small>(税込・定額)</small></div>
+        <p class="oy-price-desc">電気・ガス・水道など、電話やオンラインで完結する解約連絡を、委任契約のうえ代行します。</p>
+        <ul class="oy-price-list">
+          <li>依頼件数によらず定額</li>
+          <li>お申し込み時にオンラインで契約内容をご確認</li>
+        </ul>
+      </div>
+    </div>
+    <div class="oy-trust">
+      <p>「おやこと」は一般社団法人みらい設計が企画・開発・運営しています。特定商取引法に基づく表記や利用規約は、アプリ内からご確認いただけます。</p>
+      <a href="./company.html">運営会社について →</a>
+    </div>
+  </section>
+
+  <section class="oy-closing">
+    <h2>ひとりで抱え込まなくて、大丈夫です。</h2>
+    <p>まずはWeb版で、やることリストがどんな形になるか試してみてください。</p>
+    <div class="oy-cta">
+      <a class="oy-btn oy-btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">Web版を試してみる</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div>© 2026 一般社団法人みらい設計</div>
+    <div class="footer-links">
+      <a href="./company.html">会社概要</a>
+      <a href="./terms.html">利用規約</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
