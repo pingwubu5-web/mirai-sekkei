@@ -86,7 +86,8 @@
   }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .brand svg { width: 38px; height: 38px; }
-  .brand-word { font-size: 20px; font-weight: 700; color: var(--ink); }
+  .brand-word { font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .brand-sub { display: block; font-family: "Zen Kaku Gothic New", sans-serif; font-size: 10.5px; font-weight: 500; color: var(--sub); }
   nav.top-nav { display: flex; align-items: center; gap: 22px; }
   nav.top-nav a.navlink { font-size: 13.5px; font-weight: 500; color: var(--sub); text-decoration: none; }
   nav.top-nav a.navlink:hover { color: var(--primary); }
@@ -120,11 +121,17 @@
 
   .mascot-wrap { position: relative; display: flex; align-items: center; justify-content: center; min-height: 320px; }
   .mascot { width: min(300px, 76vw); position: relative; z-index: 1; }
+  .hero-phone { position: relative; z-index: 1; }
+  .hero-phone .phone-lg { width: min(270px, 72vw); }
+  .hero-badge {
+    position: absolute; bottom: -16px; left: -18px; width: 64px; height: 64px;
+    filter: drop-shadow(0 10px 16px rgba(61,47,36,0.28));
+  }
   @media (prefers-reduced-motion: no-preference) {
-    .mascot { animation: bob 5s ease-in-out infinite; }
+    .mascot, .hero-phone { animation: bob 5s ease-in-out infinite; }
   }
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .sparkle { position: absolute; font-size: 22px; }
+  .sparkle { position: absolute; font-size: 22px; z-index: 2; }
 
   /* ---------- sections ---------- */
   .section { max-width: 1080px; margin: 0 auto; padding: 70px 24px; position: relative; }
@@ -258,7 +265,7 @@
         <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
         <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
       </svg>
-      <span class="brand-word">おやこと</span>
+      <span class="brand-word">おやこと<span class="brand-sub">死後手続きサポートアプリ</span></span>
     </a>
     <nav class="top-nav">
       <a class="navlink" href="#how">つかいかた</a>
@@ -289,13 +296,26 @@
         <p class="note">iOS版は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
       </div>
       <div class="mascot-wrap">
-        <span class="sparkle" style="top:6%; left:12%;">✨</span>
-        <span class="sparkle" style="bottom:10%; right:10%;">🌼</span>
-        <svg class="mascot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
-          <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
-          <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
-        </svg>
+        <span class="sparkle" style="top:2%; left:6%;">✨</span>
+        <span class="sparkle" style="bottom:8%; right:4%;">🌼</span>
+        <div class="hero-phone">
+          <div class="phone phone-lg">
+            <div class="phone-screen">
+              <div class="mock-bar">やることリスト・62%完了</div>
+              <div class="mock-progress-track"><div class="mock-progress-fill" style="width:62%"></div></div>
+              <div class="mock-task done"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
+              <div class="mock-task done"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
+              <div class="mock-task"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
+              <div class="mock-task"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
+              <div class="mock-task"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
+            </div>
+          </div>
+          <svg class="hero-badge" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
+            <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
+            <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
