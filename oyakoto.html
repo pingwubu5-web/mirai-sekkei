@@ -111,9 +111,9 @@
   .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center; position: relative; z-index: 1; }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
   .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 15px; font-weight: 700; color: var(--accent);
-    background: var(--primary-soft); padding: 9px 20px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent);
+    background: var(--primary-soft); padding: 6px 14px; border-radius: 999px;
   }
   .hero h1 { margin-top: 22px; font-size: clamp(36px, 5.4vw, 56px); line-height: 1.5; font-weight: 900; }
   .hero .lead { margin-top: 24px; color: var(--ink); font-size: 19px; line-height: 1.95; max-width: 30em; }
@@ -139,6 +139,7 @@
   .section-head .eyebrow { margin-bottom: 16px; }
   .section-head h2 { font-size: clamp(28px, 4vw, 40px); }
   .section-head p { margin-top: 14px; color: var(--sub); font-size: 17px; }
+  #how .section-head h2 { white-space: nowrap; font-size: clamp(19px, 5.6vw, 40px); }
 
   /* ---------- steps ---------- */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -209,6 +210,34 @@
     display: flex; align-items: center; justify-content: center; font-size: 13px; margin-left: -7px;
   }
   .mock-avatar:first-child { margin-left: 0; }
+
+  /* ---------- scroll-reveal: phone mockups "come alive" once visible ---------- */
+  .mock-progress-fill { width: 0%; transition: width 1.3s cubic-bezier(.22,1,.36,1); }
+  .phone.in-view .mock-progress-fill { width: var(--fill, 0%); }
+
+  .mock-task, .mock-bubble {
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .mock-avatar { opacity: 0; transform: translateY(6px) scale(0.6); transition: opacity .4s ease, transform .4s ease; }
+  .phone.in-view .mock-task,
+  .phone.in-view .mock-bubble,
+  .phone.in-view .mock-avatar {
+    opacity: 1; transform: translateY(0) scale(1);
+  }
+  .mock-task.done .mock-check { transition: background-color .3s ease .1s, border-color .3s ease .1s; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mock-candle { display: inline-block; animation: flicker 2.4s ease-in-out infinite; }
+  }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(-3deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mock-task, .mock-bubble, .mock-avatar { opacity: 1 !important; transform: none !important; }
+    .mock-progress-fill { width: var(--fill, 0%) !important; }
+  }
 
   /* ---------- feature chips ---------- */
   .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px; }
@@ -301,12 +330,12 @@
           <div class="phone phone-lg">
             <div class="phone-screen">
               <div class="mock-bar">やることリスト・62%完了</div>
-              <div class="mock-progress-track"><div class="mock-progress-fill" style="width:62%"></div></div>
-              <div class="mock-task done"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
-              <div class="mock-task done"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
-              <div class="mock-task"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
-              <div class="mock-task"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
-              <div class="mock-task"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
+              <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
+              <div class="mock-task done" style="transition-delay:.15s"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
+              <div class="mock-task done" style="transition-delay:.28s"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
+              <div class="mock-task" style="transition-delay:.41s"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
+              <div class="mock-task" style="transition-delay:.54s"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
+              <div class="mock-task" style="transition-delay:.67s"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
             </div>
           </div>
           <svg class="hero-badge" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -360,12 +389,12 @@
         <div class="phone">
           <div class="phone-screen">
             <div class="mock-bar">やることリスト・62%完了</div>
-            <div class="mock-progress-track"><div class="mock-progress-fill" style="width:62%"></div></div>
-            <div class="mock-task done"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
-            <div class="mock-task done"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
-            <div class="mock-task"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
-            <div class="mock-task"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
-            <div class="mock-task"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
+            <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
+            <div class="mock-task done" style="transition-delay:.15s"><span class="mock-check">✓</span><span>死亡届の提出</span></div>
+            <div class="mock-task done" style="transition-delay:.28s"><span class="mock-check">✓</span><span>健康保険の資格喪失届</span></div>
+            <div class="mock-task" style="transition-delay:.41s"><span class="mock-check"></span><span>年金の停止手続き</span><span class="mock-due">あと5日</span></div>
+            <div class="mock-task" style="transition-delay:.54s"><span class="mock-check"></span><span>電気・ガスの解約</span><span class="mock-due">あと9日</span></div>
+            <div class="mock-task" style="transition-delay:.67s"><span class="mock-check"></span><span>相続放棄の検討</span><span class="mock-due">あと82日</span></div>
           </div>
         </div>
       </div>
@@ -382,10 +411,10 @@
           <div class="phone-screen">
             <div class="mock-bar">家族トーク</div>
             <div class="mock-chat">
-              <div class="mock-bubble them">年金の手続き、明日行ってくるね</div>
-              <div class="mock-bubble me">ありがとう、助かる🙏</div>
-              <div class="mock-bubble file">📄 戸籍謄本.pdf を共有しました</div>
-              <div class="mock-bubble them">了解です、確認します!</div>
+              <div class="mock-bubble them" style="transition-delay:.1s">年金の手続き、明日行ってくるね</div>
+              <div class="mock-bubble me" style="transition-delay:.35s">ありがとう、助かる🙏</div>
+              <div class="mock-bubble file" style="transition-delay:.6s">📄 戸籍謄本.pdf を共有しました</div>
+              <div class="mock-bubble them" style="transition-delay:.85s">了解です、確認します!</div>
             </div>
           </div>
         </div>
@@ -407,7 +436,7 @@
               <div class="mock-memorial-title">四十九日法要</div>
               <div class="mock-memorial-date">2026年9月28日(月)</div>
               <div class="mock-avatars">
-                <div class="mock-avatar">👤</div><div class="mock-avatar">👤</div><div class="mock-avatar">👤</div><div class="mock-avatar">👤</div>
+                <div class="mock-avatar" style="transition-delay:.2s">👤</div><div class="mock-avatar" style="transition-delay:.32s">👤</div><div class="mock-avatar" style="transition-delay:.44s">👤</div><div class="mock-avatar" style="transition-delay:.56s">👤</div>
               </div>
               <div class="mock-memorial-sub">参列予定 6名</div>
             </div>
@@ -484,5 +513,41 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var allPhones = document.querySelectorAll(".phone");
+    var heroPhone = document.querySelector(".hero-phone .phone");
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      allPhones.forEach(function (el) { el.classList.add("in-view"); });
+      return;
+    }
+
+    // ヒーロー部分はスクロールせずとも見えるので、読み込み後すぐに動かす
+    if (heroPhone) {
+      setTimeout(function () { heroPhone.classList.add("in-view"); }, 450);
+    }
+
+    var others = Array.prototype.filter.call(allPhones, function (el) { return el !== heroPhone; });
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      others.forEach(function (el) { io.observe(el); });
+    } else {
+      others.forEach(function (el) { el.classList.add("in-view"); });
+    }
+  })();
+</script>
 </body>
 </html>
