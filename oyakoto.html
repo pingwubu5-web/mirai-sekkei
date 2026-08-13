@@ -124,7 +124,7 @@
     font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent);
     background: var(--primary-soft); padding: 6px 14px; border-radius: 999px;
   }
-  .hero h1 { margin-top: 22px; font-size: clamp(36px, 5.4vw, 56px); line-height: 1.5; font-weight: 900; }
+  .hero h1 { margin-top: 22px; font-size: clamp(24px, 6vw, 40px); line-height: 1.5; font-weight: 900; text-wrap: initial; }
   .hero .lead { margin-top: 24px; color: var(--ink); font-size: 19px; line-height: 1.95; max-width: 30em; }
   .hero .ctas { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
   .hero .note { margin-top: 16px; font-size: 15px; color: var(--sub); }
@@ -149,6 +149,7 @@
   .section-head h2 { font-size: clamp(28px, 4vw, 40px); }
   .section-head p { margin-top: 14px; color: var(--sub); font-size: 17px; }
   #how .section-head h2 { white-space: nowrap; font-size: clamp(19px, 5.6vw, 40px); }
+  #features .section-head h2 { white-space: nowrap; font-size: clamp(19px, 5.6vw, 40px); }
 
   /* ---------- steps ---------- */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -180,7 +181,7 @@
 
   /* ---------- phone chrome ---------- */
   .phone {
-    width: 300px; aspect-ratio: 9 / 18; background: #2a1c10; border-radius: 42px;
+    width: min(300px, 76vw); aspect-ratio: 9 / 18; background: #2a1c10; border-radius: 42px;
     padding: 11px; box-shadow: 0 30px 50px -22px rgba(61,47,36,0.35), 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
     position: relative;
   }
@@ -272,10 +273,17 @@
   /* ---------- portrait (遺影) mock ---------- */
   .mock-portrait-photo {
     aspect-ratio: 3 / 4; border-radius: 14px; margin-bottom: 12px;
-    background: linear-gradient(160deg, var(--primary-soft), var(--primary));
-    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(165deg, var(--primary-softer), var(--primary-soft));
+    border: 1.5px solid var(--line);
+    display: flex; align-items: flex-end; justify-content: center;
+    overflow: hidden; position: relative;
   }
-  .mock-portrait-icon { font-size: 40px; opacity: 0.65; }
+  .mock-portrait-photo::before {
+    content: ""; position: absolute; top: 10px; right: 10px; left: 10px; bottom: 10px;
+    border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 8px;
+  }
+  .mock-portrait-icon { width: 62%; opacity: 0.9; }
+  .mock-portrait-icon svg { display: block; width: 100%; height: auto; }
   .mock-portrait-tools { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
   .mock-tool-btn {
     width: 28px; height: 28px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--panel);
@@ -357,7 +365,7 @@
   /* ---------- closing ---------- */
   .closing { text-align: center; padding: 40px 24px 100px; }
   .closing .mascot-mini { width: 110px; margin: 0 auto 24px; }
-  .closing h2 { font-size: clamp(28px, 4vw, 38px); }
+  .closing h2 { font-size: clamp(24px, 4vw, 38px); }
   .closing p { margin-top: 16px; color: var(--sub); font-size: 17px; }
   .closing .ctas { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 
@@ -404,7 +412,7 @@
     <div class="hero-grid">
       <div class="hero-text">
         <span class="eyebrow">🍀 死後手続き支援アプリ</span>
-        <h1>「何からすれば」に、そっと寄り添う。</h1>
+        <h1>「何からすれば」に、<br>そっと寄り添う。</h1>
         <p class="lead">
           大切な方を亡くされた直後は、悲しみの中で、たくさんの手続きに向き合わなければなりません。
           「おやこと」は、いくつかの質問に答えるだけで「やることリスト」をつくり、
@@ -497,7 +505,7 @@
     <div class="spotlight">
       <div class="spotlight-text">
         <span class="eyebrow">01 / ホーム</span>
-        <h3>今やるべきことが、開いてすぐわかる</h3>
+        <h3>今やるべきことが、<br>開いてすぐわかる</h3>
         <p>全体の進捗がひと目でわかり、期限が近いタスクは優先して表示されます。役所への届出、年金の手続き、相続放棄の判断、名義変更まで、迷わず順番に進められます。</p>
       </div>
       <div class="spotlight-phone">
@@ -528,7 +536,7 @@
     <div class="spotlight reverse">
       <div class="spotlight-text">
         <span class="eyebrow">02 / やることリスト</span>
-        <h3>「①→②→③」の順に進めれば迷わない</h3>
+        <h3>「①→②→③」の順に<br>進めれば迷わない</h3>
         <p>まずやること・つぎにやること・あとでよいことの3タブに整理。タップでチェック、期限バッジで残り日数がひと目でわかります。「担当を決める」でご家族に割り振ったり、「対応依頼」でスタッフに任せることもできます。</p>
       </div>
       <div class="spotlight-phone">
@@ -607,7 +615,7 @@
     <div class="spotlight reverse">
       <div class="spotlight-text">
         <span class="eyebrow">04 / 家系図</span>
-        <h3>法定相続人の範囲が、図でわかる</h3>
+        <h3>法定相続人の範囲が、<br>図でわかる</h3>
         <p>配偶者・子・父母・兄弟姉妹など、民法のルールに沿って法定相続人になる方をハイライト表示。ご自身の家族構成を入力すれば、同じ形で確認できます。</p>
       </div>
       <div class="spotlight-phone">
@@ -639,7 +647,7 @@
     <div class="spotlight">
       <div class="spotlight-text">
         <span class="eyebrow">05 / 遺影</span>
-        <h3>遺影も、アプリの中で仕上げられる</h3>
+        <h3>遺影も、アプリの<br>中で仕上げられる</h3>
         <p>お手持ちの写真から、縦長(3:4)の遺影用に位置・ズーム・回転を調整できます。明るさ・白黒・セピアなど雰囲気の調整もその場で試せます。仕上がりのイメージづくりに、そのままご活用いただけます。</p>
       </div>
       <div class="spotlight-phone">
@@ -647,7 +655,12 @@
           <div class="phone-screen">
             <div class="mock-bar">遺影を作る</div>
             <div class="mock-portrait-photo">
-              <span class="mock-portrait-icon">🖼️</span>
+              <span class="mock-portrait-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="38" r="20" fill="var(--accent)"/>
+                  <path d="M12 100 C12 72 28 58 50 58 C72 58 88 72 88 100 Z" fill="var(--accent)"/>
+                </svg>
+              </span>
             </div>
             <div class="mock-portrait-tools reveal" style="transition-delay:.2s">
               <span class="mock-tool-btn">↑</span><span class="mock-tool-btn">↓</span><span class="mock-tool-btn">←</span><span class="mock-tool-btn">→</span><span class="mock-tool-btn">＋</span><span class="mock-tool-btn">⟳</span>
@@ -673,7 +686,7 @@
   <section class="section" id="pricing">
     <div class="section-head">
       <span class="eyebrow">料金</span>
-      <h2>アプリは、ずっと無料です。</h2>
+      <h2>アプリは、<br>ずっと無料です。</h2>
       <p>やることリストの自動作成、ご家族との共有、家系図、法要管理まで、基本機能はすべて無料でお使いいただけます。</p>
     </div>
 
@@ -732,7 +745,7 @@
       <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
       <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
     </svg>
-    <h2>ひとりで抱え込まなくて、大丈夫です。</h2>
+    <h2>ひとりで抱え込まなくて、<br>大丈夫です。</h2>
     <p>まずはWeb版で、やることリストがどんな形になるか試してみてください。</p>
     <div class="ctas">
       <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener">🌸 Web版を試してみる</a>
