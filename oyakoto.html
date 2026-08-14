@@ -1,3 +1,16 @@
+承知しました。Stripeの件は、ご対応後に内容を教えてください。
+
+それまでの間、こちらは他の作業(アプリのビルド・デプロイ、LP問い合わせフォームの反映)を進めておきます。
+
+ビルドが完了次第デプロイします。Stripeの件、対応が終わりましたら教えてください。
+
+Confirmed present. Deploying now.
+
+アプリ側デプロイ完了しました。「対応依頼」ボタンは、実働サポートで実際にご購入済みのオプションのみ有効になり、未購入の場合は「実働サポートで依頼する」ボタン(購入ページへ誘導)に切り替わります。
+
+LPの問い合わせフォームも追加し、実際にSupabaseへの送信テスト(日本語含む)も確認済みです。以下を`oyakoto.html`に上書きしてください。
+
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -417,6 +430,26 @@
   .closing p { margin-top: 16px; color: var(--sub); font-size: 17px; }
   .closing .ctas { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 
+  /* ---------- contact form ---------- */
+  .contact-form { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+  .contact-field label { display: block; font-size: 13.5px; font-weight: 700; color: var(--sub); margin-bottom: 8px; }
+  .contact-field input,
+  .contact-field select,
+  .contact-field textarea {
+    width: 100%; font-size: 15px; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--ink);
+    background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px;
+    padding: 12px 14px; box-sizing: border-box;
+  }
+  .contact-field select { appearance: auto; }
+  .contact-field textarea { min-height: 130px; resize: vertical; line-height: 1.7; }
+  .contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus {
+    outline: none; border-color: var(--primary);
+  }
+  .contact-submit { align-self: center; margin-top: 4px; }
+  .contact-status { margin-top: 16px; text-align: center; font-size: 14px; font-weight: 700; }
+  .contact-status.ok { color: var(--ok); }
+  .contact-status.error { color: var(--danger); }
+
   /* ---------- footer ---------- */
   footer.site {
     border-top: 2px solid var(--line);
@@ -448,6 +481,7 @@
       <a class="navlink" href="#how">つかいかた</a>
       <a class="navlink" href="#features">できること</a>
       <a class="navlink" href="#pricing">料金</a>
+      <a class="navlink" href="#contact">お問い合わせ</a>
       <a class="btn btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">試してみる</a>
     </nav>
   </div>
@@ -640,7 +674,7 @@
       <div class="spotlight-phone">
         <div class="phone">
           <div class="phone-screen">
-            <div class="mock-chat-header">花子さん・太郎さん・おやこと 佐藤(スタッフ)</div>
+            <div class="mock-chat-header"><strong style="color:var(--ink);">トーク参加者: </strong>花子さん・太郎さん・おやこと 佐藤(スタッフ)</div>
             <div class="mock-chat">
               <div class="mock-msg them reveal" style="transition-delay:.1s">
                 <div class="mock-sender">花子</div>
@@ -839,6 +873,39 @@
       <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener">🌸 Web版を試してみる</a>
     </div>
   </section>
+
+  <section class="section" id="contact">
+    <div class="section-head">
+      <span class="eyebrow">お問い合わせ</span>
+      <h2>ご相談・ご質問はこちらから</h2>
+      <p>サービスについてのご質問、協業のご相談、取材のお申し込みなど、お気軽にお問い合わせください。</p>
+    </div>
+    <form class="contact-form" id="contact-form">
+      <div class="contact-field">
+        <label for="contact-category">お問い合わせ種別</label>
+        <select id="contact-category" required>
+          <option value="サービス/製品について">サービス/製品について</option>
+          <option value="協業について">協業について</option>
+          <option value="その他営業等ご相談">その他営業等ご相談</option>
+          <option value="取材について">取材について</option>
+        </select>
+      </div>
+      <div class="contact-field">
+        <label for="contact-name">お名前</label>
+        <input type="text" id="contact-name" required>
+      </div>
+      <div class="contact-field">
+        <label for="contact-email">メールアドレス</label>
+        <input type="email" id="contact-email" required>
+      </div>
+      <div class="contact-field">
+        <label for="contact-message">お問い合わせ内容</label>
+        <textarea id="contact-message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg contact-submit" id="contact-submit-btn">送信する</button>
+      <p class="contact-status" id="contact-status"></p>
+    </form>
+  </section>
 </main>
 
 <footer class="site">
@@ -889,6 +956,53 @@
       others.forEach(function (el) { el.classList.add("in-view"); });
     }
   })();
+
+  (function () {
+    var SUPABASE_URL = "https://wvjeozhnxmwnpxcytsxu.supabase.co";
+    var SUPABASE_ANON_KEY = "sb_publishable_AAfXyAb38JXzh_ObjDISCA_3dXBGMaC";
+    var form = document.getElementById("contact-form");
+    var statusEl = document.getElementById("contact-status");
+    var submitBtn = document.getElementById("contact-submit-btn");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var category = document.getElementById("contact-category").value;
+      var name = document.getElementById("contact-name").value.trim();
+      var email = document.getElementById("contact-email").value.trim();
+      var message = document.getElementById("contact-message").value.trim();
+      if (!name || !email || !message) return;
+
+      submitBtn.disabled = true;
+      statusEl.textContent = "";
+      statusEl.className = "contact-status";
+
+      fetch(SUPABASE_URL + "/rest/v1/contact_inquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({ category: category, name: name, email: email, message: message })
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("送信に失敗しました");
+          statusEl.textContent = "送信しました。お問い合わせありがとうございます。";
+          statusEl.className = "contact-status ok";
+          form.reset();
+        })
+        .catch(function () {
+          statusEl.textContent = "送信に失敗しました。お手数ですが、時間をおいて再度お試しください。";
+          statusEl.className = "contact-status error";
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+        });
+    });
+  })();
 </script>
 </body>
 </html>
+```
