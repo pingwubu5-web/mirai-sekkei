@@ -3,8 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>おやこと | ご遺族向け死後手続き支援アプリ</title>
-<meta name="description" content="大切な方を亡くされたあと、何から手をつければいいか分からない——そんなご遺族のための死後手続き支援アプリ「おやこと」。質問に答えるだけでやることリストを自動作成し、ご家族で共有できます。">
+<title>おやこと | 死後手続き・遺品整理・遺影づくりを支援する無料アプリ</title>
+<meta name="description" content="大切な方を亡くされたあと、何から手をつければいいか分からない——そんなご遺族のための死後手続き支援アプリ「おやこと」。質問に答えるだけでやることリストを自動作成し、ご家族で共有。家系図で法定相続人を確認、遺影づくり、遺品整理の相談まで、基本機能はすべて無料です。">
+<link rel="canonical" href="https://pingwubu5-web.github.io/mirai-sekkei/oyakoto.html">
+<meta name="robots" content="index,follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="おやこと">
+<meta property="og:title" content="おやこと | 死後手続き・遺品整理・遺影づくりを支援する無料アプリ">
+<meta property="og:description" content="大切な方を亡くされたあとの手続きを、質問に答えるだけで「やることリスト」に。ご家族で共有し、家系図・遺影づくり・遺品整理の相談まで、基本機能は無料でご利用いただけます。">
+<meta property="og:url" content="https://pingwubu5-web.github.io/mirai-sekkei/oyakoto.html">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="おやこと | 死後手続き・遺品整理・遺影づくりを支援する無料アプリ">
+<meta name="twitter:description" content="大切な方を亡くされたあとの手続きを、質問に答えるだけで「やることリスト」に。基本機能は無料でご利用いただけます。">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "おやこと",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Web",
+  "url": "https://pingwubu5-web.github.io/mirai-sekkei/oyakoto.html",
+  "description": "大切な方を亡くされたあとの死後手続きを、質問に答えるだけで自動整理する支援アプリ。やることリストの共有、家系図での法定相続人確認、遺影づくり、遺品整理の相談まで対応。",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY",
+    "description": "基本機能は無料。専門スタッフによる電話サポート・実働サポートは有料オプション。"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "一般社団法人みらい設計",
+    "url": "https://pingwubu5-web.github.io/mirai-sekkei/index.html"
+  }
+}
+</script>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
 
@@ -295,6 +330,19 @@
     border: 1.5px solid var(--line); background: var(--panel); color: var(--sub);
   }
   .mock-filter-pill.active { border-color: var(--primary); background: var(--primary-soft); color: var(--accent); }
+
+  /* ---------- portrait before/after compare (LP only, illustrative) ---------- */
+  .portrait-compare { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
+  .portrait-compare-card { flex: 1; min-width: 0; text-align: center; }
+  .portrait-compare-img { aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; position: relative; }
+  .portrait-compare-img.before { background: linear-gradient(155deg, #ded4c4, #b7ab97); }
+  .portrait-compare-img.after { background: linear-gradient(165deg, var(--primary-softer), var(--primary-soft)); border: 1.5px solid var(--line); }
+  .portrait-compare-img .frame { position: absolute; inset: 9%; border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 8px; }
+  .portrait-compare-img svg { position: absolute; width: 58%; left: 21%; bottom: 0; }
+  .portrait-compare-img.before svg { width: 46%; left: 12%; bottom: 6%; transform: rotate(-8deg); opacity: 0.6; }
+  .portrait-compare-label { margin-top: 9px; font-size: 12px; font-weight: 700; color: var(--sub); line-height: 1.5; }
+  .portrait-compare-arrow { flex: none; font-size: 20px; color: var(--accent); }
+  .portrait-compare-note { margin-top: 14px; font-size: 13.5px; color: var(--sub); line-height: 1.8; }
 
   /* ---------- name origin (about) section ---------- */
   .about-copy { max-width: 34em; margin: 0 auto; color: var(--ink); font-size: 15.5px; line-height: 2.1; }
@@ -649,6 +697,29 @@
         <span class="eyebrow">05 / 遺影</span>
         <h3>遺影も、アプリの<br>中で仕上げられる</h3>
         <p>お手持ちの写真から、縦長(3:4)の遺影用に位置・ズーム・回転を調整できます。明るさ・白黒・セピアなど雰囲気の調整もその場で試せます。仕上がりのイメージづくりに、そのままご活用いただけます。</p>
+        <div class="portrait-compare">
+          <div class="portrait-compare-card">
+            <div class="portrait-compare-img before">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="38" r="20" fill="#5f5342"/>
+                <path d="M12 100 C12 72 28 58 50 58 C72 58 88 72 88 100 Z" fill="#5f5342"/>
+              </svg>
+            </div>
+            <div class="portrait-compare-label">📱 普段のスナップ写真</div>
+          </div>
+          <div class="portrait-compare-arrow">→</div>
+          <div class="portrait-compare-card">
+            <div class="portrait-compare-img after">
+              <div class="frame"></div>
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="38" r="20" fill="var(--accent)"/>
+                <path d="M12 100 C12 72 28 58 50 58 C72 58 88 72 88 100 Z" fill="var(--accent)"/>
+              </svg>
+            </div>
+            <div class="portrait-compare-label">🖼️ 遺影用に整えたイメージ</div>
+          </div>
+        </div>
+        <p class="portrait-compare-note">切り抜き位置・明るさ・色味の調整、無地の背景色(白・黒・グレー・ベージュ)への差し替えができます。さらにAIによる加工(¥100)では、自然な肌の補正・若々しい印象・フォーマルな服装への着せ替えなどを、候補を5つまで作成してその中からお選びいただけます。</p>
       </div>
       <div class="spotlight-phone">
         <div class="phone">
@@ -726,6 +797,22 @@
         </ul>
       </div>
     </div>
+
+    <div style="max-width: 720px; margin: 40px auto 0; text-align: center;">
+      <p style="font-size: 13.5px; color: var(--sub); margin-bottom: 16px;">アプリ内では、さらに次の機能を¥100からお使いいただけます(電話サポート・実働サポートご利用中の方は追加料金なし)。</p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <div class="chip" style="max-width: 300px; flex: 1;">
+          <div class="chip-emoji">📷</div>
+          <h4>御芳名OCR読み取り(¥100)</h4>
+          <p>香典袋や芳名帳の写真から、お名前欄の下書きをAIが自動入力します。</p>
+        </div>
+        <div class="chip" style="max-width: 300px; flex: 1;">
+          <div class="chip-emoji">✨</div>
+          <h4>遺影のAI加工(¥100)</h4>
+          <p>自然な補正・若々しい印象・フォーマルな服装への着せ替えなどを、候補5つから選べます。</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section" style="padding-bottom: 40px;">
@@ -734,7 +821,8 @@
       <h2 style="margin-top: 14px; font-size: clamp(20px, 2.6vw, 26px);">「他人事」ではなく、「親の事」として。</h2>
     </div>
     <div class="about-copy">
-      <p>「他人事(ひとごと)」ということばがあります。自分には関係のない、遠い出来事という意味です。けれど、大切な方を見送ったあとの手続きは、本来「他人事」であるはずがありません。——「おやこと」という名前には、「親の事」をそのまま自分の事として引き受けたい、という思いを込めています。</p>
+      <p>「おやこと」という名前は、「親の事」から生まれました。大切な方を見送ったあとの手続きを「他人事(ひとごと)」として片づけるのではなく、親を思う子どものような気持ちで、ひとつひとつ丁寧に向き合いたい——そんな願いを込めています。</p>
+      <p>ここでいう「親」は、血のつながった実の親だけを指すものではありません。育ての親、ご家族として大切にしてきた方、長年寄り添ったパートナーなど、大切な方を見送るすべての方に、この名前に込めた気持ちを重ねてお使いいただければと思います。</p>
       <p>隣近所とのつながりが薄れ、離れて暮らすご家族も増えたいま、いざというとき「何から手をつければいいのか」を、一人で抱え込んでしまう方が少なくありません。「おやこと」が、離れていてもご家族とつながり、ひとりで抱え込まずに済むための、小さなきっかけになれたらと思っています。</p>
     </div>
   </section>
