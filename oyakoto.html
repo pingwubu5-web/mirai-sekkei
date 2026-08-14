@@ -1,16 +1,3 @@
-承知しました。Stripeの件は、ご対応後に内容を教えてください。
-
-それまでの間、こちらは他の作業(アプリのビルド・デプロイ、LP問い合わせフォームの反映)を進めておきます。
-
-ビルドが完了次第デプロイします。Stripeの件、対応が終わりましたら教えてください。
-
-Confirmed present. Deploying now.
-
-アプリ側デプロイ完了しました。「対応依頼」ボタンは、実働サポートで実際にご購入済みのオプションのみ有効になり、未購入の場合は「実働サポートで依頼する」ボタン(購入ページへ誘導)に切り替わります。
-
-LPの問い合わせフォームも追加し、実際にSupabaseへの送信テスト(日本語含む)も確認済みです。以下を`oyakoto.html`に上書きしてください。
-
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -895,12 +882,16 @@ LPの問い合わせフォームも追加し、実際にSupabaseへの送信テ�
         <input type="text" id="contact-name" required>
       </div>
       <div class="contact-field">
+        <label for="contact-company">事業者名<span style="font-weight:400;color:var(--sub);">(任意)</span></label>
+        <input type="text" id="contact-company">
+      </div>
+      <div class="contact-field">
         <label for="contact-email">メールアドレス</label>
         <input type="email" id="contact-email" required>
       </div>
       <div class="contact-field">
-        <label for="contact-message">お問い合わせ内容</label>
-        <textarea id="contact-message" required></textarea>
+        <label for="contact-message">お問い合わせ内容<span style="font-weight:400;color:var(--sub);">(任意)</span></label>
+        <textarea id="contact-message"></textarea>
       </div>
       <button type="submit" class="btn btn-primary btn-lg contact-submit" id="contact-submit-btn">送信する</button>
       <p class="contact-status" id="contact-status"></p>
@@ -969,23 +960,23 @@ LPの問い合わせフォームも追加し、実際にSupabaseへの送信テ�
       e.preventDefault();
       var category = document.getElementById("contact-category").value;
       var name = document.getElementById("contact-name").value.trim();
+      var companyName = document.getElementById("contact-company").value.trim();
       var email = document.getElementById("contact-email").value.trim();
       var message = document.getElementById("contact-message").value.trim();
-      if (!name || !email || !message) return;
+      if (!name || !email) return;
 
       submitBtn.disabled = true;
       statusEl.textContent = "";
       statusEl.className = "contact-status";
 
-      fetch(SUPABASE_URL + "/rest/v1/contact_inquiries", {
+      fetch(SUPABASE_URL + "/functions/v1/send-contact-notification", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "apikey": SUPABASE_ANON_KEY,
-          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-          "Prefer": "return=minimal"
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY
         },
-        body: JSON.stringify({ category: category, name: name, email: email, message: message })
+        body: JSON.stringify({ category: category, name: name, companyName: companyName, email: email, message: message })
       })
         .then(function (res) {
           if (!res.ok) throw new Error("送信に失敗しました");
@@ -1005,4 +996,3 @@ LPの問い合わせフォームも追加し、実際にSupabaseへの送信テ�
 </script>
 </body>
 </html>
-```
