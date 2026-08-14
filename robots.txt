@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pingwubu5-web.github.io/mirai-sekkei/sitemap.xml
