@@ -6,6 +6,36 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/columns.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/jikkajimai.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/shigojimu.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/akiya.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/yuigon.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/ihinseiri.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://pingwubu5-web.github.io/mirai-sekkei/index.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
