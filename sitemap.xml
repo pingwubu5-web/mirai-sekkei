@@ -55,4 +55,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
+    <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/junkakutei-shinkoku.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pingwubu5-web.github.io/mirai-sekkei/rogo-shikin.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
