@@ -352,6 +352,28 @@
   .about-copy { max-width: 34em; margin: 0 auto; color: var(--ink); font-size: 15.5px; line-height: 2.1; }
   .about-copy p + p { margin-top: 20px; }
 
+  /* ---------- founder profile ---------- */
+  .profile-card {
+    max-width: 760px; margin: 0 auto; background: var(--panel); border: 2px solid var(--line);
+    border-radius: 28px; padding: 40px; display: flex; gap: 32px; align-items: flex-start;
+  }
+  @media (max-width: 640px) { .profile-card { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; } }
+  .profile-avatar {
+    flex: none; width: 96px; height: 96px; border-radius: 50%; background: var(--primary);
+    color: #fffaf4; display: flex; align-items: center; justify-content: center;
+    font-family: "Zen Maru Gothic", sans-serif; font-size: 34px; font-weight: 800;
+  }
+  .profile-name-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  @media (max-width: 640px) { .profile-name-row { justify-content: center; } }
+  .profile-name { font-family: "Zen Maru Gothic", sans-serif; font-size: 24px; font-weight: 800; color: var(--ink); }
+  .profile-kana { font-size: 13.5px; color: var(--sub); }
+  .profile-titles { margin-top: 8px; font-size: 13.5px; font-weight: 700; color: var(--accent); line-height: 1.8; }
+  .profile-org { margin-top: 4px; font-size: 13px; color: var(--sub); }
+  .profile-bio { margin-top: 16px; font-size: 15px; line-height: 1.95; color: var(--ink); }
+  .profile-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 640px) { .profile-tags { justify-content: center; } }
+  .profile-tag { font-size: 12.5px; font-weight: 700; color: var(--accent); background: var(--primary-soft); padding: 7px 14px; border-radius: 999px; }
+
   /* ---------- scroll-reveal: phone mockups "come alive" once visible ---------- */
   .mock-progress-fill { width: 0%; height: 100%; background: var(--primary); border-radius: 999px; transition: width 1.3s cubic-bezier(.22,1,.36,1); }
   .mock-progress-track { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; margin: 8px 0; }
@@ -896,6 +918,30 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       <p>「おやこと」という名前は、「親の事」から生まれました。大切な方を見送ったあとの手続きを「他人事(ひとごと)」として片づけるのではなく、親を思う子どものような気持ちで、ひとつひとつ丁寧に向き合いたい——そんな願いを込めています。</p>
       <p>ここでいう「親」は、血のつながった実の親だけを指すものではありません。育ての親、ご家族として大切にしてきた方、長年寄り添ったパートナーなど、大切な方を見送るすべての方に、この名前に込めた気持ちを重ねてお使いいただければと思います。</p>
       <p>隣近所とのつながりが薄れ、離れて暮らすご家族も増えたいま、いざというとき「何から手をつければいいのか」を、一人で抱え込んでしまう方が少なくありません。「おやこと」が、離れていてもご家族とつながり、ひとりで抱え込まずに済むための、小さなきっかけになれたらと思っています。</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom: 40px;">
+    <div class="section-head" style="margin-bottom: 30px;">
+      <span class="eyebrow">運営者について</span>
+      <h2 style="margin-top: 14px; font-size: clamp(20px, 2.6vw, 26px);">誰が、この想いを運営しているか。</h2>
+    </div>
+    <div class="profile-card">
+      <div class="profile-avatar">物</div>
+      <div>
+        <div class="profile-name-row">
+          <span class="profile-name">物部 平</span>
+          <span class="profile-kana">(ものべ たいら)</span>
+        </div>
+        <div class="profile-titles">一級ファイナンシャル・プランニング技能士 ／ 終活・生前対策コンサルタント</div>
+        <div class="profile-org">一般社団法人みらい設計 代表理事</div>
+        <p class="profile-bio">1991年、福岡県生まれ。高校卒業後に東京都庁へ入庁し、5年間の勤務を経て独立。ファイナンシャル・プランナーとして、スタートアップ・ベンチャー企業の新規事業開発や経営支援に携わる一方、生前対策領域でのコンサルティングにも取り組む。2022年9月、一般社団法人みらい設計を設立し代表理事に就任。行政・ベンチャー双方での事業立ち上げ経験を活かし、「おひとりさま」の終活支援や死後事務手続き、相続・資産運用の相談に、一人ひとりに寄り添いながら向き合っている。終活・相続をテーマにしたセミナー講師としても多数登壇。</p>
+        <div class="profile-tags">
+          <span class="profile-tag">終活・生前対策コンサルティング</span>
+          <span class="profile-tag">新規事業開発・事業成長支援</span>
+          <span class="profile-tag">セミナー・講演</span>
+        </div>
+      </div>
     </div>
   </section>
 
