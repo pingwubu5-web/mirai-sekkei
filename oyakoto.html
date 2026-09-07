@@ -513,7 +513,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       <a class="navlink" href="#pricing">料金</a>
       <a class="navlink" href="./columns.html">コラム</a>
       <a class="navlink" href="#contact">お問い合わせ</a>
-      <a class="btn btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener">試してみる</a>
+      <a class="btn btn-primary" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="header">試してみる</a>
     </nav>
   </div>
 </header>
@@ -533,7 +533,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
           ご家族どうしでやさしく分担できるアプリです。
         </p>
         <div class="ctas">
-          <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener">🌸 Web版を試してみる</a>
+          <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="hero">🌸 Web版を試してみる</a>
           <a class="btn btn-ghost btn-lg" href="#features">できることを見る</a>
         </div>
         <p class="note">iOS版は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
@@ -954,7 +954,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
     <h2>ひとりで抱え込まなくて、<br>大丈夫です。</h2>
     <p>まずはWeb版で、やることリストがどんな形になるか試してみてください。</p>
     <div class="ctas">
-      <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener">🌸 Web版を試してみる</a>
+      <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="closing">🌸 Web版を試してみる</a>
     </div>
   </section>
 
@@ -1089,6 +1089,19 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
         .finally(function () {
           submitBtn.disabled = false;
         });
+    });
+  })();
+
+  // ---------- 「Web版を試してみる」クリック計測(Metaピクセル・カスタムイベント) ----------
+  // LPのどこで離脱しているか(見るだけ/クリックはする/実際にアプリまで進む)を
+  // 切り分けるため、ボタン位置ごとに TryAppClick イベントを送る。
+  (function () {
+    document.querySelectorAll("[data-cta]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        if (typeof fbq === "function") {
+          fbq("trackCustom", "TryAppClick", { cta_position: el.getAttribute("data-cta") });
+        }
+      });
     });
   })();
 </script>
