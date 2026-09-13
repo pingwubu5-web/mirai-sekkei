@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18444275323"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18444275323');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>おやこと | 死後手続き・死後事務委任を支援する無料アプリ</title>
@@ -1092,14 +1101,18 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
     });
   })();
 
-  // ---------- 「Web版を試してみる」クリック計測(Metaピクセル・カスタムイベント) ----------
+  // ---------- 「Web版を試してみる」クリック計測(Meta・Google共通) ----------
   // LPのどこで離脱しているか(見るだけ/クリックはする/実際にアプリまで進む)を
   // 切り分けるため、ボタン位置ごとに TryAppClick イベントを送る。
   (function () {
     document.querySelectorAll("[data-cta]").forEach(function (el) {
       el.addEventListener("click", function () {
+        var pos = el.getAttribute("data-cta");
         if (typeof fbq === "function") {
-          fbq("trackCustom", "TryAppClick", { cta_position: el.getAttribute("data-cta") });
+          fbq("trackCustom", "TryAppClick", { cta_position: pos });
+        }
+        if (typeof gtag === "function") {
+          gtag("event", "try_app_click", { cta_position: pos });
         }
       });
     });
