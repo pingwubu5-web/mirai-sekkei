@@ -53,51 +53,60 @@
 }
 </script>
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap");
 
   :root {
-    --ink: #3d2f24;
-    --paper: #fff8ee;
-    --panel: #fffcf8;
-    --line: #f3e2c9;
-    --primary: #e0793a;
-    --primary-soft: #fce8d5;
-    --primary-softer: #fdf3e8;
-    --accent: #b5883a;
-    --sub: #7c6a58;
-    --ok: #4a7a58;
+    --ink: #16233a;
+    --paper: #f4f6f9;
+    --panel: #ffffff;
+    --line: #d9e0e8;
+    --primary: #14528f;
+    --primary-dark: #0d3c6b;
+    --primary-soft: #e8eef5;
+    --navy: #0e2a4a;
+    --navy-soft: #16375c;
+    --accent: #1f9d6e;
+    --accent-soft: #e3f4ec;
+    --sub: #55657a;
+    --ok: #1f9d6e;
     --danger: #c23b2e;
     --danger-soft: #fbe4de;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --ink: #f5ecdf;
-      --paper: #241a12;
-      --panel: #2e2118;
-      --line: #4a3a29;
-      --primary: #f0985c;
-      --primary-soft: #3d2c1c;
-      --primary-softer: #362719;
-      --accent: #d9b876;
-      --sub: #c2ac96;
-      --ok: #6fa682;
+      --ink: #e6ebf2;
+      --paper: #0b1622;
+      --panel: #101f30;
+      --line: #24384f;
+      --primary: #4a8fce;
+      --primary-dark: #6fa8db;
+      --primary-soft: #17293e;
+      --navy: #0a1a2c;
+      --navy-soft: #122439;
+      --accent: #3fc48c;
+      --accent-soft: #103a2b;
+      --sub: #9fb0c3;
+      --ok: #3fc48c;
       --danger: #e07a6c;
-      --danger-soft: #402420;
+      --danger-soft: #3a221e;
     }
   }
   :root[data-theme="dark"] {
-    --ink: #f5ecdf;
-    --paper: #241a12;
-    --panel: #2e2118;
-    --line: #4a3a29;
-    --primary: #f0985c;
-    --primary-soft: #3d2c1c;
-    --primary-softer: #362719;
-    --accent: #d9b876;
-    --sub: #c2ac96;
-    --ok: #6fa682;
+    --ink: #e6ebf2;
+    --paper: #0b1622;
+    --panel: #101f30;
+    --line: #24384f;
+    --primary: #4a8fce;
+    --primary-dark: #6fa8db;
+    --primary-soft: #17293e;
+    --navy: #0a1a2c;
+    --navy-soft: #122439;
+    --accent: #3fc48c;
+    --accent-soft: #103a2b;
+    --sub: #9fb0c3;
+    --ok: #3fc48c;
     --danger: #e07a6c;
-    --danger-soft: #402420;
+    --danger-soft: #3a221e;
   }
 
   * { box-sizing: border-box; }
@@ -107,156 +116,207 @@
     background: var(--paper);
     color: var(--ink);
     font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
-    font-size: 17px;
-    line-height: 1.9;
+    font-size: 16px;
+    line-height: 1.8;
     overflow-x: hidden;
   }
-  h1, h2, h3 { font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif; margin: 0; text-wrap: balance; }
+  h1, h2, h3 { font-family: "Zen Kaku Gothic New", sans-serif; margin: 0; font-weight: 900; letter-spacing: -0.01em; text-wrap: balance; }
   p { margin: 0; }
   a { color: inherit; }
   img, svg { max-width: 100%; display: block; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
   @media (prefers-reduced-motion: no-preference) {
-    a, button { transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease; }
-  }
-
-  .blob { position: absolute; z-index: 0; filter: blur(2px); opacity: 0.55; pointer-events: none; }
-  @media (prefers-reduced-motion: no-preference) {
-    .blob-float { animation: blobfloat 9s ease-in-out infinite; }
-    .blob-float-slow { animation: blobfloat 13s ease-in-out infinite; }
-  }
-  @keyframes blobfloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-14px) rotate(4deg); }
+    a, button { transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease; }
   }
 
   header.top {
     position: sticky; top: 0; z-index: 30;
-    background: color-mix(in srgb, var(--paper) 90%, transparent);
-    backdrop-filter: blur(8px);
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
   }
   .top-inner {
-    max-width: 1120px; margin: 0 auto; padding: 18px 24px;
+    max-width: 1120px; margin: 0 auto; padding: 16px 24px;
     display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
   }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .brand svg { width: 44px; height: 44px; }
-  .brand-word { font-size: 25px; font-weight: 700; color: var(--ink); line-height: 1.3; }
-  .brand-sub { display: block; font-family: "Zen Kaku Gothic New", sans-serif; font-size: 13px; font-weight: 500; color: var(--sub); }
-  nav.top-nav { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
-  nav.top-nav a.navlink { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; }
+  .brand-mark {
+    width: 38px; height: 38px; border-radius: 8px; background: var(--primary);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .brand-word { font-size: 21px; font-weight: 900; color: var(--ink); line-height: 1.25; }
+  .brand-sub { display: block; font-family: "Zen Kaku Gothic New", sans-serif; font-size: 12px; font-weight: 700; color: var(--sub); letter-spacing: 0.02em; }
+  nav.top-nav { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  nav.top-nav a.navlink { font-size: 14.5px; font-weight: 700; color: var(--ink); text-decoration: none; }
   nav.top-nav a.navlink:hover { color: var(--primary); }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 26px; border-radius: 999px; text-decoration: none;
-    font-size: 16px; font-weight: 700; font-family: "Zen Kaku Gothic New", sans-serif;
+    padding: 12px 24px; border-radius: 6px; text-decoration: none;
+    font-size: 15px; font-weight: 700; font-family: "Zen Kaku Gothic New", sans-serif;
     border: none; cursor: pointer; white-space: nowrap;
   }
-  .btn-primary { background: var(--primary); color: #fffaf4; box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--primary) 65%, transparent); }
-  .btn-primary:hover { transform: translateY(-2px) scale(1.02); background: var(--accent); }
-  .btn-ghost { background: var(--primary-soft); color: var(--accent); }
-  .btn-ghost:hover { transform: translateY(-2px); }
-  .btn-lg { padding: 19px 36px; font-size: 19px; }
+  .btn-primary { background: var(--accent); color: #ffffff; box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .btn-primary:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--accent) 85%, #000); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+  .btn-ghost-invert { background: transparent; color: #ffffff; border: 1.5px solid rgba(255,255,255,0.55); }
+  .btn-ghost-invert:hover { border-color: #ffffff; }
+  .btn-lg { padding: 16px 32px; font-size: 17px; }
 
   main { position: relative; z-index: 1; }
 
-  .hero { position: relative; max-width: 1120px; margin: 0 auto; padding: 50px 24px 30px; overflow: visible; }
-  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center; position: relative; z-index: 1; }
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color: #fff;
+  }
+  .hero-inner { max-width: 1120px; margin: 0 auto; padding: 64px 24px 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
   .eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
-    font-size: 16px; font-weight: 800; letter-spacing: 0.03em; color: var(--accent);
-    background: var(--primary-soft); padding: 9px 20px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 700; letter-spacing: 0.04em; color: #cfe0f2;
+    background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.18);
   }
-  .hero h1 { margin-top: 22px; font-size: clamp(24px, 6vw, 38px); line-height: 1.55; font-weight: 900; text-wrap: initial; }
-  .hero .lead { margin-top: 24px; color: var(--ink); font-size: 19px; line-height: 1.95; max-width: 30em; }
-  .hero .ctas { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-  .hero .note { margin-top: 16px; font-size: 15px; color: var(--sub); }
+  .hero h1 { margin-top: 22px; font-size: clamp(30px, 6vw, 46px); line-height: 1.35; color: #fff; }
+  .hero .lead { margin-top: 22px; color: #d8e3ee; font-size: 17px; line-height: 1.9; max-width: 32em; }
+  .hero .ctas { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .hero .note { margin-top: 16px; font-size: 13.5px; color: #a9bdd1; }
 
-  .mascot-wrap { position: relative; display: flex; align-items: center; justify-content: center; min-height: 360px; }
+  .hero-card {
+    background: var(--panel); border-radius: 10px; padding: 30px 28px;
+    box-shadow: 0 24px 48px -20px rgba(0,0,0,0.35);
+  }
+  .hero-card-label { font-size: 13px; font-weight: 700; color: var(--sub); text-transform: uppercase; letter-spacing: 0.04em; }
+  .hero-card h4 { font-size: 19px; margin: 10px 0 18px; color: var(--ink); font-weight: 900; }
+  .check-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .check-list li { font-size: 14.5px; color: var(--ink); padding-left: 28px; position: relative; }
+  .check-list li::before {
+    content: ""; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 4px;
+    background: var(--accent-soft); border: 1.5px solid var(--accent);
+  }
+  .check-list li::after {
+    content: "✓"; position: absolute; left: 3px; top: -1px; font-size: 12px; font-weight: 900; color: var(--accent);
+  }
 
-  .section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; position: relative; }
-  .section-head { text-align: center; max-width: 36em; margin: 0 auto 50px; }
-  .section-head .eyebrow { margin-bottom: 20px; }
-  .section-head h2 { font-size: clamp(26px, 4vw, 38px); }
-  .section-head p { margin-top: 14px; color: var(--sub); font-size: 17px; }
+  .section { max-width: 1120px; margin: 0 auto; padding: 72px 24px; position: relative; }
+  .section-head { text-align: center; max-width: 38em; margin: 0 auto 44px; }
+  .section-head .eyebrow-light {
+    display: inline-flex; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--primary);
+    background: var(--primary-soft); padding: 7px 16px; border-radius: 5px; margin-bottom: 16px;
+  }
+  .section-head h2 { font-size: clamp(24px, 3.6vw, 32px); color: var(--ink); }
+  .section-head p { margin-top: 12px; color: var(--sub); font-size: 15.5px; }
 
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
   .step {
-    background: var(--panel); border: 2px solid var(--line); border-radius: 28px;
-    padding: 32px 26px; text-align: center;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 28px 24px;
   }
-  .step .step-emoji {
-    width: 72px; height: 72px; margin: 0 auto 18px; border-radius: 999px;
-    background: var(--primary-soft); display: flex; align-items: center; justify-content: center; font-size: 34px;
+  .step .step-num {
+    width: 40px; height: 40px; border-radius: 6px;
+    background: var(--primary); color: #fff; font-weight: 900; font-size: 16px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
   }
-  .step h3 { font-size: 20px; margin-bottom: 10px; }
-  .step p { font-size: 15.5px; color: var(--sub); line-height: 1.85; }
+  .step h3 { font-size: 17.5px; margin-bottom: 8px; color: var(--ink); }
+  .step p { font-size: 14.5px; color: var(--sub); line-height: 1.8; }
 
-  .chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 0; max-width: 640px; margin-left: auto; margin-right: auto; }
-  .chips.chips-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+  .chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 0; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .chips.chips-3 { grid-template-columns: repeat(3, 1fr); max-width: 920px; }
   @media (max-width: 760px) { .chips.chips-3 { grid-template-columns: repeat(2, 1fr); max-width: 640px; } }
   @media (max-width: 560px) { .chips, .chips.chips-3 { grid-template-columns: 1fr; } }
-  .chip { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 24px; }
-  .chip .chip-emoji { font-size: 28px; }
-  .chip h4 { font-size: 17px; margin: 12px 0 6px; font-family: "Zen Kaku Gothic New", sans-serif; font-weight: 700; }
-  .chip p { font-size: 14.5px; color: var(--sub); line-height: 1.8; }
+  .chip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .chip .chip-icon {
+    width: 40px; height: 40px; border-radius: 6px; background: var(--primary-soft);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .chip .chip-icon svg { width: 20px; height: 20px; stroke: var(--primary); }
+  .chip h4 { font-size: 15.5px; margin: 14px 0 6px; font-weight: 700; color: var(--ink); }
+  .chip p { font-size: 13.5px; color: var(--sub); line-height: 1.75; }
+
+  .chips-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 920px; margin: 0 auto; }
+  @media (max-width: 700px) { .chips-list { grid-template-columns: 1fr; } }
+  .chip-accordion { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .chip-accordion summary {
+    list-style: none; cursor: pointer; padding: 16px 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .chip-accordion summary::-webkit-details-marker { display: none; }
+  .chip-accordion .chip-icon {
+    width: 36px; height: 36px; border-radius: 6px; background: var(--primary-soft);
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .chip-accordion .chip-icon svg { width: 18px; height: 18px; stroke: var(--primary); }
+  .chip-accordion summary h4 { margin: 0; font-size: 15px; font-weight: 700; color: var(--ink); flex: 1; }
+  .chip-accordion .chevron { color: var(--sub); font-size: 13px; transition: transform 0.15s ease; flex: none; }
+  .chip-accordion[open] .chevron { transform: rotate(180deg); }
+  .chip-accordion[open] summary { border-bottom: 1px solid var(--line); }
+  .chip-accordion .chip-body { padding: 14px 18px 18px 68px; font-size: 13.5px; color: var(--sub); line-height: 1.8; }
+
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--panel); border-top: 1px solid var(--line);
+    padding: 12px 20px; display: flex; align-items: center; justify-content: center; gap: 16px;
+    box-shadow: 0 -8px 20px -12px rgba(0,0,0,0.15);
+  }
+  .sticky-cta .sticky-cta-text { font-size: 13.5px; font-weight: 700; color: var(--ink); display: none; }
+  @media (min-width: 560px) { .sticky-cta .sticky-cta-text { display: block; } }
+  .sticky-cta .btn { flex: none; }
+  @media (max-width: 559px) { .sticky-cta .btn { flex: 1; justify-content: center; } }
+  body { padding-bottom: 76px; }
 
   .price-free-banner {
     display: flex; align-items: center; gap: 28px;
-    background: var(--primary); border-radius: 32px; padding: 44px 40px;
+    background: var(--navy); border-radius: 10px; padding: 40px 36px;
   }
   @media (max-width: 620px) { .price-free-banner { flex-direction: column; text-align: center; gap: 14px; } }
-  .price-free-emoji { font-size: 58px; flex: none; }
-  .price-free-name { font-size: 14.5px; font-weight: 700; letter-spacing: .05em; color: #fffaf4; opacity: .88; }
-  .price-free-amount { font-family: "Zen Maru Gothic", sans-serif; font-size: 58px; font-weight: 900; color: #fffaf4; margin-top: 2px; line-height: 1.1; }
-  .price-free-desc { margin-top: 12px; color: #fffaf4; opacity: .95; font-size: 15.5px; line-height: 1.9; max-width: 36em; }
+  .price-free-name { font-size: 13px; font-weight: 700; letter-spacing: .04em; color: #a9bdd1; text-transform: uppercase; }
+  .price-free-amount { font-family: "Zen Kaku Gothic New", sans-serif; font-size: 52px; font-weight: 900; color: #fff; margin-top: 4px; line-height: 1.1; }
+  .price-free-desc { margin-top: 10px; color: #d8e3ee; font-size: 14.5px; line-height: 1.85; max-width: 38em; }
 
-  .about-copy { max-width: 34em; margin: 0 auto; color: var(--ink); font-size: 15.5px; line-height: 2.1; }
-  .about-copy p + p { margin-top: 20px; }
-
-  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-  .faq-item { background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 22px 26px; }
-  .faq-q { font-weight: 700; font-size: 16px; display: flex; gap: 10px; }
-  .faq-q .faq-mark { flex: none; color: var(--primary); }
-  .faq-a { margin-top: 10px; font-size: 15px; color: var(--sub); line-height: 1.85; padding-left: 26px; }
+  .faq-list { max-width: 740px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .faq-item { background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--primary); border-radius: 8px; padding: 20px 24px; }
+  .faq-q { font-weight: 700; font-size: 15px; display: flex; gap: 10px; color: var(--ink); }
+  .faq-q .faq-mark { flex: none; color: var(--primary); font-weight: 900; }
+  .faq-a { margin-top: 8px; font-size: 14px; color: var(--sub); line-height: 1.8; padding-left: 22px; }
 
   .profile-card {
-    max-width: 760px; margin: 0 auto; background: var(--panel); border: 2px solid var(--line);
-    border-radius: 28px; padding: 40px; display: flex; gap: 32px; align-items: flex-start;
+    max-width: 780px; margin: 0 auto; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 36px; display: flex; gap: 28px; align-items: flex-start;
   }
-  @media (max-width: 640px) { .profile-card { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; } }
+  @media (max-width: 640px) { .profile-card { flex-direction: column; align-items: center; text-align: center; padding: 28px 22px; } }
   .profile-avatar {
-    flex: none; width: 96px; height: 96px; border-radius: 50%; background: var(--primary);
-    color: #fffaf4; display: flex; align-items: center; justify-content: center;
-    font-family: "Zen Maru Gothic", sans-serif; font-size: 34px; font-weight: 800;
+    flex: none; width: 84px; height: 84px; border-radius: 8px; background: var(--primary);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-family: "Zen Kaku Gothic New", sans-serif; font-size: 30px; font-weight: 900;
   }
   .profile-name-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
   @media (max-width: 640px) { .profile-name-row { justify-content: center; } }
-  .profile-name { font-family: "Zen Maru Gothic", sans-serif; font-size: 24px; font-weight: 800; color: var(--ink); }
-  .profile-kana { font-size: 13.5px; color: var(--sub); }
-  .profile-titles { margin-top: 8px; font-size: 13.5px; font-weight: 700; color: var(--accent); line-height: 1.8; }
-  .profile-org { margin-top: 4px; font-size: 13px; color: var(--sub); }
-  .profile-bio { margin-top: 16px; font-size: 15px; line-height: 1.95; color: var(--ink); }
-  .profile-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .profile-name { font-family: "Zen Kaku Gothic New", sans-serif; font-size: 21px; font-weight: 900; color: var(--ink); }
+  .profile-kana { font-size: 13px; color: var(--sub); }
+  .profile-titles { margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--primary); line-height: 1.8; }
+  .profile-org { margin-top: 4px; font-size: 12.5px; color: var(--sub); }
+  .profile-bio { margin-top: 14px; font-size: 14px; line-height: 1.9; color: var(--ink); }
+  .profile-tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
   @media (max-width: 640px) { .profile-tags { justify-content: center; } }
-  .profile-tag { font-size: 12.5px; font-weight: 700; color: var(--accent); background: var(--primary-soft); padding: 7px 14px; border-radius: 999px; }
+  .profile-tag { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-soft); padding: 6px 12px; border-radius: 5px; }
 
-  .closing { text-align: center; padding: 40px 24px 100px; }
-  .closing .mascot-mini { width: 110px; margin: 0 auto 24px; }
-  .closing h2 { font-size: clamp(24px, 4vw, 38px); }
-  .closing p { margin-top: 16px; color: var(--sub); font-size: 17px; }
-  .closing .ctas { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .closing {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-soft) 100%);
+    text-align: center; padding: 64px 24px;
+  }
+  .closing h2 { font-size: clamp(24px, 4vw, 34px); color: #fff; }
+  .closing p { margin-top: 14px; color: #d8e3ee; font-size: 15.5px; }
+  .closing .ctas { margin-top: 28px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 
-  .contact-form { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
-  .contact-field label { display: block; font-size: 13.5px; font-weight: 700; color: var(--sub); margin-bottom: 8px; }
+  .contact-form { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+  .contact-field label { display: block; font-size: 13px; font-weight: 700; color: var(--sub); margin-bottom: 7px; }
   .contact-field input,
   .contact-field select,
   .contact-field textarea {
     width: 100%; font-size: 15px; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--ink);
-    background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px;
-    padding: 12px 14px; box-sizing: border-box;
+    background: var(--panel); border: 1.5px solid var(--line); border-radius: 6px;
+    padding: 11px 13px; box-sizing: border-box;
   }
   .contact-field select { appearance: auto; }
   .contact-field textarea { min-height: 110px; resize: vertical; line-height: 1.7; }
@@ -264,22 +324,22 @@
     outline: none; border-color: var(--primary);
   }
   .contact-submit { align-self: center; margin-top: 4px; }
-  .contact-status { margin-top: 16px; text-align: center; font-size: 14px; font-weight: 700; }
+  .contact-status { margin-top: 14px; text-align: center; font-size: 13.5px; font-weight: 700; }
   .contact-status.ok { color: var(--ok); }
   .contact-status.error { color: var(--danger); }
 
   footer.site {
-    border-top: 2px solid var(--line);
-    padding: 36px 24px;
+    border-top: 1px solid var(--line);
+    padding: 32px 24px;
   }
   .footer-inner {
     max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px;
-    align-items: center; justify-content: space-between; font-size: 14.5px; color: var(--sub);
+    align-items: center; justify-content: space-between; font-size: 13.5px; color: var(--sub);
   }
   .footer-inner a { text-decoration: none; color: var(--sub); }
   .footer-inner a:hover { color: var(--primary); }
   .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-  .footer-note { display: block; margin-top: 4px; font-size: 12px; opacity: 0.85; }
+  .footer-note { display: block; margin-top: 4px; font-size: 11.5px; opacity: 0.85; }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -304,11 +364,12 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 <header class="top">
   <div class="top-inner">
     <a class="brand" href="#top">
-      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
-        <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
-        <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
-      </svg>
+      <span class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3L20 6.5V11.5C20 16 16.5 19.7 12 21C7.5 19.7 4 16 4 11.5V6.5L12 3Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
       <span class="brand-word">終活相談<span class="brand-sub">FPへの無料相談</span></span>
     </a>
     <nav class="top-nav">
@@ -323,36 +384,32 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
 <main id="top">
   <section class="hero">
-    <div class="blob blob-float" style="top:-30px; left:-60px; width:220px; height:220px; background:var(--primary-soft); border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;"></div>
-    <div class="blob blob-float-slow" style="bottom:-40px; right:-40px; width:260px; height:260px; background:var(--primary-softer); border-radius:58% 42% 35% 65% / 55% 55% 45% 45%;"></div>
-    <div class="hero-grid">
-      <div class="hero-text">
-        <span class="eyebrow">🌱 無料FP相談・終活診断</span>
-        <h1>終活は、<br>そもそもFPに相談できる。</h1>
-        <p class="lead">
-          「FP(ファイナンシャルプランナー)＝お金や保険の相談窓口」と思われがちですが、
-          実は相続、医療・介護の希望、エンディングノートまで、終活にまつわることは何でも相談できます。
-          「終活相談」は、そんなFPが無料でお話をうかがい、
-          あなたの状況に合わせた終活診断をお渡しするサービスです。
-        </p>
-        <div class="ctas">
-          <a class="btn btn-primary btn-lg" href="#contact" data-cta="hero">🌸 無料で相談を申し込む</a>
-          <a class="btn btn-ghost btn-lg" href="#diagnosis">終活診断について見る</a>
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">無料FP相談・終活診断</span>
+          <h1>終活のことも、<br>FPに相談だ。</h1>
+          <p class="lead">
+            「FP(ファイナンシャルプランナー)＝お金や保険の相談窓口」と思われがちですが、
+            実は相続、医療・介護の希望、エンディングノートまで、終活にまつわることは何でも相談できます。
+            「終活相談」は、そんなFPが無料でお話をうかがい、
+            あなたの状況に合わせた終活診断をお渡しするサービスです。
+          </p>
+          <div class="ctas">
+            <a class="btn btn-primary btn-lg" href="#contact" data-cta="hero">無料で相談を申し込む</a>
+            <a class="btn btn-ghost-invert btn-lg" href="#diagnosis">終活診断について見る</a>
+          </div>
+          <p class="note">相談・診断ともに無料です。しつこい勧誘は行いません。</p>
         </div>
-        <p class="note">相談・診断ともに無料です。しつこい勧誘は行いません。</p>
-      </div>
-      <div class="mascot-wrap">
-        <span class="sparkle" style="position:absolute; top:2%; left:4%; font-size:30px;">✨</span>
-        <span class="sparkle" style="position:absolute; bottom:6%; right:2%; font-size:30px;">🌼</span>
-        <div class="chip" style="max-width:340px; padding:32px 28px;">
-          <div class="chip-emoji">📝</div>
-          <h4 style="font-size:19px; margin-top:14px;">あなたの終活診断シート(例)</h4>
-          <ul class="price-list" style="list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;">
-            <li style="font-size:14.5px; color:var(--ink); padding-left:22px; position:relative;"><span style="position:absolute; left:0;">🌷</span>資産・お金の整理状況</li>
-            <li style="font-size:14.5px; color:var(--ink); padding-left:22px; position:relative;"><span style="position:absolute; left:0;">🌷</span>相続・遺言の準備状況</li>
-            <li style="font-size:14.5px; color:var(--ink); padding-left:22px; position:relative;"><span style="position:absolute; left:0;">🌷</span>医療・介護の希望の共有</li>
-            <li style="font-size:14.5px; color:var(--ink); padding-left:22px; position:relative;"><span style="position:absolute; left:0;">🌷</span>保険の見直しポイント</li>
-            <li style="font-size:14.5px; color:var(--ink); padding-left:22px; position:relative;"><span style="position:absolute; left:0;">🌷</span>もしものときのご家族への備え</li>
+        <div class="hero-card">
+          <div class="hero-card-label">終活診断シート(例)</div>
+          <h4>あなたの終活診断シート</h4>
+          <ul class="check-list">
+            <li>資産・お金の整理状況</li>
+            <li>相続・遺言の準備状況</li>
+            <li>医療・介護の希望の共有</li>
+            <li>保険の見直しポイント</li>
+            <li>もしものときのご家族への備え</li>
           </ul>
         </div>
       </div>
@@ -361,47 +418,122 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
   <section class="section" id="how">
     <div class="section-head">
-      <span class="eyebrow">相談の流れ</span>
+      <span class="eyebrow-light">相談の流れ</span>
       <h2>3ステップで、いまの状況が整理できる。</h2>
     </div>
     <div class="steps">
       <div class="step">
-        <div class="step-emoji">📝</div>
+        <div class="step-num">01</div>
         <h3>申し込む(3分)</h3>
         <p>フォームからお申し込み。お名前・ご連絡先と、気になっていることを簡単にお聞かせください。</p>
       </div>
       <div class="step">
-        <div class="step-emoji">☎️</div>
+        <div class="step-num">02</div>
         <h3>FPと話す</h3>
         <p>オンラインまたはお電話で、FPがじっくりお話をうかがいます(30〜45分程度)。お金の話に限りません。難しい知識は不要です。</p>
       </div>
       <div class="step">
-        <div class="step-emoji">📋</div>
+        <div class="step-num">03</div>
         <h3>終活診断を受け取る</h3>
         <p>お話の内容をもとに、今の状況と次に考えるとよいことをまとめた終活診断をお渡しします。</p>
       </div>
     </div>
   </section>
 
-  <section class="section" id="diagnosis">
+  <section class="section" id="diagnosis" style="background:var(--panel); max-width:none; padding-left:0; padding-right:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div style="max-width:1120px; margin:0 auto; padding:0 24px;">
     <div class="section-head">
-      <span class="eyebrow">終活診断とは</span>
-      <h2>いまの状況を、6つの視点で見える化。</h2>
-      <p>難しい専門用語は使いません。今どこまで備えができていて、次に何を考えるとよいかを整理してお渡しします。</p>
+      <span class="eyebrow-light">終活診断とは</span>
+      <h2>終活は、これだけ幅広い。</h2>
+      <p>難しい専門用語は使いません。気になる項目をタップすると、簡単な概要が開きます。</p>
     </div>
-    <div class="chips chips-3">
-      <div class="chip"><div class="chip-emoji">💰</div><h4>資産・お金の整理</h4><p>預貯金・不動産・有価証券など、資産の全体像を一緒に整理します。</p></div>
-      <div class="chip"><div class="chip-emoji">📜</div><h4>相続・遺言</h4><p>誰が法定相続人になるか、遺言の要否など、争いを防ぐための備えを確認します。</p></div>
-      <div class="chip"><div class="chip-emoji">🏥</div><h4>医療・介護の希望</h4><p>もしものときに望む医療・介護の形を、言葉にして残すお手伝いをします。</p></div>
-      <div class="chip"><div class="chip-emoji">🛡️</div><h4>保険の見直し</h4><p>いま入っている保険が、今のご状況に合っているかを一緒に確認します。</p></div>
-      <div class="chip"><div class="chip-emoji">📓</div><h4>エンディングノート</h4><p>気持ちや希望を書き残すエンディングノートの始め方をご案内します。</p></div>
-      <div class="chip"><div class="chip-emoji">👨‍👩‍👧</div><h4>ご家族との共有</h4><p>準備したことを、ご家族とどう共有していくとよいかもあわせてご提案します。</p></div>
+    <div class="chips-list">
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 8.5h3.5a1.8 1.8 0 010 3.6H10a1.8 1.8 0 000 3.6H15M12 6.5v11"/></svg></span>
+          <h4>お金・資産</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">預貯金・不動産・有価証券など資産の全体像、年金や老後の家計の見通しを一緒に整理します。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-3 7.5-7 9-4-1.5-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></span>
+          <h4>保険の見直し</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">いま入っている生命保険・医療保険が、今のご状況に合っているかを一緒に確認します。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M9 12h6M9 15.5h6M9 8.5h2"/></svg></span>
+          <h4>相続・遺言</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">誰が法定相続人になるか、遺言の要否など、争いを防ぐための備えを確認します。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></span>
+          <h4>実家じまい・空き家</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">実家の片づけ方や、空き家のまま放置した場合のリスク・対策を整理します。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21V11a4 4 0 018 0v10"/><path d="M6 21h12"/></svg></span>
+          <h4>墓じまい</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">お墓の維持が難しいときの進め方や、費用の目安について相談できます。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10A4.5 4.5 0 0112 7.5 4.5 4.5 0 0119.5 10.5c0 5.4-7.5 10-7.5 10z"/><path d="M9 10.5h1.4l1-2 1.6 4 1-2H16"/></svg></span>
+          <h4>医療・介護の希望</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">もしものときに望む医療・介護の形や、認知症への備えを言葉にして残すお手伝いをします。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg></span>
+          <h4>みまもり・暮らしの安心</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">一人暮らしの安否確認など、日々の暮らしの安心について相談できます。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="9" width="4" height="10" rx="1"/><path d="M12 3c1.5 2 1.5 3.5 0 5-1.5-1.5-1.5-3 0-5z"/></svg></span>
+          <h4>葬儀・お別れ</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">葬儀の準備や遺影など、お別れの形について一緒に考えます。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="1.5"/><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2"/><path d="M3 13h18"/></svg></span>
+          <h4>仕事・生きがい</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">引退や退職の計画、事業承継、これからの生きがいについて整理します。</div>
+      </details>
+      <details class="chip-accordion">
+        <summary>
+          <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="2.6"/><circle cx="17" cy="9" r="2.2"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5M15.5 19c0-2.2-.9-4-2.5-5"/></svg></span>
+          <h4>家族・想いの共有</h4>
+          <span class="chevron">▾</span>
+        </summary>
+        <div class="chip-body">エンディングノートやデジタル遺品(SNS・アカウント)も含め、想いをご家族とどう共有するかを考えます。</div>
+      </details>
+    </div>
     </div>
   </section>
 
   <section class="section" id="pricing">
     <div class="price-free-banner">
-      <div class="price-free-emoji">🌱</div>
       <div>
         <div class="price-free-name">FREE・相談も診断も無料</div>
         <div class="price-free-amount">¥0</div>
@@ -412,7 +544,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
   <section class="section" id="faq">
     <div class="section-head">
-      <span class="eyebrow">よくある質問</span>
+      <span class="eyebrow-light">よくある質問</span>
       <h2>ご相談前に、気になること。</h2>
     </div>
     <div class="faq-list">
@@ -439,10 +571,11 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
     </div>
   </section>
 
-  <section class="section" style="padding-bottom: 40px;">
-    <div class="section-head" style="margin-bottom: 30px;">
-      <span class="eyebrow">相談を受けるFPについて</span>
-      <h2 style="margin-top: 14px; font-size: clamp(20px, 2.6vw, 26px);">誰が、お話をうかがうか。</h2>
+  <section class="section" style="background:var(--panel); max-width:none; padding-left:0; padding-right:0; padding-bottom: 72px; border-top:1px solid var(--line);">
+    <div style="max-width:1120px; margin:0 auto; padding:0 24px;">
+    <div class="section-head" style="margin-bottom: 28px;">
+      <span class="eyebrow-light">相談を受けるFPについて</span>
+      <h2 style="font-size: clamp(20px, 2.6vw, 26px);">誰が、お話をうかがうか。</h2>
     </div>
     <div class="profile-card">
       <div class="profile-avatar">物</div>
@@ -461,24 +594,20 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <section class="closing">
-    <svg class="mascot-mini" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
-      <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
-      <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
-    </svg>
-    <h2>ひとりで抱え込まなくて、<br>大丈夫です。</h2>
+    <h2>ひとりで抱え込まなくて、大丈夫です。</h2>
     <p>まずは無料相談で、今の状況を話してみてください。</p>
     <div class="ctas">
-      <a class="btn btn-primary btn-lg" href="#contact" data-cta="closing">🌸 無料で相談を申し込む</a>
+      <a class="btn btn-primary btn-lg" href="#contact" data-cta="closing">無料で相談を申し込む</a>
     </div>
   </section>
 
   <section class="section" id="contact">
     <div class="section-head">
-      <span class="eyebrow">お申し込み</span>
+      <span class="eyebrow-light">お申し込み</span>
       <h2>無料相談・終活診断のお申し込み</h2>
       <p>フォームをご入力ください。担当より折り返しご都合をご連絡いたします。</p>
     </div>
@@ -528,6 +657,11 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<div class="sticky-cta">
+  <span class="sticky-cta-text">相談・診断は無料です</span>
+  <a class="btn btn-primary" href="#contact" data-cta="sticky">無料相談を申し込む</a>
+</div>
+
 <script>
   (function () {
     var SUPABASE_URL = "https://wvjeozhnxmwnpxcytsxu.supabase.co";
@@ -570,6 +704,12 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
           statusEl.textContent = "送信しました。担当より折り返しご連絡いたします。";
           statusEl.className = "contact-status ok";
           form.reset();
+          if (typeof fbq === "function") {
+            fbq("track", "Lead", { content_name: "終活相談申し込み" });
+          }
+          if (typeof gtag === "function") {
+            gtag("event", "generate_lead", { event_category: "終活相談" });
+          }
         })
         .catch(function () {
           statusEl.textContent = "送信に失敗しました。お手数ですが、時間をおいて再度お試しください。";
