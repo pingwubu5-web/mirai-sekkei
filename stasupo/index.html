@@ -163,11 +163,12 @@
 <style>
 /* Layout: 夜の経営室（濃紺）から始まり、現場（明るい紙面）へ降りていく縦の流れ。濃紺と紙面を交互に、黄色は行動を促す箇所だけ。 */
 :root{
-  --night:#081038;      /* hero・濃紺帯 */
-  --night-2:#0E1A55;    /* 濃紺帯の面 */
-  --blue:#2747F5;       /* ブランド */
-  --glow:#6F8BFF;       /* 濃紺上の青 */
-  --sun:#FFD23F;        /* 行動・強調 */
+  --night:#0A1F44;      /* hero・濃紺帯 */
+  --night-2:#0E2A5C;    /* 濃紺帯の面 */
+  --blue:#0B3D91;       /* ブランド */
+  --glow:#8FB2EE;       /* 濃紺上の青 */
+  --sun:#E4002B;        /* 行動・強調（赤） */
+  --sun-d:#FF5468;      /* 濃紺上の赤 */
   --paper:#F3F4F8;      /* 明るい帯 */
   --card:#FFFFFF;
   --ink:#0D1117;
@@ -207,7 +208,7 @@ a{color:inherit}
 .btn-ghost:hover{border-color:var(--on-night)}
 
 /* header */
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(8,16,56,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(111,139,255,.18)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(10,31,68,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(143,178,238,.18)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--night)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
 .logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--on-night)}
@@ -238,7 +239,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* why now */
 .versus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.vs{border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:12px;border:1px solid rgba(111,139,255,.25);background:rgba(255,255,255,.03)}
+.vs{border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:12px;border:1px solid rgba(143,178,238,.25);background:rgba(255,255,255,.03)}
 .vs .k{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--on-night-sub)}
 .vs h3{font-size:22px;font-weight:900}
 .vs p{font-size:15px;color:var(--on-night-sub)}
@@ -396,6 +397,17 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
   .hero .wrap > *:nth-child(5){animation-delay:.24s}
   @keyframes rise{from{transform:translateY(14px)}to{transform:none}}
 }
+/* 青・赤・白テーマの上書き */
+.btn-sun{color:#fff;box-shadow:0 8px 24px rgba(228,0,43,.25)}
+.btn-sun:hover{box-shadow:0 12px 30px rgba(228,0,43,.35)}
+.hero .tag,.plan.pick .for,.case.base .co{color:#fff}
+.hero h1 em,.price-note strong,.night .hl,.night2 .hl,.gap-num .n,.chip,table.cmp thead th.us,.step.last .no,.case.base .kpi{color:var(--sun-d)}
+.chip{border-color:rgba(255,84,104,.6)}
+.vs.us .ai,.step.mid .no,.plan.pick .amt{color:#fff}
+table.cmp td.us{background:rgba(11,61,145,.6)}
+.cta-box{color:#fff}
+.cta-box .btn{background:#fff;color:var(--sun)}
+.flow div{background:rgba(255,255,255,.14)}
 /* faq */
 .faq{margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
 .faq > div{background:var(--card);border-radius:14px;padding:22px 26px}
@@ -449,7 +461,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
   .cta-box .btn{justify-content:center;font-size:16px;padding:16px 24px}
   .contact{flex-direction:column;gap:4px}
   footer .wrap{flex-direction:column;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
-  .mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(8,16,56,.94);backdrop-filter:blur(8px);border-top:1px solid rgba(111,139,255,.25);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(10,31,68,.94);backdrop-filter:blur(8px);border-top:1px solid rgba(143,178,238,.25);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
   .mbar .btn{display:flex;justify-content:center;width:100%;padding:14px 20px;font-size:15px}
 }
 </style>
@@ -770,14 +782,14 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
   let w=0,h=0,dpr=Math.min(window.devicePixelRatio||1,2);
   function size(){const r=c.getBoundingClientRect();w=r.width;h=r.height;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
   const bands=[
-    {a:.16,f:1.2,s:.00018,y:.38,amp:.16,col:'111,139,255',lw:1.2,n:22},
-    {a:.12,f:.8,s:.00012,y:.58,amp:.20,col:'39,71,245',lw:1.6,n:18},
-    {a:.10,f:1.6,s:.00022,y:.48,amp:.10,col:'255,210,63',lw:1,n:6}
+    {a:.16,f:1.2,s:.00018,y:.38,amp:.16,col:'143,178,238',lw:1.2,n:22},
+    {a:.12,f:.8,s:.00012,y:.58,amp:.20,col:'70,120,210',lw:1.6,n:18},
+    {a:.10,f:1.6,s:.00022,y:.48,amp:.10,col:'228,0,43',lw:1,n:6}
   ];
   function draw(t){
     ctx.clearRect(0,0,w,h);
     const g=ctx.createRadialGradient(w*.78,h*.25,0,w*.78,h*.25,Math.max(w,h)*.7);
-    g.addColorStop(0,'rgba(39,71,245,.45)');g.addColorStop(1,'rgba(8,16,56,0)');
+    g.addColorStop(0,'rgba(30,90,190,.5)');g.addColorStop(1,'rgba(10,31,68,0)');
     ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
     bands.forEach(b=>{
       for(let i=0;i<b.n;i++){
