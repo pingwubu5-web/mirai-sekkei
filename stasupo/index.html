@@ -406,7 +406,9 @@ table.cmp td{color:var(--on-night)}
 .apply .note{font-size:13px;color:var(--sub)}
 .apply .note a{color:var(--blue)}
 .apply .done{font-weight:900;font-size:18px;margin-bottom:16px}
-#timerex_calendar{min-height:640px}
+#timerex_calendar{min-height:640px;max-width:100%;overflow:hidden}
+#timerex_calendar iframe{max-width:100%!important;width:100%!important}
+body.booked .mbar{display:none}
 @media (max-width:760px){#hearing .grid2{grid-template-columns:minmax(0,1fr)}.apply-steps{font-size:13px}}
 
 .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
@@ -851,7 +853,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
     sc.onload=function(){try{TimerexCalendar();}catch(e){}}; document.body.appendChild(sc);
   }
   function showBooking(){
-    f.hidden=true; document.getElementById('book').hidden=false;
+    f.hidden=true; document.getElementById('book').hidden=false; document.body.classList.add('booked');
     document.getElementById('st1').classList.remove('on'); document.getElementById('st2').classList.add('on');
     loadTimeRex(); document.getElementById('apply').scrollIntoView({behavior:'smooth',block:'start'});
   }
