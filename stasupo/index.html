@@ -842,7 +842,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
 <script>
 /* 事前ヒアリング → 送信後にTimeRexを表示 */
 (function(){
-  const ENDPOINT='';  /* Google Apps Script のウェブアプリURL */
+  const ENDPOINT='https://script.google.com/macros/s/AKfycbyskUEAXlX4Zg-jnoT--WHAPu-MW0KDEbsMC0JjAeIKr6N2qZZ4GHaLYXFnaehAkOUo/exec';  /* Google Apps Script のウェブアプリ（回答はGoogleフォームの回答シートへ） */
   const f=document.getElementById('hearing'); if(!f) return;
   const err=document.getElementById('err'), btn=document.getElementById('send');
   function loadTimeRex(){
