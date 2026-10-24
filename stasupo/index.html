@@ -144,10 +144,10 @@
    },
    {
     "@type": "Question",
-    "name": "無料診断では何をしますか？",
+    "name": "無料相談では何をしますか？",
     "acceptedAnswer": {
      "@type": "Answer",
-     "text": "60分のオンラインで、今の営業の数字と体制を伺い、課題の仮説をその場でお返しします。売り込みはしません。"
+     "text": "事前に3分ほどのヒアリングにお答えいただき、その内容をもとに「スタサポで何を・どこまでできるか」を整理して前日までにお送りします。当日は45分のオンラインで社長の考えや課題を詳しく伺い、進め方とプランを具体的にご提案します。"
     }
    }
   ]
@@ -379,6 +379,36 @@ table.cmp td{color:var(--on-night)}
 .contact{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:18px;font-size:14px;font-weight:700}
 .contact span{user-select:all}
 @media (max-width:760px){.cta-box{grid-template-columns:minmax(0,1fr)}}
+.apply{background:var(--card);color:var(--ink);border-radius:24px;padding:40px clamp(20px,4vw,56px);margin-top:24px}
+.apply-steps{list-style:none;display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0 0 28px;font-weight:900;font-size:15px;color:var(--sub)}
+.apply-steps li{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:var(--paper)}
+.apply-steps li span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--ink);font-size:13px}
+.apply-steps li.on{background:var(--blue);color:#fff}.apply-steps li.on span{background:var(--sun)}
+#hearing{display:flex;flex-direction:column;gap:20px}
+#hearing .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+#hearing label{display:block;font-weight:700;font-size:15px}
+#hearing label>input,#hearing label>select,#hearing label>textarea{display:block;margin-top:8px}
+#hearing legend{display:flex;font-weight:700;font-size:15px}
+#hearing em{font-style:normal;font-size:11px;font-weight:900;background:var(--blue);color:#fff;border-radius:4px;padding:1px 6px;margin-left:8px;display:inline-block;vertical-align:2px}
+#contact,#apply{scroll-margin-top:84px}
+#hearing legend{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px;padding:0}
+#hearing fieldset{border:0;padding:0;margin:0;min-width:0}
+#hearing input,#hearing select,#hearing textarea{font:inherit;font-weight:400;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%}
+#hearing input:focus,#hearing select:focus,#hearing textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(39,71,245,.15)}
+#hearing .chips{display:flex;flex-wrap:wrap;gap:10px}
+#hearing .chips label{display:flex;flex-direction:row;align-items:center;gap:8px;font-weight:500;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+#hearing .chips input{width:auto;accent-color:var(--blue);padding:0}
+#hearing .chips label:has(input:checked){border-color:var(--blue);background:rgba(39,71,245,.07)}
+#hearing .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#hearing .btn{align-self:flex-start;border:0;cursor:pointer;font-size:17px}
+#hearing .btn[disabled]{opacity:.6;cursor:wait}
+.apply .err{color:#C62828;font-weight:700}
+.apply .note{font-size:13px;color:var(--sub)}
+.apply .note a{color:var(--blue)}
+.apply .done{font-weight:900;font-size:18px;margin-bottom:16px}
+#timerex_calendar{min-height:640px}
+@media (max-width:760px){#hearing .grid2{grid-template-columns:minmax(0,1fr)}.apply-steps{font-size:13px}}
+
 .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
 .flow div{background:rgba(13,17,23,.08);border-radius:12px;padding:16px 18px;font-size:14px}
 .flow b{display:block;font-size:16px}
@@ -466,7 +496,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
       <a href="#faq">よくある質問</a>
       <a href="#profile">担当者</a>
     </nav>
-    <a class="btn btn-sun" href="https://timerex.net/s/oyakotoapp/9ccc4399" target="_blank" rel="noopener">無料診断を予約</a>
+    <a class="btn btn-sun" href="#contact">無料相談を申し込む</a>
   </div>
 </header>
 
@@ -481,7 +511,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
       <p class="price-note">税別・3か月ごとの更新。<br>営業責任者を1人雇うより<strong>安く、翌月から</strong>始められます。</p>
     </div>
     <div class="ctas">
-      <a class="btn btn-sun" href="https://timerex.net/s/oyakotoapp/9ccc4399" target="_blank" rel="noopener">60分の無料診断を予約する →</a>
+      <a class="btn btn-sun" href="#contact">無料相談（45分）を申し込む →</a>
       <a class="btn btn-ghost" href="#service">サービス内容を見る</a>
     </div>
   </div>
@@ -578,10 +608,10 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">STEP</p>
-      <h2 class="h2">診断から引き継ぎまでの進め方</h2>
+      <h2 class="h2">言語化から引き継ぎまでの進め方</h2>
     </div>
     <div class="steps">
-      <div class="step"><p class="no">STEP 1</p><p class="when">1か月目</p><h3>診断</h3><p>商談データ・ファネル・体制を棚卸しし、売上が止まっている箇所を特定してレポートにします。</p></div>
+      <div class="step"><p class="no">STEP 1</p><p class="when">1か月目</p><h3>言語化・棚卸し</h3><p>社長の考えを言葉にし、商談データ・ファネル・体制を棚卸しして、売上が止まっている箇所を特定してレポートにします。</p></div>
       <div class="step mid"><p class="no">STEP 2</p><p class="when">2か月目〜</p><h3>設計・実装</h3><p>KPIと予実管理、営業プロセス、トーク、役割分担を設計し、現場に入れて動かします。</p></div>
       <div class="step last"><p class="no">STEP 3</p><p class="when">定着期</p><h3>運用・引き継ぎ</h3><p>週次の数字で打ち手を回し、社内の営業責任者に引き継げる状態をつくります。</p></div>
     </div>
@@ -710,7 +740,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
       <div><dt>どんな会社が対象ですか？</dt><dd>従業員100名程度までのベンチャー・スタートアップが中心です。社長が営業から抜けられない、営業を採用しても立ち上がらない、やり方が人に依存している、といった会社に向いています。</dd></div>
       <div><dt>営業責任者を採用するのと比べてどうですか？</dt><dd>年収800万円の営業責任者を採用すると、月約77万円に加えて紹介手数料が約280万円かかり、初年度は約1,204万円になります（試算）。スタサポは月額30万円からで、最短で翌月から始められます。</dd></div>
       <div><dt>支援はオンラインですか？</dt><dd>オンライン中心で、必要に応じて訪問します。時間単位の契約ではないため、決まった稼働時間はありません。日々のやり取りはSlackで行い、対応は平日（土日祝日・年末年始を除く）です。全国の企業に対応できます。</dd></div>
-      <div><dt>無料診断では何をしますか？</dt><dd>60分のオンラインで、今の営業の数字と体制を伺い、課題の仮説をその場でお返しします。売り込みはしません。</dd></div>
+      <div><dt>無料相談では何をしますか？</dt><dd>事前に3分ほどのヒアリングにお答えいただき、その内容をもとに「スタサポで何を・どこまでできるか」を整理して前日までにお送りします。当日は45分のオンラインで社長の考えや課題を詳しく伺い、進め方とプランを具体的にご提案します。</dd></div>
     </dl>
   </div>
 </section>
@@ -739,16 +769,63 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
   <div class="wrap">
     <div class="cta-box">
       <div>
-        <h2>まずは60分の無料診断から。</h2>
-        <p>今の営業の数字と体制を伺い、課題の仮説をその場でお返しします。売り込みはしません。</p>
+        <h2>まずは45分の無料相談から。</h2>
+        <p>3分ほどの事前ヒアリングにお答えいただくと、そのまま日程を選べます。いただいた内容をもとに「何を・どこまでできるか」を整理して、前日までにお送りします。</p>
         <div class="flow">
-          <div><b>無料診断</b>数字と体制を伺い、仮説をお返しします</div>
-          <div><b>ご提案</b>プランと最初の3か月の計画を提示します</div>
-          <div><b>契約・開始</b>最短で翌月から始められます</div>
+          <div><b>① 事前ヒアリング</b>下のフォームで、いまの状況を伺います</div>
+          <div><b>② 日程を選ぶ</b>送信後に表示されるカレンダーから選べます</div>
+          <div><b>③ 無料相談（45分）</b>Google Meetで、進め方とプランをご提案します</div>
         </div>
         <div class="contact"><span>info@oyakotoapp.com</span><span>070-9187-8116</span></div>
       </div>
-      <a class="btn" href="https://timerex.net/s/oyakotoapp/9ccc4399" target="_blank" rel="noopener">日程を予約する →</a>
+    </div>
+
+    <div class="apply" id="apply">
+      <ol class="apply-steps" aria-label="お申し込みの流れ">
+        <li class="on" id="st1"><span>1</span>事前ヒアリング</li>
+        <li id="st2"><span>2</span>日程を選ぶ</li>
+      </ol>
+
+      <form id="hearing" novalidate>
+        <div class="grid2">
+          <label>会社名<em>必須</em><input name="会社名" required autocomplete="organization"></label>
+          <label>お名前・役職<em>必須</em><input name="お名前・役職" required autocomplete="name" placeholder="例：山田 太郎（代表取締役）"></label>
+          <label>メールアドレス<em>必須</em><input name="メールアドレス" type="email" required autocomplete="email"></label>
+          <label>会社のURL<input name="会社のURL" type="url" placeholder="https://"></label>
+          <label>社員数<em>必須</em><select name="社員数" required><option value="">選択してください</option><option>10名未満</option><option>10〜29名</option><option>30〜99名</option><option>100名以上</option></select></label>
+          <label>営業に関わる人数（社長を含む）<em>必須</em><select name="営業に関わる人数（社長を含む）" required><option value="">選択してください</option><option>1名（社長のみ）</option><option>2〜4名</option><option>5〜9名</option><option>10名以上</option></select></label>
+        </div>
+        <fieldset>
+          <legend>当てはまるもの（複数選択できます）<em>必須</em></legend>
+          <div class="chips" id="issues">
+            <label><input type="checkbox" value="社長が営業・現場から抜けられない">社長が営業・現場から抜けられない</label>
+            <label><input type="checkbox" value="任せても結局戻ってくる">任せても結局戻ってくる</label>
+            <label><input type="checkbox" value="人によってやり方がバラバラ">人によってやり方がバラバラ</label>
+            <label><input type="checkbox" value="売上や現場の状況が数字で見えない">売上や現場の状況が数字で見えない</label>
+            <label><input type="checkbox" value="採用しても育たない・定着しない">採用しても育たない・定着しない</label>
+            <label><input type="checkbox" value="社長の考えが現場に伝わらない">社長の考えが現場に伝わらない</label>
+            <label><input type="checkbox" value="狙う市場や売り方（戦略）が定まっていない">狙う市場や売り方（戦略）が定まっていない</label>
+          </div>
+        </fieldset>
+        <label>いま一番困っていることを、一言で教えてください<em>必須</em><textarea name="いま一番困っていることを、一言で教えてください" rows="3" required></textarea></label>
+        <div class="grid2">
+          <label>それが半年続くと、どうなりそうですか<textarea name="それが半年続くと、どうなりそうですか" rows="3"></textarea></label>
+          <label>いつまでに、何が変わっていればよいですか<textarea name="いつまでに、何が変わっていればよいですか" rows="3"></textarea></label>
+          <label>検討の状況<em>必須</em><select name="検討の状況" required><option value="">選択してください</option><option>すぐにでも始めたい</option><option>3か月以内に始めたい</option><option>まずは情報収集</option></select></label>
+          <label>ご契約の判断<em>必須</em><select name="ご契約の判断" required><option value="">選択してください</option><option>自分で決められる</option><option>他の役員と相談して決める</option><option>その他</option></select></label>
+          <label>スタサポを知ったきっかけ<select name="スタサポを知ったきっかけ"><option value="">選択してください</option><option>LinkedIn</option><option>広告</option><option>検索</option><option>紹介</option><option>営業のご連絡</option><option>その他</option></select></label>
+        </div>
+        <input type="text" name="_hp" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <p class="err" id="err" role="alert" hidden></p>
+        <button class="btn btn-sun" type="submit" id="send">送信して日程を選ぶ →</button>
+        <p class="note">送信いただいた内容は、ご相談の準備にのみ使います。</p>
+      </form>
+
+      <div id="book" hidden>
+        <p class="done">ありがとうございます。ヒアリングを受け付けました。<br>続けて、無料相談（45分・Google Meet）の日程をお選びください。</p>
+        <div id="timerex_calendar" data-url="https://timerex.net/s/oyakotoapp/9ccc4399"></div>
+        <p class="note">カレンダーが表示されない場合は<a href="https://timerex.net/s/oyakotoapp/9ccc4399" target="_blank" rel="noopener">こちらから日程をお選びください</a>。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -760,8 +837,48 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
   </div>
 </footer>
 
-<div class="mbar"><a class="btn btn-sun" href="https://timerex.net/s/oyakotoapp/9ccc4399" target="_blank" rel="noopener">60分の無料診断を予約する →</a></div>
+<div class="mbar"><a class="btn btn-sun" href="#contact">無料相談（45分）を申し込む →</a></div>
 
+<script>
+/* 事前ヒアリング → 送信後にTimeRexを表示 */
+(function(){
+  const ENDPOINT='https://script.google.com/macros/s/AKfycbyskUEAXlX4Zg-jnoT--WHAPu-MW0KDEbsMC0JjAeIKr6N2qZZ4GHaLYXFnaehAkOUo/exec';  /* Google Apps Script のウェブアプリ（回答はGoogleフォームの回答シートへ） */
+  const f=document.getElementById('hearing'); if(!f) return;
+  const err=document.getElementById('err'), btn=document.getElementById('send');
+  function loadTimeRex(){
+    if(window.TimerexCalendar){TimerexCalendar();return;}
+    const sc=document.createElement('script'); sc.id='timerex_embed'; sc.src='https://asset.timerex.net/js/embed.js';
+    sc.onload=function(){try{TimerexCalendar();}catch(e){}}; document.body.appendChild(sc);
+  }
+  function showBooking(){
+    f.hidden=true; document.getElementById('book').hidden=false;
+    document.getElementById('st1').classList.remove('on'); document.getElementById('st2').classList.add('on');
+    loadTimeRex(); document.getElementById('apply').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  f.addEventListener('submit',async function(e){
+    e.preventDefault(); err.hidden=true;
+    const issues=[...f.querySelectorAll('#issues input:checked')].map(function(i){return i.value});
+    const bad=[...f.querySelectorAll('[required]')].find(function(el){return !el.value.trim()});
+    const mail=f.querySelector('[type=email]');
+    if(bad||!mail.checkValidity()){err.textContent='必須の項目と、メールアドレスの形式をご確認ください。';err.hidden=false;(bad||mail).focus();return;}
+    if(!issues.length){err.textContent='「当てはまるもの」を1つ以上選んでください。';err.hidden=false;return;}
+    if(f.elements._hp.value){showBooking();return;}
+    const fd=new URLSearchParams();
+    for(const [k,v] of new FormData(f)){ if(k!=='_hp') fd.append(k,v); }
+    fd.append('当てはまるもの（複数選択できます）',issues.join('\n'));
+    btn.disabled=true; btn.textContent='送信しています…';
+    if(ENDPOINT){
+      try{ await fetch(ENDPOINT,{method:'POST',mode:'no-cors',body:fd}); }catch(x){}
+    }else{
+      /* 受付先が未設定の間は、メールで送ってもらう */
+      const body=[...fd].map(function(p){return '■'+p[0]+'\n'+p[1]}).join('\n\n');
+      window.open('mailto:info@oyakotoapp.com?subject='+encodeURIComponent('【スタサポ】事前ヒアリング：'+(fd.get('会社名')||''))+'&body='+encodeURIComponent(body),'_self');
+    }
+    try{ if(window.gtag) gtag('event','generate_lead',{form_name:'stasupo_hearing'}); }catch(x){}
+    showBooking();
+  });
+})();
+</script>
 <script>
 (function(){
   const c=document.getElementById('waves'); if(!c) return;
