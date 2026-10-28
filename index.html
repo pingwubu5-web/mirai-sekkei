@@ -3,202 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="msvalidate.01" content="84A41192156E98B110B4598F24507D13" />
+<meta name="theme-color" content="#081038">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>一般社団法人みらい設計 | わたしの未来を、デザインする。</title>
-<meta name="description" content="一般社団法人みらい設計。コンサルティング、終活支援、ファイナンシャルプランニング、BPO、アプリ開発。多様な領域から、個人と事業の「これから」を一緒にデザインします。">
-<link rel="canonical" href="https://pingwubu5-web.github.io/mirai-sekkei/index.html">
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
-
-  :root {
-    --ink: #3d2f24; --paper: #fff8ee; --panel: #fffcf8; --line: #f3e2c9;
-    --primary: #e0793a; --primary-soft: #fce8d5; --primary-softer: #fdf3e8;
-    --accent: #b5883a; --sub: #7c6a58; --ok: #4a7a58;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ink: #f5ecdf; --paper: #241a12; --panel: #2e2118; --line: #4a3a29;
-      --primary: #f0985c; --primary-soft: #3d2c1c; --primary-softer: #362719;
-      --accent: #d9b876; --sub: #c2ac96; --ok: #6fa682;
-    }
-  }
-  :root[data-theme="dark"] {
-    --ink: #f5ecdf; --paper: #241a12; --panel: #2e2118; --line: #4a3a29;
-    --primary: #f0985c; --primary-soft: #3d2c1c; --primary-softer: #362719;
-    --accent: #d9b876; --sub: #c2ac96; --ok: #6fa682;
-  }
-
-  * { box-sizing: border-box; }
-  html { text-size-adjust: 100%; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif; font-size: 16px; line-height: 1.9; overflow-x: hidden; }
-  h1, h2, h3 { font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif; margin: 0; text-wrap: balance; }
-  p { margin: 0; }
-  a { color: inherit; }
-  img, svg { max-width: 100%; display: block; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-
-  header.top { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  .top-inner { max-width: 1120px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-  .brand-seal {
-    width: 48px; height: 48px; border-radius: 50%; flex: none;
-    background: var(--primary);
-    color: #fffaf4;
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Zen Maru Gothic", serif; font-weight: 900; font-size: 23px;
-    transform: rotate(-7deg);
-    box-shadow: 0 8px 16px -8px color-mix(in srgb, var(--primary) 65%, transparent);
-    border: 2px solid color-mix(in srgb, #fffaf4 55%, transparent);
-  }
-  .brand-name { font-size: 23px; font-weight: 900; color: var(--ink); font-family: "Zen Maru Gothic", sans-serif; letter-spacing: 0.01em; }
-  nav.top-nav { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-  nav.top-nav a.navlink { font-size: 15px; font-weight: 500; color: var(--ink); text-decoration: none; }
-  nav.top-nav a.navlink[aria-current="page"] { color: var(--primary); font-weight: 700; }
-  nav.top-nav a.navlink:hover { color: var(--primary); }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 700; font-family: "Zen Kaku Gothic New", sans-serif; border: none; cursor: pointer; white-space: nowrap; }
-  .btn-primary { background: var(--primary); color: #fffaf4; }
-  .btn-primary:hover { background: var(--accent); }
-  .btn-ghost { background: var(--primary-soft); color: var(--accent); }
-
-  main { position: relative; z-index: 1; }
-
-  .hero { position: relative; max-width: 1120px; margin: 0 auto; padding: 72px 24px 40px; }
-  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 800; letter-spacing: 0.04em; color: var(--accent); background: var(--primary-soft); padding: 8px 18px; border-radius: 999px; }
-  .hero h1 { margin-top: 22px; font-size: clamp(30px, 6vw, 48px); line-height: 1.45; font-weight: 900; max-width: 16em; }
-  .hero .lead { margin-top: 26px; color: var(--ink); font-size: 17px; line-height: 2; max-width: 38em; }
-  .hero .ctas { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
-
-  .section { max-width: 1120px; margin: 0 auto; padding: 70px 24px; }
-  .section-head { max-width: 40em; margin-bottom: 46px; }
-  .section-head h2 { margin-top: 14px; font-size: clamp(24px, 3.6vw, 32px); }
-  .section-head p { margin-top: 14px; color: var(--sub); font-size: 16px; }
-
-  .grid-5 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 900px) { .grid-5 { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .grid-5 { grid-template-columns: 1fr; } }
-  .field-card { background: var(--panel); border: 1.5px solid var(--line); border-radius: 22px; padding: 26px 24px; }
-  .field-card .no { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: var(--primary-soft); color: var(--accent); font-family: "Zen Maru Gothic", sans-serif; font-weight: 900; font-size: 14px; }
-  .field-card h3 { margin-top: 16px; font-size: 17px; }
-  .field-card p { margin-top: 10px; font-size: 14px; color: var(--sub); line-height: 1.85; }
-
-  .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-  @media (max-width: 760px) { .product-grid { grid-template-columns: 1fr; } }
-  .product-card { background: var(--panel); border: 1.5px solid var(--line); border-radius: 26px; padding: 32px 28px; }
-  .product-card .tag { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 999px; }
-  .tag.live { background: var(--primary-soft); color: var(--accent); }
-  .tag.soon { background: var(--line); color: var(--sub); }
-  .product-card h3 { margin-top: 14px; font-size: 20px; line-height: 1.5; }
-  .product-card .desc { margin-top: 14px; font-size: 14.5px; color: var(--sub); line-height: 1.9; }
-  .product-card .more { display: inline-block; margin-top: 16px; font-size: 13.5px; font-weight: 700; color: var(--primary); text-decoration: none; }
-
-  footer.site { border-top: 2px solid var(--line); padding: 32px 24px; }
-  .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; font-size: 13.5px; color: var(--sub); }
-  .footer-inner a { text-decoration: none; color: var(--sub); }
-  .footer-inner a:hover { color: var(--primary); }
-  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-</style>
+<title>一般社団法人みらい設計｜経営と現場をつなぎ、これからを設計する</title>
+<meta name="description" content="一般社団法人みらい設計は、スタートアップ・ベンチャーの営業組織づくりを伴走支援する「スタサポ」をはじめ、終活支援アプリ「おやこと」、ファイナンシャルプランニング、BPO、アプリ開発を手がけます。">
+<link rel="canonical" href="https://oyakotoapp.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="一般社団法人みらい設計">
+<meta property="og:title" content="一般社団法人みらい設計｜経営と現場をつなぎ、これからを設計する">
+<meta property="og:description" content="営業組織づくりの伴走支援「スタサポ」、終活支援アプリ「おやこと」など、事業と暮らしのこれからを設計します。">
+<meta property="og:url" content="https://oyakotoapp.com/">
+<meta property="og:image" content="https://oyakotoapp.com/stasupo/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="./styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"一般社団法人みらい設計","url":"https://oyakotoapp.com/","email":"info@oyakotoapp.com","telephone":"+81-70-9187-8116","address":{"@type":"PostalAddress","postalCode":"150-0044","addressRegion":"東京都","addressLocality":"渋谷区","streetAddress":"円山町5-5","addressCountry":"JP"},"founder":{"@type":"Person","name":"物部 平","jobTitle":"代表理事"},"brand":[{"@type":"Brand","name":"スタサポ","url":"https://oyakotoapp.com/stasupo/"},{"@type":"Brand","name":"おやこと","url":"https://oyakotoapp.com/oyakoto.html"}]}
+</script>
 </head>
 <body>
-
-<header class="top">
-  <div class="top-inner">
+<header class="titleblock">
+  <div class="titleblock-inner">
     <a class="brand" href="./index.html">
-      <span class="brand-seal">未</span>
-      <span class="brand-name">みらい設計</span>
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="7" cy="17" r="3" fill="currentColor"/>
+          <path d="M9.5 14.5C13 10.5 17 6.5 21 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span><span class="brand-name">みらい設計</span><br><span class="brand-en">MIRAI SEKKEI</span></span>
     </a>
-    <nav class="top-nav" aria-label="主要">
-      <a class="navlink" href="./index.html" aria-current="page">ホーム</a>
-      <a class="navlink" href="./services.html">サービス</a>
-      <a class="navlink" href="./philosophy.html">方針・理念</a>
-      <a class="navlink" href="./company.html">会社概要</a>
-      <a class="btn btn-primary" href="./contact.html">お問い合わせ</a>
+    <nav class="primary" aria-label="主要">
+      <a href="./index.html" aria-current="page">ホーム</a>
+      <a href="./services.html">サービス</a>
+      <a href="./stasupo/">スタサポ</a>
+      <a href="./philosophy.html">方針・理念</a>
+      <a href="./company.html">会社概要</a>
+      <a class="nav-cta" href="./contact.html">お問い合わせ</a>
     </nav>
   </div>
 </header>
-
 <main>
   <section class="hero">
-    <span class="eyebrow">一般社団法人 みらい設計</span>
-    <h1>わたしの未来を、<br>デザインする。</h1>
-    <p class="lead">
-      事業のこれからも、暮らしのこれからも——まだ形になっていない「その人だけの未来」に、
-      最初の一筆を入れる専門家集団です。新規事業の立ち上げから、終活・資産形成のご支援、
-      日々の業務の効率化まで、分野を横断しながら、ひとつひとつの「これから」を一緒にデザインします。
-    </p>
-    <div class="ctas">
-      <a class="btn btn-primary" href="./services.html">サービスを見る</a>
-      <a class="btn btn-ghost" href="./contact.html">お問い合わせ</a>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head">
-      <span class="eyebrow">CREATION — 05 FIELDS</span>
-      <h2>5つの領域から、事業と暮らしをデザインする</h2>
-    </div>
-    <div class="grid-5">
-      <div class="field-card">
-        <span class="no">01</span>
-        <h3>コンサルティング事業</h3>
-        <p>新規事業の立ち上げ、営業体制の構築、業務改善まで、事業成長のあらゆる局面に伴走します。</p>
-      </div>
-      <div class="field-card">
-        <span class="no">02</span>
-        <h3>終活関連事業</h3>
-        <p>ご逝去後の煩雑な手続きをやさしく整理するアプリ「おやこと」をはじめ、終活・相続の備えを支援します。</p>
-      </div>
-      <div class="field-card">
-        <span class="no">03</span>
-        <h3>ファイナンシャルプランニング事業</h3>
-        <p>ライフプランに寄り添った資産形成・保険・資金計画のご相談を承ります。</p>
-      </div>
-      <div class="field-card">
-        <span class="no">04</span>
-        <h3>BPO事業</h3>
-        <p>バックオフィス業務の設計から運用まで、事業の非中核業務を巻き取り、本業への集中を後押しします。</p>
-      </div>
-      <div class="field-card">
-        <span class="no">05</span>
-        <h3>アプリ開発事業</h3>
-        <p>構想から設計・開発・運用まで、事業やご家族の課題を解くソフトウェアをかたちにします。</p>
+    <canvas id="waves" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <span class="tagline">一般社団法人 みらい設計</span>
+      <h1>経営と現場をつなぎ、<br><em>これから</em>を設計する。</h1>
+      <p class="lead">社長の頭の中にある想いを言葉にし、現場が動く仕組みに落とし込む。事業のこれからも、暮らしのこれからも、描くだけで終わらせず、実際に動く形になるまで伴走します。</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="./stasupo/">スタサポを見る →</a>
+        <a class="btn btn-ghost" href="./services.html">事業一覧</a>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-head">
-      <span class="eyebrow">FLAGSHIP PRODUCTS</span>
-      <h2>終活関連事業の2つのプロダクト</h2>
-      <p>「生きているあいだ」と「旅立たれたあと」、それぞれの時間に寄り添う2つのアプリを、連携するかたちで展開しています。</p>
-    </div>
-    <div class="product-grid">
-      <div class="product-card">
-        <span class="eyebrow" style="font-size:11.5px;">01 — WATCH OVER</span>
-        <h3>みまもりアプリ「カゾクル」</h3>
-        <span class="tag soon">リリース準備中</span>
-        <p class="desc">離れて暮らすご高齢のご家族を、日々やさしく見守るアプリです。もしものときに備えたエンディングノートも、ご本人のペースで残しておけます。</p>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">FLAGSHIP</p>
+        <h2>スタートアップ・ベンチャーの<br><span class="hl">営業組織づくり</span>を伴走する。</h2>
+        <p>主力のコンサルティング事業「スタサポ」は、社内メンバーに近い立場で入り、言語化から営業・組織の仕組みづくり、現場での実働までを一気通貫で支援します。</p>
       </div>
-      <div class="product-card">
-        <span class="eyebrow" style="font-size:11.5px;">02 — AFTER CARE</span>
-        <h3>ご遺族向け死後手続き支援アプリ「おやこと」</h3>
-        <span class="tag live">提供中</span>
-        <p class="desc">大切な方を亡くされたご家族が、迷わず・無理なく手続きを進められるよう設計したアプリです。「カゾクル」で残されたエンディングノートも、ここで受け取れます。</p>
-        <a class="more" href="./oyakoto.html">くわしく見る →</a>
+      <div class="flagship">
+        <div class="body">
+          <p class="k">STARTUP &amp; VENTURE SUPPORT</p>
+          <h3>スタサポ</h3>
+          <p>スタートアップ、ベンチャーの社長と現場をつなぎ、ささえる。社長の考えを言葉にし、営業戦略・KPI・プロセス・採用・インサイドセールスまで、現場に落とし込んで一緒に動かします。</p>
+          <div><a class="btn btn-primary" href="./stasupo/">サービスの詳細・無料相談 →</a></div>
+        </div>
+        <div class="side">
+          <p class="pre">基本プラン　月額</p>
+          <p class="n">30<small>万円〜</small></p>
+          <p class="pre">税別・3か月ごとの更新</p>
+          <ul>
+            <li>社長の想い・考えの言語化</li>
+            <li>営業戦略・KPI・予実管理</li>
+            <li>営業プロセス・マニュアル</li>
+            <li>採用・インサイドセールス立ち上げ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">BUSINESS</p>
+        <h2>5つの事業</h2>
+        <p>一見別々の領域ですが、根っこにあるのは「複雑なことを整理し、進む道筋を描いて、実際に動かす」という同じ仕事です。</p>
+      </div>
+      <div class="fields">
+        <div class="field dark"><p class="no">01 / CONSULTING</p><h3>コンサルティング</h3><p>営業組織づくりの伴走支援「スタサポ」を中心に、新規事業の立ち上げや業務改善まで、現場に入って実装します。</p><a class="more" href="./stasupo/">スタサポを見る →</a></div>
+        <div class="field"><p class="no">02 / END-OF-LIFE</p><h3>終活関連</h3><p>ご遺族の死後手続きを支えるアプリ「おやこと」をはじめ、終活・相続の備えを支援します。</p><a class="more" href="./oyakoto.html">おやことを見る →</a></div>
+        <div class="field"><p class="no">03 / FINANCIAL PLANNING</p><h3>ファイナンシャルプランニング</h3><p>1級FPが、ライフプランに沿った資産形成・保険・資金計画のご相談に応じます。</p></div>
+        <div class="field"><p class="no">04 / BPO</p><h3>BPO</h3><p>バックオフィスや営業事務の設計から運用までを引き受け、本業への集中を後押しします。</p></div>
+        <div class="field"><p class="no">05 / APP DEVELOPMENT</p><h3>アプリ開発</h3><p>構想から設計・開発・運用まで、事業やご家族の課題を解くソフトウェアをかたちにします。</p></div>
+        <div class="field"><p class="no">COLUMNS</p><h3>終活のお役立ち情報</h3><p>死後の手続き、遺品整理、墓じまいなど、ご家族が迷いやすいテーマを専門家の視点で解説しています。</p><a class="more" href="./columns.html">コラム一覧 →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band night2">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">PRODUCTS</p>
+        <h2>暮らしの「これから」に寄り添う<br><span class="hl">2つのアプリ</span></h2>
+      </div>
+      <div class="products">
+        <div class="product"><p class="k">AFTER CARE</p><h3>死後手続き支援アプリ「おやこと」<span class="tag" style="margin-left:8px">提供中</span></h3><p>大切な方を亡くされたご家族が、迷わず・無理なく手続きを進められるよう設計したアプリです。</p><a href="./oyakoto.html">くわしく見る →</a></div>
+        <div class="product"><p class="k">WATCH OVER</p><h3>みまもりアプリ「カゾクル」</h3><p>離れて暮らすご家族をやさしく見守るアプリです（リリース準備中）。エンディングノートも、ご本人のペースで残せます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">PRINCIPLES</p>
+        <h2>私たちの進め方</h2>
+      </div>
+      <div class="principles">
+        <div><h3>現場から設計する</h3><p>机上の理想ではなく、実際に手を動かす人の立場で、無理なく実行できる形に落とし込みます。</p></div>
+        <div><h3>内側に入って伴走する</h3><p>外から助言して終わらず、社内メンバーに近い立場で、実行と改善に付き合い続けます。</p></div>
+        <div><h3>ためにならないことはやらない</h3><p>話題性や規模ではなく、本当にお客様のためになるかを基準に判断します。</p></div>
+      </div>
+      <p style="margin-top:28px"><a class="btn btn-ghost" href="./philosophy.html">方針・理念を読む →</a></p>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-box">
+        <div>
+          <h2>まずはお気軽にご相談ください。</h2>
+          <p>営業組織づくりのご相談は、スタサポの無料相談（45分・オンライン）から。そのほかの事業のご相談も承ります。</p>
+        </div>
+        <a class="btn" href="./contact.html">お問い合わせ →</a>
       </div>
     </div>
   </section>
 </main>
-
 <footer class="site">
   <div class="footer-inner">
-    <div>© 2026 一般社団法人みらい設計</div>
+    <div>© 2026 一般社団法人みらい設計　〒150-0044 東京都渋谷区円山町5-5</div>
     <div class="footer-links">
-      <a href="./company.html">会社概要</a>
+      <a href="./services.html">サービス</a>
+      <a href="./stasupo/">スタサポ</a>
       <a href="./oyakoto.html">おやこと</a>
+      <a href="./company.html">会社概要</a>
       <a href="./terms.html">利用規約</a>
       <a href="./privacy.html">プライバシーポリシー</a>
     </div>
   </div>
 </footer>
+<script>
+(function(){
+  var c=document.getElementById('waves'); if(!c) return;
+  var ctx=c.getContext('2d'), reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w=0,h=0,dpr=Math.min(window.devicePixelRatio||1,2);
+  function size(){var r=c.getBoundingClientRect();w=r.width;h=r.height;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  var bands=[{a:.16,f:1.2,s:.00018,y:.38,amp:.16,col:'111,139,255',lw:1.2,n:22},{a:.12,f:.8,s:.00012,y:.58,amp:.20,col:'39,71,245',lw:1.6,n:18},{a:.10,f:1.6,s:.00022,y:.48,amp:.10,col:'255,210,63',lw:1,n:6}];
+  function draw(t){
+    ctx.clearRect(0,0,w,h);
+    var g=ctx.createRadialGradient(w*.78,h*.25,0,w*.78,h*.25,Math.max(w,h)*.7);g.addColorStop(0,'rgba(39,71,245,.45)');g.addColorStop(1,'rgba(8,16,56,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    bands.forEach(function(b){for(var i=0;i<b.n;i++){ctx.beginPath();var off=i*.018;for(var x=0;x<=w;x+=8){var p=x/w;var y=h*(b.y+off*.6)+Math.sin(p*Math.PI*b.f+t*b.s+i*.12)*h*b.amp*(1-p*.35)+Math.cos(p*4+t*b.s+i*.05)*h*.02;x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.strokeStyle='rgba('+b.col+','+(b.a*(1-i/b.n))+')';ctx.lineWidth=b.lw;ctx.stroke();}});
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  size(); window.addEventListener('resize',function(){size(); if(reduce) draw(0);}); draw(0);
+})();
+</script>
 </body>
 </html>
