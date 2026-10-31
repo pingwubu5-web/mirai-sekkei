@@ -274,6 +274,46 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .vs.us .ai{color:var(--sun);border-top-color:rgba(255,255,255,.35)}
 @media (max-width:860px){.versus{grid-template-columns:minmax(0,1fr)}}
 
+
+/* position map */
+.pos{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px clamp(16px,3vw,32px)}
+.pos-grid{display:grid;grid-template-columns:150px repeat(5,minmax(0,1fr));column-gap:6px;row-gap:14px;align-items:center}
+.pos-h{font-size:13px;font-weight:700;color:var(--sub);text-align:center;line-height:1.4;padding-bottom:6px;border-bottom:1px solid var(--line);align-self:end}
+.pos-h b{display:block;font-family:var(--display);font-size:12px;color:var(--blue);letter-spacing:.08em}
+.pos-name{font-weight:900;font-size:16px;line-height:1.35}
+.pos-name small{display:block;font-weight:700;font-size:12px;color:var(--sub)}
+.pos-bar{height:46px;border-radius:10px;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:700;line-height:1.35}
+.pos-bar.c{background:#E3E7F4;color:var(--ink)}
+.pos-bar.b{background:#E3E7F4;color:var(--ink)}
+.pos-bar.us{background:var(--blue);color:#fff;height:56px;font-size:14px}
+.pos-bar.us em{font-style:normal;color:var(--sun)}
+.pos-gap{height:46px;border-radius:10px;border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:#8A91A0}
+.pos-tbl{width:100%;border-collapse:collapse;margin-top:26px;font-size:14px}
+.pos-tbl th,.pos-tbl td{padding:12px 14px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.pos-tbl thead th{border-top:none;font-size:13px;color:var(--sub)}
+.pos-tbl thead th.us{color:var(--blue)}
+.pos-tbl tbody th{white-space:nowrap;color:var(--sub);font-weight:700}
+.pos-tbl td.us{font-weight:700;background:#F0F3FF}
+.pos-wrap{overflow-x:auto}
+.pos-legend{display:none}
+@media (max-width:760px){
+  .pos-grid{grid-template-columns:76px repeat(5,minmax(0,1fr));column-gap:4px}
+  .pos-h{font-size:0;padding-bottom:4px}.pos-h b{font-size:12px}
+  .pos-name{font-size:13px}.pos-name small{display:none}
+  .pos-bar{font-size:11px;padding:0 8px;height:44px}.pos-bar.us{font-size:12px;height:52px}
+  .pos-gap{font-size:0;height:44px}
+  .pos-legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:14px;font-size:12px;color:var(--sub)}
+  .pos-legend b{color:var(--blue);font-family:var(--display)}
+  .pos-tbl,.pos-tbl tbody,.pos-tbl tr,.pos-tbl th,.pos-tbl td{display:block;width:100%}
+  .pos-tbl thead{display:none}
+  .pos-tbl tr{border-top:1px solid var(--line);padding:12px 0}
+  .pos-tbl th,.pos-tbl td{border:none;padding:3px 0;font-size:13px}
+  .pos-tbl th{color:var(--ink);font-size:14px;margin-bottom:4px}
+  .pos-tbl td::before{content:attr(data-l);display:inline-block;min-width:76px;font-size:11px;font-weight:700;color:var(--sub)}
+  .pos-tbl td.us{padding:6px 8px;border-radius:8px}
+  .pos-tbl td.us::before{color:var(--blue)}
+}
+
 /* problem */
 .probs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .prob{background:var(--card);border-radius:14px;padding:26px 28px;display:flex;gap:16px;align-items:flex-start}
@@ -579,6 +619,54 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
         <h3>想いを言葉にし、現場で動く形に</h3>
         <p>社長の頭の中にある課題と想いを聞き取って言語化し、マネージャーの役割と、日々の手順・数字の追い方まで落とし込みます。</p>
         <p class="ai">→ 人と組織に入り込む、この部分はAIにはできない</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band white" id="position">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">POSITION</p>
+      <h2 class="h2">考えるだけでも、作業だけでもない。<br><span class="hl">課題整理から実働・引き継ぎまで</span>一気通貫で。</h2>
+      <p class="lead">コンサルティングは「考える」ところまで、BPOは決められた「作業」だけ。スタサポは、社長の考えを言葉にするところから、現場に入って動かし、社内に引き継ぐところまでを担います。</p>
+    </div>
+    <div class="pos">
+      <div class="pos-grid" role="table" aria-label="コンサルティング・BPO・スタサポの対応範囲の比較">
+        <div role="row" style="display:contents">
+          <span></span>
+          <p class="pos-h" role="columnheader"><b>①</b>課題の整理・言語化</p>
+          <p class="pos-h" role="columnheader"><b>②</b>戦略・設計</p>
+          <p class="pos-h" role="columnheader"><b>③</b>現場への導入</p>
+          <p class="pos-h" role="columnheader"><b>④</b>運用・実働</p>
+          <p class="pos-h" role="columnheader"><b>⑤</b>社内への引き継ぎ</p>
+        </div>
+        <div role="row" style="display:contents">
+          <p class="pos-name" role="rowheader">コンサルティング<small>考える・提案する</small></p>
+          <div class="pos-bar c" style="grid-column:span 2"><span>分析と提案書を納品</span></div>
+          <div class="pos-gap" style="grid-column:span 3">実行は自社で</div>
+        </div>
+        <div role="row" style="display:contents">
+          <p class="pos-name" role="rowheader">BPO・代行<small>決められた作業</small></p>
+          <div class="pos-gap" style="grid-column:span 3">何をやるかは自社で</div>
+          <div class="pos-bar b"><span>作業代行</span></div>
+          <div class="pos-gap">残らない</div>
+        </div>
+        <div role="row" style="display:contents">
+          <p class="pos-name" role="rowheader" style="color:var(--blue)">スタサポ<small>社外COO・経営の右腕</small></p>
+          <div class="pos-bar us" style="grid-column:span 5"><span>言語化から設計、<em>現場での実働</em>、社内への引き継ぎまで一気通貫</span></div>
+        </div>
+      </div>
+      <p class="pos-legend"><span><b>①</b>課題の整理・言語化</span><span><b>②</b>戦略・設計</span><span><b>③</b>現場への導入</span><span><b>④</b>運用・実働</span><span><b>⑤</b>社内への引き継ぎ</span></p>
+      <div class="pos-wrap">
+        <table class="pos-tbl">
+          <thead><tr><th></th><th>コンサルティング</th><th>BPO・代行</th><th class="us">スタサポ</th></tr></thead>
+          <tbody>
+            <tr><th>扱う範囲</th><td data-l="コンサル">依頼したテーマ（営業戦略など）</td><td data-l="BPO・代行">切り出した作業だけ</td><td class="us" data-l="スタサポ">経営企画・営業・組織・業務・新規事業・管理部門を横断</td></tr>
+            <tr><th>関わり方</th><td data-l="コンサル">外から分析・助言する</td><td data-l="BPO・代行">指示どおりに作業する</td><td class="us" data-l="スタサポ">社内メンバーに近い立場で、一緒に考えて一緒に動く</td></tr>
+            <tr><th>終わったあとに残るもの</th><td data-l="コンサル">提案書・戦略資料</td><td data-l="BPO・代行">作業の結果（ノウハウは外に残る）</td><td class="us" data-l="スタサポ">社内で回る仕組みと、それを回せる人</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
