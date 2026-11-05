@@ -41,3 +41,6 @@
 - [COO・右腕人材が採用できないときの5つの選択肢｜ベンチャー社長向け](https://oyakotoapp.com/stasupo/column/coo-saiyou-dekinai.html)
 - [ベンチャーの事業計画とKPIの作り方｜予実管理を毎週回すまでの手順](https://oyakotoapp.com/stasupo/column/jigyou-keikaku-kpi.html)
 - [業務のマニュアル化と外注の切り出し方｜属人化から抜け出す手順](https://oyakotoapp.com/stasupo/column/gyoumu-manual-gaichu.html)
+- [The Modelとは？分業型の営業プロセスをベンチャーで使うときの注意点](https://oyakotoapp.com/stasupo/column/the-model.html)
+- [インサイドセールスとは？役割・KPI・フィールドセールスとの違いをわかりやすく解説](https://oyakotoapp.com/stasupo/column/inside-sales-towa.html)
+- [KPIツリーとは？重要性と作り方、よくある失敗をわかりやすく解説](https://oyakotoapp.com/stasupo/column/kpi-tree.html)
