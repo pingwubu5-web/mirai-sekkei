@@ -236,14 +236,15 @@ a{color:inherit}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(8,16,56,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(111,139,255,.18)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--night)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
-.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--on-night)}
-.logo b{font-size:22px;font-weight:900;letter-spacing:.02em}
-.logo small{font-family:var(--display);font-size:11px;letter-spacing:.18em;color:var(--on-night-sub)}
-.top nav{display:flex;gap:22px;font-size:14px}
-.top nav a{text-decoration:none;color:var(--on-night-sub)}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--on-night);flex:none;white-space:nowrap}
+.logo b{font-size:22px;font-weight:900;letter-spacing:.02em;white-space:nowrap}
+.logo small{font-family:var(--display);font-size:11px;letter-spacing:.18em;color:var(--on-night-sub);white-space:nowrap}
+.top nav{display:flex;align-items:center;gap:18px;font-size:14px;min-width:0}
+.top nav a{text-decoration:none;color:var(--on-night-sub);white-space:nowrap;line-height:1.4}
 .top nav a:hover{color:var(--on-night)}
-.top .btn{padding:10px 20px;font-size:14px}
-@media (max-width:900px){.top nav{display:none}}
+.top .btn{padding:10px 20px;font-size:14px;white-space:nowrap;flex:none}
+@media (max-width:1240px){.logo small{display:none}}
+@media (max-width:1040px){.top nav{display:none}}
 
 /* hero */
 .hero{position:relative;overflow:hidden;background:var(--night);color:var(--on-night)}
