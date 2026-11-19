@@ -473,6 +473,19 @@ table.cmp td{color:var(--on-night)}
 .summary{display:flex;flex-direction:column;gap:18px;border-left:3px solid var(--glow);padding-left:28px}
 .summary .k{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--glow)}
 .summary p:not(.k){font-size:17px;line-height:2;color:var(--on-night)}
+/* advisory team */
+.team{margin-top:72px;padding-top:56px;border-top:1px solid rgba(174,183,230,.25);display:flex;flex-direction:column;gap:28px}
+.team .h2{color:var(--on-night)}
+.advs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.adv{background:var(--night-2);border:1px solid rgba(174,183,230,.25);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.adv .r{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--glow)}
+.adv h3{margin:0;font-size:21px;font-weight:900;color:var(--on-night);line-height:1.4}
+.adv .bio{font-size:15px;line-height:1.85;color:var(--on-night-sub)}
+.adv .when{font-size:14px;line-height:1.7;color:var(--on-night);border-top:1px solid rgba(174,183,230,.25);padding-top:12px}
+.adv .when b{display:block;font-size:12px;color:var(--sun);margin-bottom:2px}
+.team .note{font-size:12px;color:var(--on-night-sub)}
+@media (max-width:960px){.advs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.advs{grid-template-columns:minmax(0,1fr)}}
 .tl{display:flex;flex-direction:column}
 .tl .row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:20px 0;border-bottom:1px solid rgba(174,183,230,.2)}
 .tl .row:last-child{border-bottom:none}
@@ -970,6 +983,28 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
         <p>福岡県出身。高校卒業後、東京都庁に入庁。主税局、総務局勤務ののち退職し独立。</p>
         <p>個人事業を経て2022年に一般社団法人みらい設計を設立。新規事業開発、事業改善、営業コンサルティング・代行、組織構築などで、これまで多くの企業を支援してきました。</p>
       </div>
+    </div>
+    <div class="team" id="team">
+      <div class="sec-head">
+        <p class="eyebrow">ADVISORY TEAM</p>
+        <h2 class="h2">経営をやってきた顧問が、<span class="hl">現場まで入ります。</span></h2>
+        <p class="lead">事業責任者が窓口と全体設計を持ち、課題に合わせて経営経験のある顧問をアサインします。助言で終わらず、社長の隣で決め、現場で回る仕組みにするところまで伴走します。</p>
+      </div>
+      <div class="advs">
+        <div class="adv">
+          <p class="r">スタサポ 事業責任者</p>
+          <h3>営業組織 × 現場の仕組み化</h3>
+          <p class="bio">行政機関で税務・総務に従事したのち独立。100名規模のコールセンター運営、スタートアップでのCOO、営業組織の立ち上げなど、現場に入って仕組みをつくってきた。全案件の窓口と全体設計を担う。</p>
+          <p class="when"><b>こんな局面で</b>営業組織の立ち上げ／業務の仕組み化・マニュアル化／経営と現場の橋渡し</p>
+        </div>
+        <div class="adv">
+          <p class="r">顧問 シニアコンサルタント</p>
+          <h3>事業創造 × グループイン</h3>
+          <p class="bio">家業の経営を経て、自ら事業を創業。大手IT企業グループへのグループインを実現し、その後はグループ内で事業責任者を担う。現在はスタートアップの経営中枢で事業を推進。</p>
+          <p class="when"><b>こんな局面で</b>新規事業の立ち上げ／M&amp;A・グループイン後の事業運営／オーナー目線での意思決定</p>
+        </div>
+      </div>
+      <p class="note">※ 顧問の経歴は、本人の了承を得たうえで個人が特定されない範囲で記載しています。案件の内容に応じて担当する顧問は異なります。</p>
     </div>
   </div>
 </section>
