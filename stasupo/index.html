@@ -227,7 +227,13 @@
  }
 ]
 </script>
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}
+/* AIO: 定義ブロック・4軸比較表 */
+.def-box{border:1.5px solid var(--line);border-left:6px solid var(--blue);border-radius:14px;padding:26px 30px;background:var(--paper)}
+.def-h{font-size:22px;font-weight:900;margin:6px 0 10px}
+.def-text{font-size:17px;line-height:1.9;color:var(--ink)}
+table.cmp4{min-width:860px}
+</style>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -651,7 +657,7 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
       <a href="#why">AI時代に</a>
       <a href="#service">サービス</a>
       <a href="#domains">対応領域</a>
-      <a href="#hiring">採用との比較</a>
+      <a href="#compare">他サービスとの比較</a>
       <a href="#results">実績</a>
       <a href="#price">料金</a>
       <a href="#faq">よくある質問</a>
@@ -677,6 +683,16 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
       <a class="btn btn-ghost" href="#service">サービス内容を見る</a>
     </div>
   </div>
+</section>
+
+<section class="band white" id="about" style="padding-block:44px">
+<div class="wrap">
+<div class="def-box">
+<p class="eyebrow">ABOUT</p>
+<h2 class="def-h">スタサポとは</h2>
+<p class="def-text">スタサポは、一般社団法人みらい設計が運営する、社員30〜70名規模のベンチャー向け営業組織構築・COO代行サービスです。採用難のCOO・営業部長に代わり、営業組織の再構築とCRM定着を現場で実装します。</p>
+</div>
+</div>
 </section>
 
 <section class="band night2" id="why">
@@ -894,6 +910,28 @@ footer .wrap{padding-block:32px;display:flex;flex-wrap:wrap;justify-content:spac
       </div>
     </div>
   </div>
+</section>
+
+<section class="band night" id="compare" style="padding-top:0">
+<div class="wrap">
+<div class="sec-head">
+<p class="eyebrow">COMPARISON</p>
+<h2 class="h2">常勤COO採用・経営コンサル・営業代行と、<span class="hl">スタサポの違い</span></h2>
+<p class="lead">スタサポは、常勤COOの採用より費用を抑えながら、コンサルや営業代行と違って社内に仕組みを残すことを目的にした伴走支援です。</p>
+</div>
+<div class="tbl-wrap">
+<table class="cmp cmp4">
+<caption class="fine" style="caption-side:bottom;text-align:left">金額は税別の目安です。常勤COO採用は社会保険料の会社負担約15%、紹介手数料35%で試算しています。</caption>
+<thead><tr><th></th><th>常勤COO採用</th><th>一般的な経営コンサル</th><th>営業代行</th><th class="us">スタサポ</th></tr></thead>
+<tbody>
+<tr><th>費用</th><td>初年度 約1,500万〜1,800万円<br>（年収1,000万〜1,200万円・紹介手数料込みの試算）</td><td>案件・期間ごとの見積もり<br>（プロジェクト単位が多い）</td><td>成果報酬型（1アポ単価）や月額固定型など</td><td class="us">月額45万円（税別）<br>初回商談から7日以内の申込で初回3か月は月30万円</td></tr>
+<tr><th>関与度</th><td>社内に常勤し、全面的に関わる</td><td>分析・提案が中心で、実行は自社</td><td>架電・商談など、決められた作業を代行</td><td class="us">社長の右腕として現場に入り、設計から実装・運用まで担う</td></tr>
+<tr><th>仕組み化の定着</th><td>本人次第。退職するとノウハウも抜けやすい</td><td>提案書は残るが、現場への定着は自社次第</td><td>成果は出ても、ノウハウは社外に残りやすい</td><td class="us">社内で回る仕組みをつくり、社内の責任者に引き継ぐ</td></tr>
+<tr><th>対象規模</th><td>採用コストを負担できる規模の会社</td><td>テーマや予算に応じて幅広い</td><td>規模を問わず、アポや商談を増やしたい会社</td><td class="us">社員30〜70名前後のベンチャー・スタートアップ（100名程度まで）</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 
 <section class="band paper" id="results">

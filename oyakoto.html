@@ -491,6 +491,21 @@
 /* SEO: H1にアプリ名を含める */
 .hero h1 .h1-kw{display:table;margin-bottom:16px}
 .hero h1 .h1-catch{display:block}
+
+/* AIO: 定義ブロック・比較表 */
+.def-section{padding-top:8px;padding-bottom:8px}
+.def-box{max-width:860px;margin:0 auto;background:var(--panel,#fffcf8);border:1.5px solid var(--line,#f3e2c9);border-left:6px solid var(--primary,#e0793a);border-radius:18px;padding:24px 28px}
+.def-h{font-size:clamp(18px,2.4vw,22px);margin:0 0 10px}
+.def-text{margin:0;line-height:1.9}
+.cmp-wrap{max-width:900px;margin:0 auto;overflow-x:auto;border-radius:18px;border:1.5px solid var(--line,#f3e2c9);background:var(--panel,#fffcf8)}
+table.cmp-oy{width:100%;min-width:620px;border-collapse:collapse;font-size:15px}
+table.cmp-oy th,table.cmp-oy td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line,#f3e2c9)}
+table.cmp-oy thead th{font-size:13px;color:var(--sub,#7c6a58)}
+table.cmp-oy tbody th{white-space:nowrap;font-weight:700}
+table.cmp-oy .us{background:var(--primary-soft,#fce8d5);font-weight:700}
+table.cmp-oy thead th.us{color:var(--primary,#e0793a)}
+.cmp-note{text-align:center;font-size:14px;margin-top:18px}
+.cmp-note a{color:var(--primary,#e0793a);font-weight:700;text-decoration:underline}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -597,6 +612,13 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
           </svg>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section def-section" id="about" aria-label="おやこととは">
+    <div class="def-box">
+      <h2 class="def-h">死後手続き支援アプリ「おやこと」とは</h2>
+      <p class="def-text">おやことは、一般社団法人みらい設計が運営する死後手続き支援アプリです。親を亡くした家族向けに、死後手続き・相続タスクを期限別に自動で整理し、紙のノートと違い家族で進捗を共有できます。基本無料。</p>
     </div>
   </section>
 
@@ -833,6 +855,28 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       <div class="chip"><div class="chip-emoji">🙏</div><h4>年忌法要のご案内</h4><p>四十九日・一周忌など宗教別の法要スケジュールを自動計算。参列者・香典の記録も。</p></div>
       <div class="chip"><div class="chip-emoji">💬</div><h4>スタッフに相談</h4><p>進め方に迷ったときは、トークから直接相談できます。</p></div>
     </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="section-head">
+      <span class="eyebrow">ほかの方法との違い</span>
+      <h2>紙のノートやToDoアプリと、<br>なにが違うの？</h2>
+      <p>死後手続きの管理に、紙のエンディングノートや汎用のToDoアプリを使う方も多くいます。「おやこと」は死後手続き専用なので、やることの洗い出しから期限の管理、家族との共有までをひとつで行えます。</p>
+    </div>
+    <div class="cmp-wrap">
+      <table class="cmp-oy">
+        <thead><tr><th></th><th>紙のエンディングノート</th><th>汎用ToDoアプリ</th><th class="us">おやこと</th></tr></thead>
+        <tbody>
+<tr><th>やることの洗い出し</th><td>自分で書き出す</td><td>自分で入力する</td><td class="us">質問に答えるだけで自動作成</td></tr>
+<tr><th>期限の管理</th><td>手書きで管理</td><td>日付を自分で設定</td><td class="us">亡くなった日を基準に自動で整理</td></tr>
+<tr><th>家族との共有</th><td>手元にある人だけが見られる</td><td>共有機能はアプリによる</td><td class="us">担当と進み具合を家族でリアルタイム共有</td></tr>
+<tr><th>相続人の確認</th><td>自分で調べる</td><td>対応していない</td><td class="us">家系図で法定相続人の範囲を確認</td></tr>
+<tr><th>困ったときの相談</th><td>なし</td><td>なし</td><td class="us">電話サポート・実働サポート（有料オプション）</td></tr>
+<tr><th>費用</th><td>無料〜数千円</td><td>無料〜</td><td class="us">基本機能は無料</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">管理方法ごとの詳しい比較は「<a href="./dead-procedures-app.html">死後手続きを管理できるアプリ・チェックリストの選び方</a>」をご覧ください。</p>
   </section>
 
   <section class="section" id="pricing">
