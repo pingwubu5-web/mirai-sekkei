@@ -22,14 +22,14 @@
 <meta property="og:title" content="死後手続き支援アプリ「おやこと」｜無料・家族で共有｜一般社団法人みらい設計">
 <meta property="og:description" content="死後手続き支援アプリ「おやこと」。親が亡くなった後の手続き・相続タスクを、質問に答えるだけで期限別の「やることリスト」に。ご家族で共有・分担でき、基本機能は無料です。">
 <meta property="og:url" content="https://oyakotoapp.com/oyakoto.html">
-<meta property="og:image" content="https://oyakotoapp.com/ogp.png">
+<meta property="og:image" content="https://oyakotoapp.com/img/oyakoto/ogp.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="死後手続き支援アプリ「おやこと」｜無料・家族で共有｜一般社団法人みらい設計">
 <meta name="twitter:description" content="死後手続き支援アプリ「おやこと」。親が亡くなった後の手続き・相続タスクを期限別のやることリストにし、ご家族で共有。基本機能は無料です。">
-<meta name="twitter:image" content="https://oyakotoapp.com/ogp.png">
+<meta name="twitter:image" content="https://oyakotoapp.com/img/oyakoto/ogp.png">
 
 <script type="application/ld+json">
 {
@@ -172,6 +172,7 @@
 
   /* ---------- hero ---------- */
   .hero { position: relative; max-width: 1120px; margin: 0 auto; padding: 50px 24px 30px; overflow: visible; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .blob { display: none; } }
   .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center; position: relative; z-index: 1; }
   @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
   .eyebrow {
@@ -554,11 +555,11 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
 <main id="top">
   <section class="hero">
-    <div class="blob blob-float" style="top:-30px; left:-60px; width:220px; height:220px; background:var(--sage); border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;"></div>
+    <div class="blob blob-float" style="top:40px; left:-40px; width:200px; height:200px; background:var(--sage); border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;"></div>
     <div class="blob blob-float-slow" style="bottom:-40px; right:-40px; width:260px; height:260px; background:var(--rose); border-radius:58% 42% 35% 65% / 55% 55% 45% 45%;"></div>
     <div class="hero-grid">
       <div class="hero-text">
-        <img class="hero-logo" src="./img/oyakoto/logo.svg" alt="おやこと" width="300" height="232">
+        <picture><source srcset="./img/oyakoto/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="hero-logo" src="./img/oyakoto/logo.svg" alt="おやこと" width="300" height="232"></picture>
         <h1><span class="eyebrow h1-kw">死後手続き・相続タスク管理アプリ「おやこと」</span>
         <span class="h1-catch">「何からすれば」に、<br>そっと寄り添う。</span></h1>
         <p class="lead">
@@ -571,7 +572,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
           <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="hero">Web版を試してみる</a>
           <a class="btn btn-ghost btn-lg" href="#features">できることを見る</a>
         </div>
-        <p class="note">スマホアプリ版(Android・iOS)は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
+        <p class="note">Android版は現在Google Playで公開準備中、iOS版も準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
       </div>
       <div class="mascot-wrap">
         <span class="stone" style="top:4%; left:8%; background:var(--sage);"></span>
