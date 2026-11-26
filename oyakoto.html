@@ -515,6 +515,75 @@ table.cmp-oy .us{background:var(--primary-soft,#fce8d5);font-weight:700}
 table.cmp-oy thead th.us{color:var(--primary,#e0793a)}
 .cmp-note{text-align:center;font-size:14px;margin-top:18px}
 .cmp-note a{color:var(--primary,#e0793a);font-weight:700;text-decoration:underline}
+/* ---------- 2026-11 スマホ最適化 ---------- */
+.nw{display:inline-block}
+.sp-cta,.menu-btn{display:none}
+@media (max-width: 760px){
+  body{font-size:16px;line-height:1.85}
+  header.top{border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+  .top-inner{padding:10px 16px;flex-wrap:nowrap;gap:10px;position:relative}
+  .brand{gap:9px;margin-right:auto;min-width:0}
+  .brand img{width:36px;height:36px}
+  .brand-word{font-size:20px}
+  .brand-sub{font-size:11px;white-space:nowrap}
+  .sp-cta{display:inline-flex;padding:9px 16px;font-size:14px;box-shadow:none}
+  .menu-btn{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--panel);cursor:pointer;flex:none}
+  .menu-btn span{display:block;height:2px;border-radius:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+  header.top.open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  header.top.open .menu-btn span:nth-child(2){opacity:0}
+  header.top.open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  nav.top-nav{display:none;position:absolute;left:12px;right:12px;top:calc(100% + 6px);flex-direction:column;align-items:stretch;gap:0;background:var(--panel);border:1.5px solid var(--line);border-radius:18px;padding:8px;box-shadow:0 18px 40px -18px rgba(69,65,61,.35)}
+  header.top.open nav.top-nav{display:flex}
+  nav.top-nav a.navlink{padding:13px 14px;font-size:16px;border-radius:12px}
+  nav.top-nav a.navlink+a.navlink{border-top:1px solid var(--line)}
+  nav.top-nav .btn{display:none}
+
+  .hero{padding:24px 20px 10px}
+  .hero-grid{gap:28px}
+  .hero-logo{width:min(230px,62vw);margin:0 auto 4px}
+  .eyebrow{font-size:13px;padding:7px 14px}
+  .hero h1 .h1-kw{margin-bottom:12px}
+  .hero h1{margin-top:16px;font-size:clamp(26px,7.4vw,32px);line-height:1.45}
+  .hero .lead{margin-top:18px;font-size:16px;line-height:1.9}
+  .hero .ctas{margin-top:24px;flex-direction:column;align-items:stretch;gap:10px}
+  .hero .ctas .btn{justify-content:center;padding:16px 20px;font-size:17px}
+  .hero .note{font-size:13px;line-height:1.7}
+  .mascot-wrap{min-height:0;padding:10px 0 20px}
+  .hero-phone .phone-lg{width:min(270px,72vw)}
+  .stone{transform:scale(.75)}
+  .blob{display:none}
+
+  .section{padding:52px 20px}
+  .section-head{margin-bottom:30px}
+  .section-head .eyebrow{margin-bottom:14px}
+  .section-head h2{font-size:clamp(22px,6.4vw,28px);line-height:1.55}
+  .section-head p{font-size:15px;line-height:1.85;text-align:left}
+  #how .section-head h2,#features .section-head h2{font-size:clamp(19px,5.6vw,26px)}
+  .def-box{padding:20px 20px 20px 18px;border-left-width:5px}
+  .def-h{font-size:18px;line-height:1.6}
+  .def-text{font-size:15px}
+  .spotlight{gap:26px;margin-bottom:64px}
+  .spotlight h3{font-size:clamp(21px,6vw,26px);line-height:1.55}
+  .chips{margin-top:40px}
+  .chip{padding:20px}
+  .free-extras .chip{max-width:none !important;flex:1 1 100% !important;text-align:left}
+  .closing{padding:24px 20px 64px}
+  .closing h2{font-size:clamp(22px,6.4vw,28px);line-height:1.55}
+
+  /* 比較表 → カード表示 */
+  .cmp-wrap{overflow:visible;border:none;background:none;border-radius:0}
+  table.cmp-oy{min-width:0;font-size:14px}
+  table.cmp-oy thead{display:none}
+  table.cmp-oy,table.cmp-oy tbody,table.cmp-oy tr,table.cmp-oy th,table.cmp-oy td{display:block;width:100%}
+  table.cmp-oy tr{background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px 10px;margin-bottom:12px}
+  table.cmp-oy tbody th{white-space:normal;padding:0 0 8px;border:none;font-size:15px;color:var(--ink)}
+  table.cmp-oy td{display:flex;gap:12px;padding:7px 0;border:none;border-top:1px dashed var(--line);line-height:1.6}
+  table.cmp-oy td::before{content:attr(data-label);flex:none;width:6.5em;font-size:12px;color:var(--sub);font-weight:500;padding-top:1px}
+  table.cmp-oy td.us{background:var(--primary-soft);border-top:none;border-radius:10px;padding:9px 10px;margin-top:6px;color:var(--primary)}
+  table.cmp-oy td.us::before{color:var(--primary);font-weight:700}
+  .cmp-note{text-align:left;font-size:13.5px}
+  .profile-bio{text-align:left}
+}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -542,7 +611,9 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       <img src="./img/oyakoto/mark.svg" alt="" width="44" height="44">
       <span class="brand-word">おやこと<span class="brand-sub">死後手続きサポートアプリ</span></span>
     </a>
-    <nav class="top-nav">
+    <a class="btn btn-primary sp-cta" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="header-sp">試してみる</a>
+    <button class="menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="top-nav"><span></span><span></span><span></span></button>
+    <nav class="top-nav" id="top-nav">
       <a class="navlink" href="#how">つかいかた</a>
       <a class="navlink" href="#features">できること</a>
       <a class="navlink" href="#pricing">料金</a>
@@ -588,7 +659,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
   <section class="section def-section" id="about" aria-label="おやこととは">
     <div class="def-box">
-      <h2 class="def-h">死後手続き支援アプリ「おやこと」とは</h2>
+      <h2 class="def-h"><span class="nw">死後手続き支援アプリ</span><span class="nw">「おやこと」とは</span></h2>
       <p class="def-text">おやことは、一般社団法人みらい設計が運営する死後手続き支援アプリです。親を亡くした家族向けに、死後手続き・相続タスクを期限別に自動で整理し、紙のノートと違い家族で進捗を共有できます。基本無料。</p>
     </div>
   </section>
@@ -722,19 +793,19 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
   <section class="section" id="compare">
     <div class="section-head">
       <span class="eyebrow">ほかの方法との違い</span>
-      <h2>紙のノートやToDoアプリと、<br>なにが違うの？</h2>
+      <h2><span class="nw">紙のノートや</span><span class="nw">ToDoアプリと、</span><br>なにが違うの？</h2>
       <p>死後手続きの管理に、紙のエンディングノートや汎用のToDoアプリを使う方も多くいます。「おやこと」は死後手続き専用なので、やることの洗い出しから期限の管理、家族との共有までをひとつで行えます。</p>
     </div>
     <div class="cmp-wrap">
       <table class="cmp-oy">
         <thead><tr><th></th><th>紙のエンディングノート</th><th>汎用ToDoアプリ</th><th class="us">おやこと</th></tr></thead>
         <tbody>
-<tr><th>やることの洗い出し</th><td>自分で書き出す</td><td>自分で入力する</td><td class="us">質問に答えるだけで自動作成</td></tr>
-<tr><th>期限の管理</th><td>手書きで管理</td><td>日付を自分で設定</td><td class="us">亡くなった日を基準に自動で整理</td></tr>
-<tr><th>家族との共有</th><td>手元にある人だけが見られる</td><td>共有機能はアプリによる</td><td class="us">担当と進み具合を家族でリアルタイム共有</td></tr>
-<tr><th>相続人の確認</th><td>自分で調べる</td><td>対応していない</td><td class="us">家系図で法定相続人の範囲を確認</td></tr>
-<tr><th>困ったときの相談</th><td>なし</td><td>なし</td><td class="us">電話サポート・実働サポート（有料オプション）</td></tr>
-<tr><th>費用</th><td>無料〜数千円</td><td>無料〜</td><td class="us">基本機能は無料</td></tr>
+<tr><th>やることの洗い出し</th><td data-label="紙のノート">自分で書き出す</td><td data-label="ToDoアプリ">自分で入力する</td><td class="us" data-label="おやこと">質問に答えるだけで自動作成</td></tr>
+<tr><th>期限の管理</th><td data-label="紙のノート">手書きで管理</td><td data-label="ToDoアプリ">日付を自分で設定</td><td class="us" data-label="おやこと">亡くなった日を基準に自動で整理</td></tr>
+<tr><th>家族との共有</th><td data-label="紙のノート">手元にある人だけが見られる</td><td data-label="ToDoアプリ">共有機能はアプリによる</td><td class="us" data-label="おやこと">担当と進み具合を家族でリアルタイム共有</td></tr>
+<tr><th>相続人の確認</th><td data-label="紙のノート">自分で調べる</td><td data-label="ToDoアプリ">対応していない</td><td class="us" data-label="おやこと">家系図で法定相続人の範囲を確認</td></tr>
+<tr><th>困ったときの相談</th><td data-label="紙のノート">なし</td><td data-label="ToDoアプリ">なし</td><td class="us" data-label="おやこと">電話サポート・実働サポート（有料オプション）</td></tr>
+<tr><th>費用</th><td data-label="紙のノート">無料〜数千円</td><td data-label="ToDoアプリ">無料〜</td><td class="us" data-label="おやこと">基本機能は無料</td></tr>
         </tbody>
       </table>
     </div>
@@ -787,7 +858,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
     <div style="max-width: 720px; margin: 40px auto 0; text-align: center;">
       <p style="font-size: 13.5px; color: var(--sub); margin-bottom: 16px;">遺影のAI加工も無料でお使いいただけます。</p>
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <div class="free-extras" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <div class="chip" style="max-width: 300px; flex: 1;">
           <div class="chip-emoji">✨</div>
           <h4>遺影のAI加工(無料)</h4>
@@ -805,7 +876,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
   <section class="section" id="columns">
     <div class="section-head">
       <span class="eyebrow">お役立ちコラム</span>
-      <h2>死後手続き・終活のこと、<br>もう少し詳しく知りたい方へ</h2>
+      <h2>死後手続き・終活のこと、<br><span class="nw">もう少し詳しく</span><span class="nw">知りたい方へ</span></h2>
       <p>実家じまい、死後事務委任契約、空き家対策、遺言書、遺品整理業者の選び方まで。FPの視点で解説しています。</p>
     </div>
     <div class="chips chips-3">
@@ -848,7 +919,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
   <section class="section" style="padding-bottom: 40px;">
     <div class="section-head" style="margin-bottom: 30px;">
       <span class="eyebrow">「おやこと」という名前について</span>
-      <h2 style="margin-top: 14px; font-size: clamp(20px, 2.6vw, 26px);">「他人事」ではなく、「親の事」として。</h2>
+      <h2 style="margin-top: 14px; font-size: clamp(20px, 2.6vw, 26px);"><span class="nw">「他人事」ではなく、</span><span class="nw">「親の事」として。</span></h2>
     </div>
     <div class="about-copy">
       <p>「おやこと」という名前は、「親の事」から生まれました。大切な方を見送ったあとの手続きを「他人事(ひとごと)」として片づけるのではなく、親を思う子どものような気持ちで、ひとつひとつ丁寧に向き合いたい——そんな願いを込めています。</p>
@@ -897,7 +968,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
   <section class="section" id="contact">
     <div class="section-head">
       <span class="eyebrow">お問い合わせ</span>
-      <h2>ご相談・ご質問はこちらから</h2>
+      <h2><span class="nw">ご相談・ご質問は</span><span class="nw">こちらから</span></h2>
       <p>サービスについてのご質問、協業のご相談、取材のお申し込みなど、お気軽にお問い合わせください。</p>
     </div>
     <form class="contact-form" id="contact-form">
@@ -1044,6 +1115,13 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       });
     });
   })();
+</script>
+<script>
+(function(){var hd=document.querySelector('header.top'),b=hd&&hd.querySelector('.menu-btn');if(!b)return;
+function set(o){hd.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');}
+b.addEventListener('click',function(){set(!hd.classList.contains('open'));});
+hd.querySelectorAll('nav.top-nav a').forEach(function(a){a.addEventListener('click',function(){set(false);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});})();
 </script>
 </body>
 </html>
