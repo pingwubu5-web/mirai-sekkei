@@ -56,49 +56,54 @@
 }
 </script>
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
 
+  /* 2026-11 改訂: アプリのロゴ(手の線画+パステルの石ころ)に合わせた配色 */
   :root {
-    --ink: #3d2f24;
-    --paper: #fff8ee;
-    --panel: #fffcf8;
-    --line: #f3e2c9;
-    --primary: #e0793a;
-    --primary-soft: #fce8d5;
-    --primary-softer: #fdf3e8;
-    --accent: #b5883a;
-    --sub: #7c6a58;
-    --ok: #4a7a58;
-    --danger: #c23b2e;
-    --danger-soft: #fbe4de;
+    --ink: #45413d;
+    --paper: #faf8f5;
+    --panel: #fffefc;
+    --line: #ebe5dc;
+    --primary: #9c5f57;
+    --primary-soft: #f4e6e3;
+    --primary-softer: #f7f1ec;
+    --accent: #5c715e;
+    --sub: #7d776f;
+    --ok: #4d7a5c;
+    --danger: #c0392b;
+    --danger-soft: #f8e2de;
+    --sage: #dfe4dc;
+    --rose: #f1dedb;
+    --lavender: #e0dfe6;
+    --beige: #f1e7da;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --ink: #f5ecdf;
-      --paper: #241a12;
-      --panel: #2e2118;
-      --line: #4a3a29;
-      --primary: #f0985c;
-      --primary-soft: #3d2c1c;
-      --primary-softer: #362719;
-      --accent: #d9b876;
-      --sub: #c2ac96;
-      --ok: #6fa682;
+      --ink: #f0ebe5;
+      --paper: #23211f;
+      --panel: #2c2a27;
+      --line: #423e39;
+      --primary: #d29a90;
+      --primary-soft: #3a2f2d;
+      --primary-softer: #302926;
+      --accent: #a9bcaa;
+      --sub: #bdb5ab;
+      --ok: #8db69a;
       --danger: #e07a6c;
       --danger-soft: #402420;
     }
   }
   :root[data-theme="dark"] {
-    --ink: #f5ecdf;
-    --paper: #241a12;
-    --panel: #2e2118;
-    --line: #4a3a29;
-    --primary: #f0985c;
-    --primary-soft: #3d2c1c;
-    --primary-softer: #362719;
-    --accent: #d9b876;
-    --sub: #c2ac96;
-    --ok: #6fa682;
+    --ink: #f0ebe5;
+    --paper: #23211f;
+    --panel: #2c2a27;
+    --line: #423e39;
+    --primary: #d29a90;
+    --primary-soft: #3a2f2d;
+    --primary-softer: #302926;
+    --accent: #a9bcaa;
+    --sub: #bdb5ab;
+    --ok: #8db69a;
     --danger: #e07a6c;
     --danger-soft: #402420;
   }
@@ -145,7 +150,7 @@
     display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
   }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .brand svg { width: 44px; height: 44px; }
+  .brand img, .brand svg { width: 44px; height: 44px; }
   .brand-word { font-size: 25px; font-weight: 700; color: var(--ink); line-height: 1.3; }
   .brand-sub { display: block; font-family: "Zen Kaku Gothic New", sans-serif; font-size: 13px; font-weight: 500; color: var(--sub); }
   nav.top-nav { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
@@ -184,13 +189,14 @@
   .hero-phone .phone-lg { width: min(320px, 82vw); }
   .hero-badge {
     position: absolute; bottom: -18px; left: -20px; width: 78px; height: 78px;
-    filter: drop-shadow(0 10px 16px rgba(61,47,36,0.28));
+    filter: drop-shadow(0 10px 16px rgba(69,65,61,0.28));
   }
   @media (prefers-reduced-motion: no-preference) {
     .hero-phone { animation: bob 5s ease-in-out infinite; }
   }
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .sparkle { position: absolute; font-size: 30px; z-index: 2; }
+  .stone { position: absolute; z-index: 0; width: 70px; height: 64px; border-radius: 46% 54% 52% 48% / 55% 45% 55% 45%; }
+  .hero-logo { width: min(300px, 70vw); height: auto; margin: 0 0 6px -10px; }
 
   /* ---------- sections ---------- */
   .section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; position: relative; }
@@ -231,13 +237,15 @@
 
   /* ---------- phone chrome ---------- */
   .phone {
-    width: min(300px, 76vw); aspect-ratio: 9 / 18; background: #2a1c10; border-radius: 42px;
-    padding: 11px; box-shadow: 0 30px 50px -22px rgba(61,47,36,0.35), 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
+    width: min(300px, 76vw); aspect-ratio: 9 / 18; background: #3a3633; border-radius: 42px;
+    padding: 11px; box-shadow: 0 30px 50px -22px rgba(69,65,61,0.35), 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
     position: relative;
   }
+  .phone-screen:has(.phone-shot) { padding: 0; }
+  .phone-screen .phone-shot { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
   .phone::before {
     content: ""; position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
-    width: 84px; height: 20px; background: #2a1c10; border-radius: 0 0 16px 16px; z-index: 2;
+    width: 84px; height: 20px; background: #3a3633; border-radius: 0 0 16px 16px; z-index: 2;
   }
   .phone-screen { background: var(--paper); width: 100%; height: 100%; border-radius: 33px; overflow: hidden; padding: 24px 16px 16px; display: flex; flex-direction: column; }
   .mock-bar { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.03em; margin-bottom: 13px; }
@@ -530,11 +538,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 <header class="top">
   <div class="top-inner">
     <a class="brand" href="#top">
-      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
-        <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
-        <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
-      </svg>
+      <img src="./img/oyakoto/mark.svg" alt="" width="44" height="44">
       <span class="brand-word">おやこと<span class="brand-sub">死後手続きサポートアプリ</span></span>
     </a>
     <nav class="top-nav">
@@ -550,11 +554,12 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
 
 <main id="top">
   <section class="hero">
-    <div class="blob blob-float" style="top:-30px; left:-60px; width:220px; height:220px; background:var(--primary-soft); border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;"></div>
-    <div class="blob blob-float-slow" style="bottom:-40px; right:-40px; width:260px; height:260px; background:var(--primary-softer); border-radius:58% 42% 35% 65% / 55% 55% 45% 45%;"></div>
+    <div class="blob blob-float" style="top:-30px; left:-60px; width:220px; height:220px; background:var(--sage); border-radius:42% 58% 65% 35% / 45% 45% 55% 55%;"></div>
+    <div class="blob blob-float-slow" style="bottom:-40px; right:-40px; width:260px; height:260px; background:var(--rose); border-radius:58% 42% 35% 65% / 55% 55% 45% 45%;"></div>
     <div class="hero-grid">
       <div class="hero-text">
-        <h1><span class="eyebrow h1-kw">🍀 死後手続き・相続タスク管理アプリ「おやこと」</span>
+        <img class="hero-logo" src="./img/oyakoto/logo.svg" alt="おやこと" width="300" height="232">
+        <h1><span class="eyebrow h1-kw">死後手続き・相続タスク管理アプリ「おやこと」</span>
         <span class="h1-catch">「何からすれば」に、<br>そっと寄り添う。</span></h1>
         <p class="lead">
           大切な方を亡くされた直後は、悲しみの中で、死後手続きや死後事務委任など、
@@ -563,53 +568,18 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
           ご家族どうしでやさしく分担できるアプリです。
         </p>
         <div class="ctas">
-          <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="hero">🌸 Web版を試してみる</a>
+          <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="hero">Web版を試してみる</a>
           <a class="btn btn-ghost btn-lg" href="#features">できることを見る</a>
         </div>
-        <p class="note">iOS版は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
+        <p class="note">スマホアプリ版(Android・iOS)は準備中です。Web版はブラウザからすぐにお試しいただけます。</p>
       </div>
       <div class="mascot-wrap">
-        <span class="sparkle" style="top:2%; left:4%;">✨</span>
-        <span class="sparkle" style="bottom:6%; right:2%;">🌼</span>
+        <span class="stone" style="top:4%; left:8%; background:var(--sage);"></span>
+        <span class="stone" style="bottom:8%; right:6%; width:54px; height:50px; background:var(--lavender);"></span>
         <div class="hero-phone">
           <div class="phone phone-lg">
-            <div class="phone-screen">
-              <div class="mock-bar">いま、やるべきこと</div>
-              <div class="mock-card">
-                <div class="mock-progress-row"><span>全体の進捗</span><span class="mock-progress-pct">62%</span></div>
-                <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
-                <div class="mock-progress-caption">8 / 13 件が完了</div>
-              </div>
-              <div class="mock-task reveal" style="transition-delay:.2s">
-                <span class="mock-check done">✓</span>
-                <div class="mock-task-body">
-                  <span class="mock-task-tag">手続き</span>
-                  <div class="mock-task-title">死亡届の提出</div>
-                </div>
-              </div>
-              <div class="mock-task reveal" style="transition-delay:.36s">
-                <span class="mock-check"></span>
-                <div class="mock-task-body">
-                  <span class="mock-task-tag">手続き</span>
-                  <div class="mock-task-title">年金の停止手続き</div>
-                  <span class="mock-task-due urgent">あと5日</span>
-                </div>
-              </div>
-              <div class="mock-task reveal" style="transition-delay:.52s">
-                <span class="mock-check"></span>
-                <div class="mock-task-body">
-                  <span class="mock-task-tag">支払い</span>
-                  <div class="mock-task-title">電気・ガスの解約</div>
-                  <span class="mock-task-due">あと9日</span>
-                </div>
-              </div>
-            </div>
+            <div class="phone-screen"><img class="phone-shot" src="./img/oyakoto/home.webp" alt="おやこと ホーム画面" loading="lazy" width="750" height="1500"></div>
           </div>
-          <svg class="hero-badge" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="60" cy="60" r="58" fill="var(--primary-soft)"/>
-            <circle cx="50" cy="46" r="34" fill="var(--primary)"/>
-            <circle cx="79" cy="79" r="23" fill="var(--accent)" stroke="var(--primary-soft)" stroke-width="5"/>
-          </svg>
         </div>
       </div>
     </div>
@@ -661,25 +631,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       </div>
       <div class="spotlight-phone">
         <div class="phone">
-          <div class="phone-screen">
-            <div class="mock-bar">いま、やるべきこと</div>
-            <div class="mock-card">
-              <div class="mock-progress-row"><span>全体の進捗</span><span class="mock-progress-pct">62%</span></div>
-              <div class="mock-progress-track"><div class="mock-progress-fill" style="--fill:62%"></div></div>
-              <div class="mock-progress-caption">8 / 13 件が完了</div>
-            </div>
-            <div class="mock-promo reveal" style="transition-delay:.2s">
-              <div class="mock-promo-title">📋 やることリスト・スケジュールを見る</div>
-              <div class="mock-promo-buttons">
-                <div class="mock-promo-btn">やることリスト</div>
-                <div class="mock-promo-btn">全体を見る</div>
-              </div>
-            </div>
-            <div class="mock-menu-grid reveal" style="transition-delay:.36s">
-              <div class="mock-menu-item"><span class="mock-menu-emoji">🌳</span>家系図</div>
-              <div class="mock-menu-item"><span class="mock-menu-emoji">🙏</span>年忌法要</div>
-            </div>
-          </div>
+          <div class="phone-screen"><img class="phone-shot" src="./img/oyakoto/home.webp" alt="おやこと ホーム画面" loading="lazy" width="750" height="1500"></div>
         </div>
       </div>
     </div>
@@ -692,44 +644,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       </div>
       <div class="spotlight-phone">
         <div class="phone">
-          <div class="phone-screen">
-            <div class="mock-bar">やることリスト</div>
-            <div class="mock-tabs">
-              <div class="mock-tab active">①まず</div>
-              <div class="mock-tab">②つぎに</div>
-              <div class="mock-tab">③あとで</div>
-            </div>
-            <div class="mock-task reveal" style="transition-delay:.15s">
-              <span class="mock-check done">✓</span>
-              <div class="mock-task-body">
-                <span class="mock-task-tag">手続き</span>
-                <div class="mock-task-title">死亡届の提出</div>
-              </div>
-            </div>
-            <div class="mock-task reveal" style="transition-delay:.3s">
-              <span class="mock-check"></span>
-              <div class="mock-task-body">
-                <span class="mock-task-tag">手続き</span>
-                <div class="mock-task-title">健康保険の資格喪失届</div>
-                <span class="mock-task-due urgent">あと3日</span>
-                <div class="mock-task-actions">
-                  <span class="mock-task-btn assigned">👤 花子が担当</span>
-                </div>
-              </div>
-            </div>
-            <div class="mock-task reveal" style="transition-delay:.45s">
-              <span class="mock-check"></span>
-              <div class="mock-task-body">
-                <span class="mock-task-tag">支払い</span>
-                <div class="mock-task-title">電気・ガスの解約</div>
-                <span class="mock-task-due">あと9日</span>
-                <div class="mock-task-actions">
-                  <span class="mock-task-btn">担当を決める</span>
-                  <span class="mock-task-btn delegate">対応依頼中</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="phone-screen"><img class="phone-shot" src="./img/oyakoto/tasks.webp" alt="おやこと やることリスト画面" loading="lazy" width="750" height="1500"></div>
         </div>
       </div>
     </div>
@@ -742,23 +657,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       </div>
       <div class="spotlight-phone">
         <div class="phone">
-          <div class="phone-screen">
-            <div class="mock-chat-header"><strong style="color:var(--ink);">トーク参加者: </strong>花子さん・太郎さん・おやこと 佐藤(スタッフ)</div>
-            <div class="mock-chat">
-              <div class="mock-msg them reveal" style="transition-delay:.1s">
-                <div class="mock-sender">花子</div>
-                <div class="mock-bubble">年金の手続き、明日行ってくるね</div>
-              </div>
-              <div class="mock-msg me reveal" style="transition-delay:.35s">
-                <div class="mock-bubble">ありがとう、助かる🙏</div>
-                <div class="mock-read">既読</div>
-              </div>
-              <div class="mock-msg them reveal" style="transition-delay:.6s">
-                <div class="mock-sender">花子</div>
-                <div class="mock-bubble file">📄 戸籍謄本.pdf を共有しました</div>
-              </div>
-            </div>
-          </div>
+          <div class="phone-screen"><img class="phone-shot" src="./img/oyakoto/talk.webp" alt="おやこと 家族トーク画面" loading="lazy" width="750" height="1500"></div>
         </div>
       </div>
     </div>
@@ -771,26 +670,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       </div>
       <div class="spotlight-phone">
         <div class="phone">
-          <div class="phone-screen">
-            <div class="mock-bar">家系図で見る法定相続人</div>
-            <div class="mock-tree">
-              <div class="mock-tree-row">
-                <div class="mock-chip reveal" style="transition-delay:.1s">父(故人)</div>
-                <div class="mock-chip reveal" style="transition-delay:.18s">母</div>
-              </div>
-              <div class="mock-tree-connector reveal" style="transition-delay:.26s"></div>
-              <div class="mock-tree-row">
-                <div class="mock-chip self reveal" style="transition-delay:.34s">ご本人</div>
-                <div class="mock-chip highlight reveal" style="transition-delay:.42s">配偶者</div>
-              </div>
-              <div class="mock-tree-connector reveal" style="transition-delay:.5s"></div>
-              <div class="mock-tree-row">
-                <div class="mock-chip highlight reveal" style="transition-delay:.58s">長男</div>
-                <div class="mock-chip highlight reveal" style="transition-delay:.66s">長女</div>
-              </div>
-              <div class="mock-tree-note reveal" style="transition-delay:.78s">現在の入力では:<br>配偶者と子2人が相続人です</div>
-            </div>
-          </div>
+          <div class="phone-screen"><img class="phone-shot" src="./img/oyakoto/family-tree.webp" alt="おやこと 家系図画面" loading="lazy" width="750" height="1500"></div>
         </div>
       </div>
     </div>
@@ -826,26 +706,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
       </div>
       <div class="spotlight-phone">
         <div class="phone">
-          <div class="phone-screen">
-            <div class="mock-bar">遺影を作る</div>
-            <div class="mock-portrait-photo">
-              <span class="mock-portrait-icon">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="38" r="20" fill="var(--accent)"/>
-                  <path d="M12 100 C12 72 28 58 50 58 C72 58 88 72 88 100 Z" fill="var(--accent)"/>
-                </svg>
-              </span>
-            </div>
-            <div class="mock-portrait-tools reveal" style="transition-delay:.2s">
-              <span class="mock-tool-btn">↑</span><span class="mock-tool-btn">↓</span><span class="mock-tool-btn">←</span><span class="mock-tool-btn">→</span><span class="mock-tool-btn">＋</span><span class="mock-tool-btn">⟳</span>
-            </div>
-            <div class="mock-filter-pills reveal" style="transition-delay:.35s">
-              <span class="mock-filter-pill active">元の写真</span>
-              <span class="mock-filter-pill">明るく</span>
-              <span class="mock-filter-pill">白黒</span>
-              <span class="mock-filter-pill">セピア</span>
-            </div>
-          </div>
+          <div class="phone-screen"><img class="phone-shot" src="./img/oyakoto/portrait.webp" alt="おやこと 遺影づくり画面" loading="lazy" width="750" height="1500"></div>
         </div>
       </div>
     </div>
@@ -1028,7 +889,7 @@ src="https://www.facebook.com/tr?id=1605385461183093&ev=PageView&noscript=1"
     <h2>ひとりで抱え込まなくて、<br>大丈夫です。</h2>
     <p>まずはWeb版で、やることリストがどんな形になるか試してみてください。</p>
     <div class="ctas">
-      <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="closing">🌸 Web版を試してみる</a>
+      <a class="btn btn-primary btn-lg" href="https://oyakoto.expo.app" target="_blank" rel="noopener" data-cta="closing">Web版を試してみる</a>
     </div>
   </section>
 
